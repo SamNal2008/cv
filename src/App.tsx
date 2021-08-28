@@ -1,25 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter as Router,
+} from "react-router-dom";
+import NavBar from './components/Navbar';
+import MySwitch from './components/MySwitch';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <NavBar/>
+      {/* A <Switch> looks through its children <Route>s and
+          renders the first one that matches the current URL. */}
+          <div style={{paddingLeft: '5%', paddingRight: '5%'}}>
+            <MySwitch/>
+          </div>
+  </Router>
   );
 }
 

@@ -28,6 +28,32 @@
   color: #61dafb;
 }
 
+p {
+  color: #373741;
+}
+
+.BasicBox {
+  /*background-color: whitesmoke;*/
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 2%;
+  margin: 2%;
+  background-color: whitesmoke;
+}
+
+h1 {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  /*background-color: #b28376;
+  color: #e1d8cf*/
+  color: #b28376
+}
+
+h2 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
