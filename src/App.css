@@ -33,18 +33,17 @@ p {
 }
 
 .BasicBox {
-  /*background-color: whitesmoke;*/
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   padding: 2%;
   margin: 2%;
   background-color: whitesmoke;
+  width: 100%;
+  height: 100%;
 }
 
 h1 {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  /*background-color: #b28376;
-  color: #e1d8cf*/
-  color: #b28376
+  color: #b28376;
 }
 
 h2 {

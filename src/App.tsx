@@ -5,16 +5,18 @@ import {
 } from "react-router-dom";
 import NavBar from './components/Navbar';
 import MySwitch from './components/MySwitch';
+import { Box, ThemeProvider } from '@material-ui/core';
+import defaultTheme from './utils/theme';
 
 function App() {
   return (
     <Router>
-      <NavBar/>
-      {/* A <Switch> looks through its children <Route>s and
-          renders the first one that matches the current URL. */}
-          <div style={{paddingLeft: '5%', paddingRight: '5%'}}>
-            <MySwitch/>
-          </div>
+      <ThemeProvider theme={defaultTheme}>
+        <NavBar/>
+        <Box margin='5%' display='flex' justifyContent='center' alignItems='center' flex='1' flexDirection='column'>
+          <MySwitch/>
+        </Box>
+      </ThemeProvider>
   </Router>
   );
 }

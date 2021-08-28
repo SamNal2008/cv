@@ -1,5 +1,5 @@
 import Container from '@material-ui/core/Container';
-import { Backdrop, Box, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from '@material-ui/core';
+import { Backdrop, Box, Button, IconButton, Menu, MenuItem, Tab, Tabs, Toolbar, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -36,12 +36,21 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function Test() {
+
+    document.title = 'Page de test';
+
     const classes = useStyles();
+    const [value, setValue] = useState(0);
 
     const [open, setOpen] = useState(false);
     const [auth, setAuth] = useState(false);
 
     const [anchorEl, setAnchorEl] = useState(null);
+
+
+    const handleChange = (e: any, v: any) => {
+      setValue(v);
+    }
 
     const handleMenu = () => {
         console.log('Clicked on menu')
@@ -65,6 +74,9 @@ export default function Test() {
             <Typography variant="h6" className={classes.title}>
                 Photos
             </Typography>
+          </Button>
+          <Button color={'secondary'}>
+            OK
           </Button>
           {auth && (
             <div>
@@ -112,5 +124,19 @@ export default function Test() {
             >
             OK
         </Backdrop>
+        <Tabs
+            value={value}
+            indicatorColor="primary"
+            textColor="primary"
+            onChange={handleChange}
+            aria-label="disabled tabs example"
+          >
+            <Tab label="Active" />
+            <Tab label="Disabled" disabled />
+            <Tab label="Active" />
+          </Tabs>
+          <div>
+            <Typography variant={'h1'}>OK</Typography>
+          </div>
     </Box>)
 }
