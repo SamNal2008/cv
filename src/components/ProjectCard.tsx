@@ -1,10 +1,11 @@
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, makeStyles, Typography } from "@material-ui/core";
 import { Project } from "../utils/project";
+import renovation from '../images/renovation.jpg';
 
 const useStyles = makeStyles({
     root: {
       maxWidth: 345,
-      margin: '1%'
+      width: '23%',
     },
     media: {
       height: 140,
@@ -19,7 +20,7 @@ export default function ProjectCard({...project}: Project) {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={`/static/images/projects/${project.id}/img.jpg`}
+            image={renovation}
             title="Project image"
           />
           <CardContent>
@@ -33,7 +34,7 @@ export default function ProjectCard({...project}: Project) {
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            Partager
+            Git
           </Button>
           <Button size="small" color="primary">
             En savoir plus

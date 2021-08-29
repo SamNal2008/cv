@@ -1,5 +1,6 @@
 import { Box, makeStyles, Typography } from "@material-ui/core";
 import StudyCard from "../components/StudyCard";
+import Study from "../utils/study";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -8,6 +9,8 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         flexGrow: 1,
+        marginTop: '1%',
+        marginBottom: '1%'
       },
       menuButton: {
         marginRight: theme.spacing(2),
@@ -19,33 +22,19 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const Studies = (): JSX.Element => {
+    let epita: Study = {
+        description: 'Ecole sympathique',
+        diploma: 'Diplome d\'ingénieur',
+        finishedDate: new Date("2016-09-02"),
+        place: 'Paris, France',
+        schoolName: 'EPITA',
+        startedDate: new Date("2022-09-01")
+    };
     const classes = useStyles();
     document.title = 'Formations';
     return (
         <Box className={classes.root}>
-            <Typography variant='h1'>
-                Formations
-            </Typography>
-            <Box className={'BasicBox'}>
-                <Typography variant={'h1'}>
-                    EPITA
-                </Typography>
-                <h2>
-                    Ingénieur spécialisé en <span>système d'information et génie logiciel</span> : 2016 - 2022
-                </h2>
-                <p>
-                    Aujourd'hui on va écrire un peu de texte par exemple comme ça.Aujourd'hui on va écrire un peu de texte par exemple comme ça.Aujourd'hui on va écrire un peu de texte par exemple comme ça.Aujourd'hui on va écrire un peu de texte par exemple comme ça.
-                </p>    
-            </Box>
-            <Box className={'BasicBox'}>
-                <h1>
-                    Titre
-                </h1>
-                <h2>
-                    Sous titre
-                </h2>
-            </Box>
-            <StudyCard></StudyCard>
+            <StudyCard {...epita}/>
         </Box>
     )
 }

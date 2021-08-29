@@ -32,19 +32,20 @@ let defaultTheme = createTheme({
     typography: {
         h1: {
             fontFamily: ['Impact', 'Haettenschweiler', 'Arial Narrow Bold', 'sans-serif'].join(','),
-            fontSize: '2rem',
-            '@media (min-width:1000px)': {
-                fontSize: '0.1rem'
-            },
-            color: writtingColor,
+            '@media screen and (max-width: 1300px)': {
+                fontSize: '2rem'
+            }
         },
         h2: {
             fontFamily: [
                 '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', 'sans-serif'
             ].join(','),
+            '@media screen and (max-width: 1300px)': {
+                fontSize: '1.7rem'
+            }
         },
-        body1: {
-            color: writtingColor,
+        allVariants: {
+            color: writtingColor
         }
     },
     props: {

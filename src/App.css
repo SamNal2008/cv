@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: whitesmoke;
 }
 
 .App-logo {
@@ -37,7 +38,7 @@ p {
   padding: 2%;
   margin: 2%;
   background-color: whitesmoke;
-  width: 100%;
+  width: 20%;
   height: 100%;
 }
 
