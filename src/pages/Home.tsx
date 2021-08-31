@@ -7,6 +7,7 @@ import { useState } from "react";
 import HomeBox from "../components/HomeBox";
 import StudiesList from "../components/StudiesList";
 import ProjectsList from "../components/ProjectsList";
+import { useAuthState } from "../utils/AuthContext";
 
 const useStyles = makeStyles({
     root: {
@@ -46,6 +47,7 @@ const useStyles = makeStyles({
 const Home = () => {
     document.title = 'Accueil';
     const classes = useStyles();
+    const {isAuthenticated, user, error} = useAuthState();
     const [switchs, setSwitchs] = useState({
         studiesChecked: false,
         projectsChecked: false,
@@ -61,13 +63,13 @@ const Home = () => {
             <Box className={classes.introductionBox}>
                 <Box className={classes.subBox}>
                     <Typography variant='h1'>
-                        Bonjour moi c'est Samy
+                        Bonjour moi c'est {user?.displayName ? user.displayName : 'Samy'}
                     </Typography>
                     <Typography>
                         Jeune ingénieur de l'EPITA, je suis actuellement à la recherche d'un stage de fin d'étude.
                     </Typography>
                 </Box>
-                <img width='20%' height='100%' style={{alignSelf: 'flex-end'}} src={profilPicture} alt='profile-picture'/>
+                <img width='20%' height='100%' style={{alignSelf: 'flex-end'}} src={user?.photoUrl ? user.photoUrl : profilPicture} alt='profile-picture'/>
             </Box>
             <HomeBox component={<StudiesList/>} message={'Afficher les formations'} title={'Formations'}/>
             <HomeBox component={<ProjectsList/>} message={'Afficher les projets'} title={'Projet'}/>
