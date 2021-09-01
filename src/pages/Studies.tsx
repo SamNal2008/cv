@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         flexGrow: 1,
-        marginTop: '1%',
-        marginBottom: '1%'
+        paddingTop: '1%',
+        paddingBottom: '1%',
       },
       menuButton: {
         marginRight: theme.spacing(2),
@@ -28,7 +28,9 @@ const Studies = (): JSX.Element => {
         finishedDate: new Date("2016-09-02"),
         place: 'Paris, France',
         schoolName: 'EPITA',
-        startedDate: new Date("2022-09-01")
+        startedDate: new Date("2022-09-01"),
+        id: '1',
+        logo: '1'
     };
     const classes = useStyles();
     document.title = 'Formations';

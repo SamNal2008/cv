@@ -7,17 +7,21 @@ import NavBar from './components/Navbar';
 import MySwitch from './components/MySwitch';
 import { Box, ThemeProvider } from '@material-ui/core';
 import defaultTheme, { primaryMainColor, secondaryMainColor } from './utils/theme';
-import { AuthContextProvider } from './utils/AuthContext';
+import { AuthContextProvider } from './components/AuthContext';
+import StickyFooter from './components/Footer';
 
 function App() {
   return (
     <AuthContextProvider>
       <Router>
         <ThemeProvider theme={defaultTheme}>
-          <NavBar/>
-            <Box padding='4%' display='flex' justifyContent='center' alignItems='center' flex='1' flexDirection='column' style={{backgroundColor: 'whitesmoke'}}>
+          <div style={{minHeight: '95vh'}}>
+            <NavBar/>
+            <Box style={{backgroundColor: 'whitesmoke', height: '88vh'}}>
               <MySwitch/>
             </Box>
+          </div>
+          <StickyFooter/>
         </ThemeProvider>
     </Router>
   </AuthContextProvider>

@@ -1,31 +1,42 @@
-import { makeStyles, Paper, Typography } from "@material-ui/core";
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Icon, makeStyles, Paper, Typography } from "@material-ui/core";
 import Study from "../utils/study";
+import WorkIcon from '@material-ui/icons/Work';
 
 const useStyles = makeStyles({
     root: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-around',
-        width: '350px',
-        height: '200px',
-        padding: '1%',
-    }
+        maxWidth: 345,
+        width: '100%',
+      },
+      media: {
+        height: 140,
+      },
 });
 
-const StudyCard = ( study: Study) => {
+const StudyCard = ( study: Study ) => {
     const classes = useStyles();
     return (
-        <Paper className={classes.root} elevation={3} variant='elevation'>
-            <Typography variant='h4'>
-                {study.schoolName}
-            </Typography>
-            <Typography variant="subtitle2">
-                {study.diploma} - {(study.startedDate.getFullYear() - study.finishedDate.getFullYear()).toString()} ans - {study.place}
-            </Typography>
-            <Typography>
-                {study.description}
-            </Typography>
-        </Paper>
+        <Card className={classes.root}>
+            <CardActionArea>
+            <CardMedia
+                className={classes.media}
+                image={study.logo}
+                title="Project image"
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                    {study.schoolName}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                    {study.description}
+                </Typography>
+            </CardContent>
+            </CardActionArea>
+            <CardActions>
+            <Button size="small" style={{backgroundColor: ''}} color='primary'>
+                En savoir plus
+            </Button>
+            </CardActions>
+        </Card>
     )
 }
 

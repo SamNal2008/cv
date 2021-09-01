@@ -12,7 +12,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import useLanguage, { Language } from "../utils/wording";
 import React from "react";
 import { openInNewTab } from "../utils/functions";
-import { useAuthState } from "../utils/AuthContext";
+import { useAuthState } from "./AuthContext";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -39,7 +39,8 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    height: '7vh'
   },
   root: {
       flexGrow: 1,
@@ -66,6 +67,7 @@ const NavBar = () => {
     const GlobalWord = useLanguage(Language.French);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [width, setWidth] = useState(getWidth());
+    const {isAuthenticated, user} = useAuthState();
     
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       setAnchorEl(event.currentTarget);
@@ -85,7 +87,6 @@ const NavBar = () => {
         window.removeEventListener('resize', resizeListener);
       }
     }, []);
-    const {isAuthenticated} = useAuthState();
 
     return (
       <AppBar position="static">
@@ -105,6 +106,7 @@ const NavBar = () => {
           {width >= 1536 ? <Button onClick={() => history.push('/about')} startIcon={<InfoIcon/>}>
             {GlobalWord.Navbar.about}
           </Button> : <></>}
+          
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
             <MenuIcon />
           </IconButton>
@@ -116,37 +118,37 @@ const NavBar = () => {
             onClose={handleClose}
             style={{display: 'flex', flexDirection: 'column'}}
             >
-                <MenuItem onClick={handleClose}><Button color='primary' startIcon={<ChatIcon/>}>{GlobalWord.Navbar.contactMe}</Button></MenuItem>
-                <MenuItem onClick={() => {handleClose(); openInNewTab('https://github.com/SamNal2008');}}><Button color='primary' startIcon={<GitHubIcon/>}>{GlobalWord.Navbar.myGithub}</Button></MenuItem>
+                <MenuItem onClick={handleClose}><Button style={{backgroundColor: ''}} color='primary' startIcon={<ChatIcon/>}>{GlobalWord.Navbar.contactMe}</Button></MenuItem>
+                <MenuItem onClick={() => {handleClose(); openInNewTab('https://github.com/SamNal2008');}}><Button style={{backgroundColor: ''}} color='primary' startIcon={<GitHubIcon/>}>{GlobalWord.Navbar.myGithub}</Button></MenuItem>
                 
-                  <MenuItem style={width >= 100 ? {display: 'None'} : {}}><Button color='primary' onClick={() => {handleClose(); history.push('/')}} startIcon={<HomeIcon/>}>
+                  <MenuItem style={width >= 100 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/')}} startIcon={<HomeIcon/>}>
                     {GlobalWord.Navbar.home}
                   </Button></MenuItem>
                 
-                <MenuItem style={width >= 384 ? {display: 'None'} : {}}><Button color='primary' onClick={() => {handleClose(); history.push('/studies')}} startIcon={<SchoolIcon/>}>
+                <MenuItem style={width >= 384 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/studies')}} startIcon={<SchoolIcon/>}>
                     {GlobalWord.Navbar.studies}
                   </Button></MenuItem>
                 
-                <MenuItem style={width >= 768 ? {display: 'None'} : {}}><Button color='primary' onClick={() => {handleClose(); history.push('/experiences')}} startIcon={<WorkIcon/>}>
+                <MenuItem style={width >= 768 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/experiences')}} startIcon={<WorkIcon/>}>
                   {GlobalWord.Navbar.professionalExperiences}
                 </Button></MenuItem>
 
-                <MenuItem style={width >= 1132 ? {display: 'None'} : {}}><Button color='primary' onClick={() => {handleClose(); history.push('/projects')}} startIcon={<CodeIcon/>}>
+                <MenuItem style={width >= 1132 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/projects')}} startIcon={<CodeIcon/>}>
                   {GlobalWord.Navbar.projects}
                 </Button></MenuItem>
 
-                <MenuItem style={width >= 1536 ? {display: 'None'} : {}}><Button color='primary' onClick={() => {handleClose(); history.push('/about')}} startIcon={<InfoIcon/>}>
+                <MenuItem style={width >= 1536 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/about')}} startIcon={<InfoIcon/>}>
                   {GlobalWord.Navbar.about}
                 </Button></MenuItem>
 
-                <MenuItem style={!isAuthenticated ? {display: 'None'} : {}}><Button color='primary' onClick={() => {handleClose(); history.push('/profile')}} startIcon={<AccountCircleIcon/>}>
-                  Profil
+                <MenuItem style={!isAuthenticated ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/profile')}} startIcon={<AccountCircleIcon/>}>
+                  {isAuthenticated && user.displayName ? user.displayName : 'Profile'}
                 </Button></MenuItem>
 
                 <MenuItem>
-                  {isAuthenticated ? <Button color='primary' onClick={() => {handleClose(); signOutFromApp();}} startIcon={<ExitToAppIcon/>}>
+                  {isAuthenticated ? <Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); signOutFromApp(); history.push('/')}} startIcon={<ExitToAppIcon/>}>
                     Se deconnecter
-                  </Button> : <Button color='primary' onClick={() => {handleClose(); history.push('/login');}} startIcon={<LockOpenIcon/>}>
+                  </Button> : <Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/login');}} startIcon={<LockOpenIcon/>}>
                     Se connecter
                   </Button>}
                 </MenuItem>

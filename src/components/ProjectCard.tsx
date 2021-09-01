@@ -33,10 +33,10 @@ export default function ProjectCard({...project}: Project) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
+          <Button size="small" style={{backgroundColor: ''}} color='primary'>
             Git
           </Button>
-          <Button size="small" color="primary">
+          <Button size="small" style={{backgroundColor: ''}} color='primary'>
             En savoir plus
           </Button>
         </CardActions>

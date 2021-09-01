@@ -45,12 +45,13 @@ let defaultTheme = createTheme({
             }
         },
         allVariants: {
-            color: writtingColor
+            color: writtingColor,
         }
     },
     props: {
         MuiButton: {
             color: 'secondary',
+            style: {backgroundColor: primaryMainColor}
         },
         MuiTab: {
             color: 'primary',

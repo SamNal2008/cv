@@ -40,7 +40,9 @@ const StudiesList = () => {
             finishedDate: new Date(),
             place: 'Paris, France',
             schoolName: 'EPITA',
-            startedDate: new Date()
+            startedDate: new Date(),
+            id: '1',
+            logo: 'https://www.epita.fr/wp-content/uploads/mt/media/epita_nouveau_logo_identite_visuelle_innovation_ecole_informatique_30ans_01.jpg'
         };
         let shenyang: Study = {
             description: 'Séjour en Chine',
@@ -48,7 +50,9 @@ const StudiesList = () => {
             finishedDate: new Date(),
             place: 'Shenyang, Chine',
             schoolName: 'Northeastern University',
-            startedDate: new Date()
+            startedDate: new Date(),
+            id: '2',
+            logo: 'https://www.topuniversities.com/sites/default/files/files_live/profiles/logos/northeastern-university-china_592560cf2aeae70239af52ac_large.jpg'
         };
         return [epita, shenyang];
     }

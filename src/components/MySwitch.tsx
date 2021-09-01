@@ -4,8 +4,9 @@ import Test from "../pages/Test"
 import Home from '../pages/Home';
 import InProgress from '../pages/InProgress';
 import Projects from '../pages/Projects';
-import { useAuthState } from '../utils/AuthContext';
+import { useAuthState } from './AuthContext';
 import Login from '../pages/Login';
+import Profile from '../pages/Profile';
 
 
 const AuthenticatedRoute = ({component: Component, ...props}: any) => {
@@ -36,6 +37,7 @@ const MySwitch = () => {
             <Route path='/projects' exact component={() => <Projects/>}/>
             <Route path='/' exact component={() => <Home/>}/>
             <Route path='/in-progress' exact component={InProgress}/>
+            <AuthenticatedRoute path='/profile' exact component={Profile}/>
             <UnauthenticatedRoute exact path='/login' component={Login}/>
             <Redirect to='/in-progress'/>
         </Switch>

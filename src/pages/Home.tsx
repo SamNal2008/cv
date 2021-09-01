@@ -1,4 +1,4 @@
-import { Box, Button, Collapse, makeStyles, Switch, Typography } from "@material-ui/core";
+import { Box, Button, Collapse, IconButton, makeStyles, Switch, Typography } from "@material-ui/core";
 import { primaryMainColor } from "../utils/theme";
 import Projects from "./Projects";
 import Studies from "./Studies";
@@ -7,7 +7,8 @@ import { useState } from "react";
 import HomeBox from "../components/HomeBox";
 import StudiesList from "../components/StudiesList";
 import ProjectsList from "../components/ProjectsList";
-import { useAuthState } from "../utils/AuthContext";
+import { useAuthState } from "../components/AuthContext";
+import CreateIcon from '@material-ui/icons/Create';
 
 const useStyles = makeStyles({
     root: {
@@ -47,29 +48,23 @@ const useStyles = makeStyles({
 const Home = () => {
     document.title = 'Accueil';
     const classes = useStyles();
-    const {isAuthenticated, user, error} = useAuthState();
-    const [switchs, setSwitchs] = useState({
-        studiesChecked: false,
-        projectsChecked: false,
-        professionalExperiencesChecked: false
-    });
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSwitchs({ ...switchs, [event.target.name]: event.target.checked });
-      };
+    const { user } = useAuthState();
 
     return (
         <Box className={classes.root}>
             <Box className={classes.introductionBox}>
                 <Box className={classes.subBox}>
                     <Typography variant='h1'>
-                        Bonjour moi c'est {user?.displayName ? user.displayName : 'Samy'}
+                        Bonjour moi c'est Samy
                     </Typography>
                     <Typography>
                         Jeune ingénieur de l'EPITA, je suis actuellement à la recherche d'un stage de fin d'étude.
                     </Typography>
                 </Box>
-                <img width='20%' height='100%' style={{alignSelf: 'flex-end'}} src={user?.photoUrl ? user.photoUrl : profilPicture} alt='profile-picture'/>
+                    <img width='20%' height='100%' style={{alignSelf: 'flex-end'}} src={profilPicture} alt='profile-picture'/>
+                    {user?.isAdmin ? <IconButton>
+                         <CreateIcon/>
+                    </IconButton> : <></> }
             </Box>
             <HomeBox component={<StudiesList/>} message={'Afficher les formations'} title={'Formations'}/>
             <HomeBox component={<ProjectsList/>} message={'Afficher les projets'} title={'Projet'}/>

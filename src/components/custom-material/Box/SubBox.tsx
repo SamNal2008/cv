@@ -6,7 +6,7 @@ const SubBox = withStyles({
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        width: '100%',
+        width: '95%',
         marginBottom: '2%'
     }
 })(Box)
