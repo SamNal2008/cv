@@ -21,13 +21,8 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  main: {
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(2),
-  },
   footer: {
     padding: theme.spacing(3, 2),
-    height: '5vh',
     marginTop: 'auto',
     backgroundColor: secondaryMainColor
   },
@@ -38,10 +33,10 @@ export default function StickyFooter() {
 
   return (
         <footer className={classes.footer}>
-        <Container maxWidth="sm">
-            <Typography variant="body1">Me contacter : <Link style={{cursor: 'pointer'}} onClick={() => openInNewTab('https://linkedin.com/in/snal.com')}>Linkedin</Link></Typography>
-            <Copyright />
-        </Container>
+          <Container maxWidth="sm">
+              <Typography variant="body1">Me contacter : <Link style={{cursor: 'pointer'}} onClick={() => openInNewTab('https://linkedin.com/in/snal.com')}>Linkedin</Link></Typography>
+              <Copyright />
+          </Container>
         </footer>
   );
 }

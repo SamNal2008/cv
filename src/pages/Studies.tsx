@@ -30,7 +30,8 @@ const Studies = (): JSX.Element => {
         schoolName: 'EPITA',
         startedDate: new Date("2022-09-01"),
         id: '1',
-        logo: '1'
+        logo: '1',
+        websiteUrl: 'www.epita.fr'
     };
     const classes = useStyles();
     document.title = 'Formations';

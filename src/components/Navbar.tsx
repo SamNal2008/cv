@@ -19,28 +19,9 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { signOutFromApp } from "../utils/firebase";
 
 const useStyles = makeStyles((theme) => ({
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
-    width: '30vw',
-    height: '30vh',
-    top: '50%',
-    left: '50%'
-  },
-  possibleLink: {
-    textDecoration: 'None'
-  },
-  homeMainDiv: {
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-  },
   toolbar: {
     display: 'flex',
     justifyContent: 'space-between',
-    height: '7vh'
   },
   root: {
       flexGrow: 1,
@@ -89,7 +70,7 @@ const NavBar = () => {
     }, []);
 
     return (
-      <AppBar position="static">
+      <AppBar position="static" style={{height: '100%'}}>
         <Toolbar className={classes.toolbar}>
           {width >= 100 ? <Button onClick={() => history.push('/')} startIcon={<HomeIcon/>}>
               {GlobalWord.Navbar.home}

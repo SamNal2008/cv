@@ -16,7 +16,8 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '100%',
+        width: '98%',
+        padding: '1%'
     },
     subBox: {
         display: 'flex',

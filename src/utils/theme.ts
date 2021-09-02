@@ -58,7 +58,7 @@ let defaultTheme = createTheme({
         },
         MuiTabs: {
             indicatorColor: 'secondary'
-        }
+        },
     }
 });
 

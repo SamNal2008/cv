@@ -12,19 +12,23 @@ import StickyFooter from './components/Footer';
 
 function App() {
   return (
-    <AuthContextProvider>
-      <Router>
-        <ThemeProvider theme={defaultTheme}>
-          <div style={{minHeight: '95vh'}}>
-            <NavBar/>
-            <Box style={{backgroundColor: 'whitesmoke', height: '88vh'}}>
-              <MySwitch/>
-            </Box>
-          </div>
-          <StickyFooter/>
-        </ThemeProvider>
-    </Router>
-  </AuthContextProvider>
+    <div style={{height: '100vh'}}>
+      <AuthContextProvider>
+        <Router>
+          <ThemeProvider theme={defaultTheme}>
+            <div style={{height: '7%'}}>
+              <NavBar/>
+            </div>
+            <div style={{minHeight: '82.5%', backgroundColor: 'whitesmoke'}}>
+                <MySwitch/>
+            </div>
+            <div style={{height: '10%'}}>
+              <StickyFooter/>
+            </div>
+          </ThemeProvider>
+        </Router>
+      </AuthContextProvider>
+    </div>
   );
 }
 
