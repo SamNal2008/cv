@@ -48,6 +48,10 @@ const useStyles = makeStyles((theme: Theme) => ({
         flexGrow: 1,
         width: '100%',
         backgroundColor: theme.palette.background.paper,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     main: {
         height: '100%',
@@ -87,8 +91,8 @@ function ScrollableTabsButtonForce() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static" color="default">
-                <Tabs
+            <Tabs
+                style={{width: '100%'}}
                 value={value}
                 onChange={handleChange}
                 variant="scrollable"
@@ -104,7 +108,6 @@ function ScrollableTabsButtonForce() {
                 <Tab label="Twitter" icon={<TwitterIcon />} {...a11yProps(4)} />
                 <Tab label="Microsoft" icon={<DesktopWindowsIcon />} {...a11yProps(5)} />
                 </Tabs>
-            </AppBar>
             <Box style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60%'}}>
                 <TabPanel value={value} index={0}>
                     <Box style={{display: 'flex', justifyContent: 'space-between', alignItems:'space-between', flexDirection:'column', height: '15vh', paddingTop: '10%', paddingBottom: '10%'}}>

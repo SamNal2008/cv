@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     root: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         alignItems: 'center',
         flexWrap: 'wrap',
         width: '80%',

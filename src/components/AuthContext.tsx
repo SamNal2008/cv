@@ -28,10 +28,12 @@ export const AuthContextProvider = (props: any): JSX.Element => {
     const [error, setError] = useState();
     const setStateWithAdmin = async (u: any) => {
       try {
-        const docRef = doc(firestore, 'users', u.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          u.isAdmin = docSnap.data().isAdmin;
+        if (u) {
+          const docRef = doc(firestore, 'users', u.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            u.isAdmin = docSnap.data().isAdmin;
+          }
         }
       }
       catch (e) {

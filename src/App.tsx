@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
+  BrowserRouter as Router, HashRouter,
 } from "react-router-dom";
 import NavBar from './components/Navbar';
 import MySwitch from './components/MySwitch';
@@ -14,7 +15,7 @@ function App() {
   return (
     <div style={{height: '100vh'}}>
       <AuthContextProvider>
-        <Router>
+        <BrowserRouter>
           <ThemeProvider theme={defaultTheme}>
             <div style={{height: '7%'}}>
               <NavBar/>
@@ -26,7 +27,7 @@ function App() {
               <StickyFooter/>
             </div>
           </ThemeProvider>
-        </Router>
+        </BrowserRouter>
       </AuthContextProvider>
     </div>
   );

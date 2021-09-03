@@ -1,4 +1,4 @@
-import { AppBar, Button, IconButton, makeStyles, Menu, MenuItem, Toolbar } from "@material-ui/core";
+import { AppBar, Button, IconButton, makeStyles, Menu, MenuItem, Toolbar, Link } from "@material-ui/core";
 import { useHistory } from "react-router-dom"
 import MenuIcon from '@material-ui/icons/Menu';
 import { useEffect, useState } from "react";
@@ -17,11 +17,13 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { signOutFromApp } from "../utils/firebase";
+import ButtonLink from "./custom-material/Links/ButtonLink";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   root: {
       flexGrow: 1,
@@ -72,22 +74,11 @@ const NavBar = () => {
     return (
       <AppBar position="static" style={{height: '100%'}}>
         <Toolbar className={classes.toolbar}>
-          {width >= 100 ? <Button onClick={() => history.push('/')} startIcon={<HomeIcon/>}>
-              {GlobalWord.Navbar.home}
-          </Button> : <></>}
-          {width >= 384 ? <Button onClick={() => history.push('/studies')} startIcon={<SchoolIcon/>}>
-            {GlobalWord.Navbar.studies}
-          </Button> : <></>}
-          {width >= 768 ? <Button onClick={() => history.push('/experiences')} startIcon={<WorkIcon/>}>
-            {GlobalWord.Navbar.professionalExperiences}
-          </Button> : <></>}
-          {width >= 1132 ? <Button onClick={() => history.push('/projects')} startIcon={<CodeIcon/>}>
-            {GlobalWord.Navbar.projects}
-          </Button> : <></>}
-          {width >= 1536 ? <Button onClick={() => history.push('/about')} startIcon={<InfoIcon/>}>
-            {GlobalWord.Navbar.about}
-          </Button> : <></>}
-          
+          {width >= 100 ? <ButtonLink content='Accueil' icon={<HomeIcon/>} path='/' />: <></>}
+          {width >= 384 ? <ButtonLink content='Formations' icon={<SchoolIcon/>} path='/studies'/> : <></>}
+          {width >= 768 ? <ButtonLink content='Expériences professionnelles' icon={<WorkIcon/>} path='/experiences' /> : <></>}
+          {width >= 1132 ? <ButtonLink content='Projets' icon={<CodeIcon/>} path='/projects'/> : <></>}
+          {width >= 1536 ? <ButtonLink content='A propos' icon={<InfoIcon/>} path='/about' /> : <></>}
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
             <MenuIcon />
           </IconButton>

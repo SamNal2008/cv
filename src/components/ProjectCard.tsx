@@ -1,47 +1,50 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, makeStyles, Typography } from "@material-ui/core";
+import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, makeStyles, Typography } from "@material-ui/core";
 import { Project } from "../utils/project";
 import renovation from '../images/renovation.jpg';
 import { useHistory } from "react-router-dom";
+import ButtonLink from "./custom-material/Links/ButtonLink";
 
 const useStyles = makeStyles({
-    root: {
-      maxWidth: 345,
-      width: '23%',
-    },
-    media: {
-      height: 140,
-    },
+  main: {
+    padding: '1%',
+    
+  },
+  root: {
+    maxWidth: 345,
+    width: 345
+  },
+  media: {
+    height: 140,
+  },
 });
 
 export default function ProjectCard({...project}: Project) {
     const classes = useStyles();
     const history = useHistory();
     return (
-      <Card className={classes.root}>
-        <CardActionArea onClick={() => history.push(`/project?projectId=${project.id}`)}>
-          <CardMedia
-            className={classes.media}
-            image={renovation}
-            title={project.title}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {project.title}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {project.description}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" style={{backgroundColor: ''}} color='primary'>
-            Git
-          </Button>
-          <Button size="small" style={{backgroundColor: ''}} color='primary'>
-            En savoir plus
-          </Button>
-        </CardActions>
-      </Card>
+      <Box className={classes.main}>
+        <Card className={classes.root}>
+          <CardActionArea onClick={() => history.push(`/project?projectId=${project.id}`)}>
+            <CardMedia
+              className={classes.media}
+              image={renovation}
+              title={project.title}
+              />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                {project.title}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {project.description}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <ButtonLink color='primary' content='Git' icon={<></>} path='https://www.github.com'/>
+            <ButtonLink color='primary' content='En savoir plus' icon={<></>} path={`/project?projectId=${project.id}`} />
+          </CardActions>
+        </Card>
+      </Box>
     );
   }
 

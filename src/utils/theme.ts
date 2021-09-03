@@ -51,7 +51,7 @@ let defaultTheme = createTheme({
     props: {
         MuiButton: {
             color: 'secondary',
-            style: {backgroundColor: primaryMainColor}
+            style: {backgroundColor: primaryMainColor, height: '100%'}
         },
         MuiTab: {
             color: 'primary',
@@ -59,6 +59,9 @@ let defaultTheme = createTheme({
         MuiTabs: {
             indicatorColor: 'secondary'
         },
+        MuiLink: {
+            style: {textDecoration: 'none', height: '100%', display: 'flex', justifyContent: 'center', alignContent: 'center'}
+        }
     }
 });
 
