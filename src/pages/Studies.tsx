@@ -1,4 +1,6 @@
-import { Box, makeStyles, Typography } from "@material-ui/core";
+import { Box, Button, makeStyles, Typography } from "@material-ui/core";
+import { useState } from "react";
+import { useAuthState } from "../components/AuthContext";
 import StudyCard from "../components/StudyCard";
 import Study from "../utils/study";
 
@@ -11,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         paddingTop: '1%',
         paddingBottom: '1%',
+        height: '100%'
       },
       menuButton: {
         marginRight: theme.spacing(2),
@@ -19,7 +22,19 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         color: 'white',
       },
+      formationsBox: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingBottom: '2%'
+      }
   }));
+
+export const createNewFormation = (study: Study) => {
+  console.log(study);
+}
 
 const Studies = (): JSX.Element => {
     let epita: Study = {
@@ -33,11 +48,23 @@ const Studies = (): JSX.Element => {
         logo: '1',
         websiteUrl: 'www.epita.fr'
     };
+    const [studies, setStudies] = useState<Study[]>([epita, epita, epita, epita, epita]);
     const classes = useStyles();
+    const { user } = useAuthState();
     document.title = 'Formations';
     return (
         <Box className={classes.root}>
-            <StudyCard {...epita}/>
+          <Box style={{paddingBottom: '2%'}}>
+            <Typography variant="h2">
+              Formations
+            </Typography>
+          </Box>
+          <Box className={classes.formationsBox}>
+            {
+                studies.map(study => <Box style={{padding: '1%'}}><StudyCard {...study}/></Box>)
+            }
+          </Box>
+          {user?.isAdmin ? <Button>Ajouter une nouvelle formation</Button> : <></>}
         </Box>
     )
 }
