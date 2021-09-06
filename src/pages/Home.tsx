@@ -9,6 +9,7 @@ import StudiesList from "../components/StudiesList";
 import ProjectsList from "../components/ProjectsList";
 import { useAuthState } from "../components/AuthContext";
 import CreateIcon from '@material-ui/icons/Create';
+import '../styles/Home.css';
 
 const useStyles = makeStyles({
     root: {
@@ -52,25 +53,26 @@ const Home = () => {
     const { user } = useAuthState();
 
     return (
-        <Box className={classes.root}>
-            <Box className={classes.introductionBox}>
-                <Box className={classes.subBox}>
-                    <Typography variant='h1'>
-                        Bonjour moi c'est Samy
-                    </Typography>
-                    <Typography>
-                        Jeune ingénieur de l'EPITA, je suis actuellement à la recherche d'un stage de fin d'étude.
-                    </Typography>
+        <div className='home-intro'>
+            <Box className={classes.root}>
+                <Box className={classes.introductionBox}>
+                    <Box className={classes.subBox}>
+                        <Typography variant='h1'>
+                            Bonjour moi c'est Samy
+                        </Typography>
+                        <Typography>
+                            Jeune ingénieur de l'EPITA, je suis actuellement à la recherche d'un stage de fin d'étude.
+                        </Typography>
+                    </Box>
+                        <img width='20%' height='100%' style={{alignSelf: 'flex-end'}} src={profilPicture} alt='profile-picture'/>
+                        {user?.isAdmin ? <IconButton>
+                            <CreateIcon/>
+                        </IconButton> : <></> }
                 </Box>
-                    <img width='20%' height='100%' style={{alignSelf: 'flex-end'}} src={profilPicture} alt='profile-picture'/>
-                    {user?.isAdmin ? <IconButton>
-                         <CreateIcon/>
-                    </IconButton> : <></> }
+                <HomeBox component={<StudiesList/>} message={'Afficher les formations'} title={'Formations'}/>
+                <HomeBox component={<ProjectsList/>} message={'Afficher les projets'} title={'Projet'}/>
             </Box>
-            <HomeBox component={<StudiesList/>} message={'Afficher les formations'} title={'Formations'}/>
-            <HomeBox component={<ProjectsList/>} message={'Afficher les projets'} title={'Projet'}/>
-            
-        </Box>
+        </div>
     )
 }
 
