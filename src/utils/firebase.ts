@@ -33,7 +33,7 @@ export const signUpFunction = async (email: string, password: string) => {
     const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
     // set user in DB
     const user = userCredentials.user;
-  } catch (error) {
+  } catch (error: any) {
     const errorCode = error.code;
     const errorMessage = error.message;
   }
@@ -73,7 +73,7 @@ export const signInWithGoogle = async () => {
     const user = res.user;
     await defineAdminRole(user);
     return user;
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -95,7 +95,7 @@ export const signInWithGitHub = async () => {
     const user = res.user;
     defineAdminRole(user);
     return user;
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -118,7 +118,7 @@ export const signInWithFaceboook =  async () => {
     const user = res.user;
     defineAdminRole(user);
     return user;
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     const errorCode = error.code;
     const errorMessage = error.message;
