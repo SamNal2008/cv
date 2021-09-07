@@ -23,9 +23,10 @@ const useStyles = makeStyles({
     subBox: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '80%',
+        paddingRight: '20%',
         marginBottom: '2%'
     },
     introductionBox: {
@@ -57,11 +58,11 @@ const Home = () => {
             <Box className={classes.root}>
                 <Box className={classes.introductionBox}>
                     <Box className={classes.subBox}>
-                        <Typography variant='h1'>
-                            Bonjour moi c'est Samy
+                        <Typography  variant='h1'>
+                            Bienvenu sur mon site
                         </Typography>
-                        <Typography>
-                            Jeune ingénieur de l'EPITA, je suis actuellement à la recherche d'un stage de fin d'étude.
+                        <Typography variant='h6' style={{paddingLeft: '10%', paddingTop:'5%'}}>
+                            {"Jeune ingénieur informatique spécialisé en système d'information et génie logiciel, en dernière année à l'EPITA.  Je suis à la recherche d'un stage de fin d'étude pour une durée de 6 mois, débutant le 15 février 2022. dans le but de devenir Ingénieur en Système d'information & Génie logiciel. Je suis bon communiquant, curieux, rigoureux et organisé, avec un grand sens de l'esprit d'équipe. Passionné des nouvelles technologies depuis tout jeune, j'essaie de rester à jour avec les dernières tendances et bonnes pratiques. Grâce à mon parcours à l'Epita en SIGL et ma démarche ingénieur j'apporte une expertise technique à des problèmes concrets en prenant en compte tous les enjeux ainsi que la cohérence de tout un système d'information."}
                         </Typography>
                     </Box>
                         <img width='20%' height='100%' style={{alignSelf: 'flex-end'}} src={profilPicture} alt='profile-picture'/>

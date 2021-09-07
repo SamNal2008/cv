@@ -59,7 +59,7 @@ const ProjectView = () => {
                             {project?.description}
                         </Typography>
                         <Typography>
-                            {project?.description}
+                            {project?.content}
                         </Typography>
                     </Box>
                 </Box>

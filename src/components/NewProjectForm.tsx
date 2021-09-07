@@ -3,8 +3,8 @@ import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/sty
 import { useState } from "react";
 import { primaryMainColor } from "../utils/theme";
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import { createNewProject } from "../utils/firebase";
-import { Project } from "../utils/project";
+import { createNewProject, uploadImageForProject } from "../utils/firebase";
+import { Project, ProjectType } from "../utils/project";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -33,29 +33,48 @@ const useStyles = makeStyles((theme: Theme) =>
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+        width: '80%'
+      },
 }));
 
 const NewProjectForm = ({...props}: any) => {
 
     const [projectName, setProjectName] = useState('');
     const [projectDescription, setProjectDescription] = useState('');
-    const [projectType, setProjectType] = useState('');
+    const [projectType, setProjectType] = useState<ProjectType>(ProjectType.School);
+    const [githubLink, setGithubLink] = useState('');
+    const [projectPicture, setProjectPicture] = useState();
+
+    const [tmpPicture, setTmpPicture] = useState();
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        setProjectType(event.target.value as string);
+        let tmpProjectType = event.target.value as ProjectType;
+        setProjectType(tmpProjectType)
         console.log(projectType);
       };
 
+    const uploadPicture = async (e: any) => {
+        if (e.target.files[0]) {
+            setTmpPicture(e.target.files[0]);
+        }
+    }
+
     const classes = useStyles();
 
-    const validateForm = (e: any) => {
+    const validateForm = async (e: any) => {
         e.preventDefault();
         console.log(projectName);
+        let realImg = await uploadImageForProject(projectName, tmpPicture);
         let newProject: Project = {
             description: projectDescription,
             id: projectName,
             title: projectName,
-            type: 'personal'
+            type: projectType,
+            githubLink: githubLink,
+            photoUrl: `projects/${projectName}`
         }
         createNewProject(newProject);
         props.handleValidate();
@@ -80,9 +99,30 @@ const NewProjectForm = ({...props}: any) => {
                         onChange={(e) => setProjectName(e.target.value)}
                         label='Nom du projet'
                         value={projectName}/>
-                    <TextareaAutosize style={{maxWidth: '30vw', maxHeight: '60vh'}} value={projectDescription} onChange={e => setProjectDescription(e.target.value)}/>
+                    <TextareaAutosize style={{minWidth: '10vw', maxWidth: '25vw', maxHeight: '60vh'}} value={projectDescription} onChange={e => setProjectDescription(e.target.value)}/>
                     <Input type='file'/>
-
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel id="demo-simple-select-outlined-label">Type de projet</InputLabel>
+                        <Select
+                        labelId="demo-simple-select-outlined-label"
+                        id="demo-simple-select-outlined"
+                        value={projectType}
+                        onChange={handleChange}
+                        label="Type de projet"
+                        >
+                        <MenuItem value="">
+                            <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={ProjectType.Personal}>Personnel</MenuItem>
+                        <MenuItem value={ProjectType.Professional}>Professionnel</MenuItem>
+                        <MenuItem value={ProjectType.School}>Scolaire</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <TextField
+                        variant='outlined'
+                        onChange={(e) => setGithubLink(e.target.value)}
+                        label='Lien git'
+                        value={githubLink}/>
                 </DialogContent>
                 <DialogActions>
                 <Button style={{backgroundColor: primaryMainColor, color: 'white'}} autoFocus onClick={props.handleClose} color="primary">

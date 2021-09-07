@@ -71,7 +71,7 @@ export default function Test() {
             <MenuIcon />
           </IconButton>
           <Button>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h6" className={classes.title} >
                 Photos
             </Typography>
           </Button>

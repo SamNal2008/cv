@@ -6,7 +6,7 @@ import { useAuthState } from "../components/AuthContext";
 import NewProjectForm from "../components/NewProjectForm";
 import ProjectCard from "../components/ProjectCard";
 import { firestore } from "../utils/firebase";
-import { Project } from "../utils/project";
+import { Project, ProjectType } from "../utils/project";
 import theme from "../utils/theme";
 
 const useStyles = makeStyles({
@@ -87,7 +87,7 @@ export default function Projects() {
             </Typography>
             <Box className={classes.subBox}>
                 {
-                    projects.filter(project => project.type === 'professional').map(project => <ProjectCard {...project} />)
+                    projects.filter(project => project.type === ProjectType.Professional).map(project => <ProjectCard {...project} />)
                 }
             </Box>
             <Typography variant='h3' className={classes.subTitle}>
@@ -95,7 +95,7 @@ export default function Projects() {
             </Typography>
                 <Box className={classes.subBox}>
                     {
-                        projects.filter(project => project.type === 'school').map(project => <ProjectCard {...project} />)
+                        projects.filter(project => project.type === ProjectType.School).map(project => <ProjectCard {...project} />)
                     }
                 </Box>
             <Typography variant='h3'>
@@ -103,7 +103,7 @@ export default function Projects() {
             </Typography>
             <Box className={classes.subBox}>
                 {
-                    projects.filter(project => project.type === 'personal').map(project => <ProjectCard {...project} />)
+                    projects.filter(project => project.type === ProjectType.Personal).map(project => <ProjectCard {...project} />)
                 }
             </Box></> : <CircularProgress/> }
             {user?.isAdmin ? <Button onClick={() => setOpen(!open)}>Ajouter un nouveau projet</Button> : <></>}

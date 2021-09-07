@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, UserCredential, signInWithPopup, GoogleAuthProvider, signOut, GithubAuthProvider, FacebookAuthProvider } from 'firebase/auth';
 import { addDoc, collection, doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
-import { getStorage } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { replacer } from "./functions";
 import { Project } from "./project";
 
@@ -140,6 +140,31 @@ export const signOutFromApp = async () => {
 
 export const createNewProject = async (project: Project) => {
   await setDoc(doc(firestore, "projects", project.id), project);
+}
+
+export const uploadImageForProject = async (projectName: string, img: any) => {
+  const storageRef = ref(storage, `projects/${projectName}`);
+  return await uploadBytes(storageRef, img).then((snapshot: any) => {
+    console.log('Image uploaded');
+    return snapshot;
+  });
+}
+
+
+export async function fetchImage(url: string) {
+  try {
+    const url_1 = await getDownloadURL(ref(storage, url));
+    // `url` is the download URL for 'images/stars.jpg'
+    // This can be downloaded directly:
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = (event) => {
+      const blob = xhr.response;
+    };
+    xhr.open('GET', url_1);
+    xhr.send();
+    return url_1;
+  } catch (error) { } 
 }
 
 // const saignInWithGoogle = async () => {

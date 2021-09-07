@@ -3,6 +3,11 @@ import { Project } from "../utils/project";
 import renovation from '../images/renovation.jpg';
 import { useHistory } from "react-router-dom";
 import ButtonLink from "./custom-material/Links/ButtonLink";
+import { useAuthState } from "./AuthContext";
+import { deleteDoc, doc } from "@firebase/firestore";
+import { fetchImage, firestore } from "../utils/firebase";
+import DeleteIcon from '@material-ui/icons/Delete';
+import { useEffect, useState } from "react";
 
 const useStyles = makeStyles({
   main: {
@@ -10,8 +15,7 @@ const useStyles = makeStyles({
     
   },
   root: {
-    maxWidth: 345,
-    width: 345
+    width: 400
   },
   media: {
     height: 140,
@@ -21,13 +25,35 @@ const useStyles = makeStyles({
 export default function ProjectCard({...project}: Project) {
     const classes = useStyles();
     const history = useHistory();
+    const {user} = useAuthState();
+    const [loaded, setLoaded] = useState(false);
+    const deleteFormation = async () => {
+      await deleteDoc(doc(firestore, 'projects', project.id));
+      window.location.reload();
+    }
+
+    const [picture, setPicture] = useState('');
+
+    useEffect(() => {
+      const loadImg = async () => {
+        let imgUrl = await fetchImage(`projects/${project.id}`);
+        if (imgUrl)
+          setPicture(imgUrl);
+        else {
+          setPicture(renovation);
+        }
+        setLoaded(true);
+      }
+      loadImg();
+    }, [loaded])
+
     return (
       <Box className={classes.main}>
         <Card className={classes.root}>
           <CardActionArea onClick={() => history.push(`/project?projectId=${project.id}`)}>
             <CardMedia
               className={classes.media}
-              image={renovation}
+              image={picture}
               title={project.title}
               />
             <CardContent>
@@ -40,10 +66,12 @@ export default function ProjectCard({...project}: Project) {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <ButtonLink color='primary' content='Git' icon={<></>} path='https://www.github.com'/>
+            <ButtonLink disabled={!project.githubLink} color='primary' content='Git' icon={<></>} path={project.githubLink}/>
             <ButtonLink color='primary' content='En savoir plus' icon={<></>} path={`/project?projectId=${project.id}`} />
+            {user?.isAdmin ? <Button color='secondary' startIcon={<DeleteIcon/>} onClick={() => deleteFormation()}>Supprimer</Button> : <></>}
           </CardActions>
         </Card>
+        
       </Box>
     );
   }
