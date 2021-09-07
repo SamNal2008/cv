@@ -53,7 +53,7 @@ const Home = () => {
     const { user } = useAuthState();
 
     return (
-        <div className='home-intro'>
+        <div>
             <Box className={classes.root}>
                 <Box className={classes.introductionBox}>
                     <Box className={classes.subBox}>
@@ -70,7 +70,7 @@ const Home = () => {
                         </IconButton> : <></> }
                 </Box>
                 <HomeBox component={<StudiesList/>} message={'Afficher les formations'} title={'Formations'}/>
-                <HomeBox component={<ProjectsList/>} message={'Afficher les projets'} title={'Projet'}/>
+                <HomeBox component={<ProjectsList/>} message={'Afficher les projets'} title={'Projets'}/>
             </Box>
         </div>
     )

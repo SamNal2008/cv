@@ -5,6 +5,7 @@ import { getAuth, createUserWithEmailAndPassword, UserCredential, signInWithPopu
 import { addDoc, collection, doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
 import { getStorage } from "firebase/storage";
 import { replacer } from "./functions";
+import { Project } from "./project";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -135,6 +136,10 @@ export const signOutFromApp = async () => {
   } catch (err) {
     console.error(err);
   }
+}
+
+export const createNewProject = async (project: Project) => {
+  await setDoc(doc(firestore, "projects", project.id), project);
 }
 
 // const saignInWithGoogle = async () => {

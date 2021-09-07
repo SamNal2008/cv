@@ -1,6 +1,8 @@
 import { Box, CircularProgress, makeStyles } from "@material-ui/core"
+import { collection, getDocs, query } from "firebase/firestore";
 import { useEffect } from "react";
 import { useState } from "react";
+import { firestore } from "../utils/firebase";
 import { Project } from "../utils/project";
 import ProjectCard from "./ProjectCard";
 
@@ -31,31 +33,20 @@ const ProjectsList = () => {
     const [projects, setProjects] = useState<Project[]>([]);
     const [loaded, setLoaded] = useState(false);
 
-    const fetchProjects = () => {
-        /* axios.get('/studies').then(res => {
-            setStudies(res.data);
-        });*/
-        let sh: Project = {
-            description: 'Réalisation d\'un bash posix',
-            id: 1,
-            title: '42SH'
-        };
-        let spider: Project = {
-            description: 'Réalisation d\'un serveur web',
-            id: 2,
-            title: 'Spider Web Server'
-        };
-        let jws: Project = {
-            description: 'Réalisation d\'un serveur web',
-            id: 2,
-            title: 'Spider Web Server'
-        };
-        return [sh, spider, jws, jws, jws, jws, jws, jws, jws];
-    }
-
     useEffect(() => {
-        setProjects(fetchProjects());
-        setLoaded(true);
+        const fetchProjects = async () => {
+            const q = query(collection(firestore, "projects"));
+            const querySnapshots = await getDocs(q);
+            let tmpProjects: any[] = [];
+            querySnapshots.forEach((project: any) => {
+                console.log(project.data());
+                if (tmpProjects.length < 8)
+                    tmpProjects.push(project.data());
+            });
+            setProjects(tmpProjects);
+            setLoaded(true);
+        }
+        fetchProjects();
     }, [loaded])
 
 

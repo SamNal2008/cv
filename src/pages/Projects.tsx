@@ -1,6 +1,11 @@
+import { collection } from "@firebase/firestore";
 import { Backdrop, Box, Button, CircularProgress, Collapse, Fade, makeStyles, Theme, Typography } from "@material-ui/core";
-import { useState } from "react";
+import { getDocs, query } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { useAuthState } from "../components/AuthContext";
+import NewProjectForm from "../components/NewProjectForm";
 import ProjectCard from "../components/ProjectCard";
+import { firestore } from "../utils/firebase";
 import { Project } from "../utils/project";
 import theme from "../utils/theme";
 
@@ -13,6 +18,7 @@ const useStyles = makeStyles({
         alignItems: 'center',
         width: '100%',
         height: '100%',
+        paddingBottom: '1%'
     },
     subBox: {
         display: 'flex',
@@ -32,51 +38,78 @@ const useStyles = makeStyles({
     },
     collapse: {
         width: '100%'
-    }
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+        width: '100%',
+        height: '100%',
+        top: '0%',
+        left: '0%'
+      },
 });
 
 export default function Projects() {
 
-    const [schoolProjects, setSchoolProjects] = useState<Project[]>([{
-        description: 'Petit projet sympa',
-        id: 1,
-        title: '42SH'
-    },
-    {
-        description: 'Petit projet sympa',
-        id: 1,
-        title: '42SH'
-    }]);
-
-    const [professionalProjects, setProfessionalProjects] = useState<Project[]>();
-    const [personalProjects, setPersonalProjects] = useState<Project[]>([]);
+    const [projects, setProjects] = useState<Project[]>([]);
     const [open, setOpen] = useState(false);
+    const [loaded, setLoaded] = useState(false);
     const handleClose = () => {
         setOpen(!open);
     }
 
+    useEffect(() => {
+        const fetchProjects = async () => {
+            const q = query(collection(firestore, "projects"));
+            const querySnapshots = await getDocs(q);
+            let tmpProjects: any[] = [];
+            querySnapshots.forEach((project: any) => {
+                console.log(project.data());
+                tmpProjects.push(project.data());
+            });
+            setProjects(tmpProjects);
+            setLoaded(true);
+        }
+        fetchProjects();
+    }, [loaded])
+
+    const { user } = useAuthState();
     const classes = useStyles();
     return (
         <Box className={classes.root}>
             <Typography variant='h2' className={classes.title}>
                 Projets
             </Typography>
-            <Typography variant='h3' className={classes.subTitle}>
-                {schoolProjects.length > 1 ? 'Projets en école' : 'Projet en école'}
-            </Typography>
-                <Box className={classes.subBox}>
-                    {
-                        schoolProjects.map(project => <ProjectCard {...project} />)
-                    }
-                </Box>
+            { loaded ? 
+            <>
             <Typography variant='h3'>
-                {schoolProjects.length > 1 ? 'Projets personnels' : 'Projet personnel'}
+                {projects.length > 1 ? 'Projets professionnels' : 'Projet professionnel'}
             </Typography>
             <Box className={classes.subBox}>
                 {
-                    personalProjects.map(project => <ProjectCard {...project} />)
+                    projects.filter(project => project.type === 'professional').map(project => <ProjectCard {...project} />)
                 }
             </Box>
+            <Typography variant='h3' className={classes.subTitle}>
+                {projects.length > 1 ? 'Projets en école' : 'Projet en école'}
+            </Typography>
+                <Box className={classes.subBox}>
+                    {
+                        projects.filter(project => project.type === 'school').map(project => <ProjectCard {...project} />)
+                    }
+                </Box>
+            <Typography variant='h3'>
+                {projects.length > 1 ? 'Projets personnels' : 'Projet personnel'}
+            </Typography>
+            <Box className={classes.subBox}>
+                {
+                    projects.filter(project => project.type === 'personal').map(project => <ProjectCard {...project} />)
+                }
+            </Box></> : <CircularProgress/> }
+            {user?.isAdmin ? <Button onClick={() => setOpen(!open)}>Ajouter un nouveau projet</Button> : <></>}
+            <Collapse in={open} style={{height: '100%'}}>
+                <NewProjectForm open={open} handleValidate={() => {setOpen(!open); setLoaded(false);}} handleClose={() => setOpen(!open)}/>
+            </Collapse>
         </Box>
     )
 }

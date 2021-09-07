@@ -60,7 +60,13 @@ let defaultTheme = createTheme({
             indicatorColor: 'secondary'
         },
         MuiLink: {
-            style: {textDecoration: 'none', height: '100%', display: 'flex', justifyContent: 'center', alignContent: 'center'}
+            style: {
+                textDecoration: 'none',
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }
         }
     }
 });

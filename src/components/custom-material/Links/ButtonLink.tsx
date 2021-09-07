@@ -4,7 +4,8 @@ import { Component, ReactElement } from "react"
 interface ButtonLinkProps {
     path: string,
     icon: ReactElement,
-    content: string
+    content: string,
+    color: string
 }
 
 const ButtonLink = ({...props}: any) => {
