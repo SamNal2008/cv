@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/cv-react/static/css/main.6dda4772.chunk.css",
-    "main.js": "/cv-react/static/js/main.d294ce38.chunk.js",
-    "main.js.map": "/cv-react/static/js/main.d294ce38.chunk.js.map",
-    "runtime-main.js": "/cv-react/static/js/runtime-main.c9533608.js",
-    "runtime-main.js.map": "/cv-react/static/js/runtime-main.c9533608.js.map",
-    "static/js/2.b586cc4c.chunk.js": "/cv-react/static/js/2.b586cc4c.chunk.js",
-    "static/js/2.b586cc4c.chunk.js.map": "/cv-react/static/js/2.b586cc4c.chunk.js.map",
-    "static/js/3.7073b0d8.chunk.js": "/cv-react/static/js/3.7073b0d8.chunk.js",
-    "static/js/3.7073b0d8.chunk.js.map": "/cv-react/static/js/3.7073b0d8.chunk.js.map",
+    "main.css": "/cv-react/static/css/main.8853aa6a.chunk.css",
+    "main.js": "/cv-react/static/js/main.4226ec44.chunk.js",
+    "main.js.map": "/cv-react/static/js/main.4226ec44.chunk.js.map",
+    "runtime-main.js": "/cv-react/static/js/runtime-main.3472b133.js",
+    "runtime-main.js.map": "/cv-react/static/js/runtime-main.3472b133.js.map",
+    "static/js/2.fb59bf60.chunk.js": "/cv-react/static/js/2.fb59bf60.chunk.js",
+    "static/js/2.fb59bf60.chunk.js.map": "/cv-react/static/js/2.fb59bf60.chunk.js.map",
+    "static/js/3.244da8ab.chunk.js": "/cv-react/static/js/3.244da8ab.chunk.js",
+    "static/js/3.244da8ab.chunk.js.map": "/cv-react/static/js/3.244da8ab.chunk.js.map",
     "index.html": "/cv-react/index.html",
-    "static/css/main.6dda4772.chunk.css.map": "/cv-react/static/css/main.6dda4772.chunk.css.map",
-    "static/js/2.b586cc4c.chunk.js.LICENSE.txt": "/cv-react/static/js/2.b586cc4c.chunk.js.LICENSE.txt",
-    "static/media/costard.86375ac1.png": "/cv-react/static/media/costard.86375ac1.png",
+    "static/css/main.8853aa6a.chunk.css.map": "/cv-react/static/css/main.8853aa6a.chunk.css.map",
+    "static/js/2.fb59bf60.chunk.js.LICENSE.txt": "/cv-react/static/js/2.fb59bf60.chunk.js.LICENSE.txt",
+    "static/media/Home.css": "/cv-react/static/media/costard.86375ac1.png",
     "static/media/InProgress.css": "/cv-react/static/media/renovation.aaef9b77.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.c9533608.js",
-    "static/js/2.b586cc4c.chunk.js",
-    "static/css/main.6dda4772.chunk.css",
-    "static/js/main.d294ce38.chunk.js"
+    "static/js/runtime-main.3472b133.js",
+    "static/js/2.fb59bf60.chunk.js",
+    "static/css/main.8853aa6a.chunk.css",
+    "static/js/main.4226ec44.chunk.js"
   ]
 }
