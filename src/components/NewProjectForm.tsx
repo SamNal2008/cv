@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, Input, InputLabel, MenuItem, Select, TextField, Typography, useMediaQuery} from "@material-ui/core";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, Input, InputLabel, List, MenuItem, Select, TextField, Typography, useMediaQuery} from "@material-ui/core";
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import { useState } from "react";
 import { primaryMainColor } from "../utils/theme";
@@ -37,7 +37,16 @@ const useStyles = makeStyles((theme: Theme) =>
         margin: theme.spacing(1),
         minWidth: 120,
         width: '80%'
-      },
+    },
+    dialogContentMain: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        gap: '30px',
+        maxHeight: '100%',
+        overflow: 'auto'
+    }
 }));
 
 const NewProjectForm = ({...props}: any) => {
@@ -92,37 +101,37 @@ const NewProjectForm = ({...props}: any) => {
                 aria-labelledby="responsive-dialog-title"
             >
                 <DialogTitle id="responsive-dialog-title">{"Créer une nouvelle formation"}</DialogTitle>
-                <DialogContent style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '30px'}}>
-                    <TextField
-                        variant='outlined'
-                        required
-                        onChange={(e) => setProjectName(e.target.value)}
-                        label='Nom du projet'
-                        value={projectName}/>
-                    <TextareaAutosize style={{minWidth: '10vw', maxWidth: '25vw', maxHeight: '60vh'}} value={projectDescription} onChange={e => setProjectDescription(e.target.value)}/>
-                    <Input type='file'/>
-                    <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-outlined-label">Type de projet</InputLabel>
-                        <Select
-                        labelId="demo-simple-select-outlined-label"
-                        id="demo-simple-select-outlined"
-                        value={projectType}
-                        onChange={handleChange}
-                        label="Type de projet"
-                        >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={ProjectType.Personal}>Personnel</MenuItem>
-                        <MenuItem value={ProjectType.Professional}>Professionnel</MenuItem>
-                        <MenuItem value={ProjectType.School}>Scolaire</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <TextField
-                        variant='outlined'
-                        onChange={(e) => setGithubLink(e.target.value)}
-                        label='Lien git'
-                        value={githubLink}/>
+                <DialogContent className={classes.dialogContentMain}>
+                        <TextField
+                            variant='outlined'
+                            required
+                            onChange={(e) => setProjectName(e.target.value)}
+                            label='Nom du projet'
+                            value={projectName}/>
+                        <TextareaAutosize style={{width: '25vw', height: '60vh', maxHeight: '60vh', maxWidth: '25vw'}} value={projectDescription} onChange={e => setProjectDescription(e.target.value)}/>
+                        <Input type='file' onChange={uploadPicture}/>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                            <InputLabel id="demo-simple-select-outlined-label">Type de projet</InputLabel>
+                            <Select
+                            labelId="demo-simple-select-outlined-label"
+                            id="demo-simple-select-outlined"
+                            value={projectType}
+                            onChange={handleChange}
+                            label="Type de projet"
+                            >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value={ProjectType.Personal}>Personnel</MenuItem>
+                            <MenuItem value={ProjectType.Professional}>Professionnel</MenuItem>
+                            <MenuItem value={ProjectType.School}>Scolaire</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <TextField
+                            variant='outlined'
+                            onChange={(e) => setGithubLink(e.target.value)}
+                            label='Lien git'
+                            value={githubLink}/>
                 </DialogContent>
                 <DialogActions>
                 <Button style={{backgroundColor: primaryMainColor, color: 'white'}} autoFocus onClick={props.handleClose} color="primary">

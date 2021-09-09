@@ -167,24 +167,5 @@ export async function fetchImage(url: string) {
   } catch (error) { } 
 }
 
-// const saignInWithGoogle = async () => {
-//   try {
-//     const res = await firebaseAuth.signInWithPopup(app, googleProvider);
-//     const user = res.user;
-//     const query = await storage
-//       .collection(app, [])
-//       .where("uid", "==", user.uid)
-//       .get();
-//     if (query.docs.length === 0) {
-//       await db.collection("users").add({
-//         uid: user.uid,
-//         name: user.displayName,
-//         authProvider: "google",
-//         email: user.email,
-//       });
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     alert(err.message);
-//   }
-// };
+
+
