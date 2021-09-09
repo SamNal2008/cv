@@ -15,10 +15,11 @@ const useStyles = makeStyles({
     
   },
   root: {
-    width: 400
+    width: '100%',
+    height: '100%'
   },
   media: {
-    height: 140,
+    height: '10rem',
   },
 });
 

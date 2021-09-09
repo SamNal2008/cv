@@ -17,8 +17,11 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
+        height: '100%',
         width: '98%',
-        padding: '1%'
+        padding: '1%',
+        flexShrink: 1,
+        flexGrow: 1
     },
     subBox: {
         display: 'flex',
@@ -38,14 +41,6 @@ const useStyles = makeStyles({
         height: '100%',
         paddingBottom: '5%',
     },
-    subTitleBox: {
-        backgroundColor: primaryMainColor,
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    }
 })
 
 const Home = () => {

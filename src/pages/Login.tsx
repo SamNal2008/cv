@@ -10,6 +10,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import DesktopWindowsIcon from '@material-ui/icons/DesktopWindows';
 import { isValidEmail } from "../utils/functions";
 import LockIcon from '@material-ui/icons/Lock';
+import { primaryMainColor, secondaryMainColor } from "../utils/theme";
 interface TabPanelProps {
     children?: React.ReactNode;
     index: any;
@@ -45,27 +46,26 @@ function a11yProps(index: any) {
   
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        flexGrow: 1,
-        width: '100%',
         backgroundColor: theme.palette.background.paper,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
+        padding: '1%',
+        width: '60%'
     },
     main: {
         height: '100%',
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'center',
+        paddingBottom: '2%'
     },
     title: {
-        paddingBottom: '10%'
+        paddingBottom: '2%'
     },
     subDiv: {
-        paddingBottom: '5%'
+        paddingBottom: '3%',
+        textAlign: 'center'
     }
 }));
   
@@ -92,7 +92,7 @@ function ScrollableTabsButtonForce() {
     return (
         <div className={classes.root}>
             <Tabs
-                style={{width: '100%'}}
+                style={{ margin: "auto" ,width: '100%'}}
                 value={value}
                 onChange={handleChange}
                 variant="scrollable"
@@ -107,14 +107,14 @@ function ScrollableTabsButtonForce() {
                 <Tab label="Facebook" icon={<FacebookIcon />} {...a11yProps(3)} />
                 <Tab label="Twitter" icon={<TwitterIcon />} {...a11yProps(4)} />
                 <Tab label="Microsoft" icon={<DesktopWindowsIcon />} {...a11yProps(5)} />
-                </Tabs>
-            <Box style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60%'}}>
+            </Tabs>
+            <Box style={{height: '60%'}}>
                 <TabPanel value={value} index={0}>
-                    <Box style={{display: 'flex', justifyContent: 'space-between', alignItems:'space-between', flexDirection:'column', height: '15vh', paddingTop: '10%', paddingBottom: '10%'}}>
-                        <TextField error={!validEmail()} helperText={!validEmail() ? 'Merci de rentrer une adresse valide' : ''} variant='outlined' label='Adresse mail' value={email} onChange={(e) => setEmail(e.target.value)}/>
-                        <TextField variant='outlined' type='password' label='Mot de passe' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <Box style={{display: 'flex', flexDirection: 'column'}}>
+                    <TextField style={{marginBottom: '2rem'}} error={!validEmail()} helperText={!validEmail() ? 'Merci de rentrer une adresse valide' : ''} variant='outlined' label='Adresse mail' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <TextField style={{marginBottom: '2rem'}} variant='outlined' type='password' label='Mot de passe' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <Button variant='outlined' startIcon={<LockIcon/>}><Typography style={{fontSize: '0.9rem', color: secondaryMainColor}} >Se connecter</Typography></Button>
                     </Box>
-                    <Button variant='outlined' startIcon={<LockIcon/>}>Se connecter</Button>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <Button variant='outlined' startIcon={<GitHubIcon/>} onClick={() => signInWithGitHub()}>Git</Button>
@@ -143,7 +143,7 @@ const Login = () => {
         <Typography className={classes.title} variant='h2'>
             Connexion
         </Typography>
-        <Typography className={classes.subDiv} variant='h3'>
+        <Typography className={classes.subDiv} variant='h6'>
             Veuillez choisir un moyen de connexion
         </Typography>
         <ScrollableTabsButtonForce/>
