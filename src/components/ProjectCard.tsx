@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 const useStyles = makeStyles({
   main: {
     padding: '1%',
-    
   },
   root: {
     width: '100%',

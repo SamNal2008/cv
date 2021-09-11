@@ -1,8 +1,8 @@
 export default interface Study {
     schoolName: string,
     description: string,
-    startedDate: Date,
-    finishedDate: Date,
+    startedDate: string,
+    finishedDate: string,
     place: string,
     diploma?: string, // FIXME
     id: string,

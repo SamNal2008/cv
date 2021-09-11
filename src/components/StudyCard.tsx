@@ -4,6 +4,9 @@ import WorkIcon from '@material-ui/icons/Work';
 import { openInNewTab } from "../utils/functions";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { fetchImage } from "../utils/firebase";
+import renovation from '../images/renovation.jpg';
 
 const useStyles = makeStyles({
     root: {
@@ -25,44 +28,41 @@ const useStyles = makeStyles({
 const StudyCard = ( study: Study ) => {
     const classes = useStyles();
     const history = useHistory();
+    const [logo, setLogo] = useState('');
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        const loadImg = async () => {
+          let imgUrl = await fetchImage(`studies/${study.id}`);
+          if (imgUrl)
+            setLogo(imgUrl);
+          else {
+            setLogo(renovation);
+          }
+          setLoaded(true);
+        }
+        loadImg();
+      }, [loaded])
+
     return (
         <Box className={classes.root}>
             <Link style={{textDecoration: 'none'}} to={`/study/view?studyId=${study.id}`} >
                 <Paper className={classes.main} elevation={5} >
                     <Box>
-                        <Typography variant='h5'>
+                        <Typography variant='h4'>
                             {study.schoolName}
                         </Typography>
                         <Typography>
                             {study.description}
                         </Typography>
+                        <Typography>
+                            {study.startedDate} -- {study.finishedDate}
+                        </Typography>
                     </Box>
-                    <img style={{marginLeft: 'auto'}} height={'100'} src={study.logo}/>
+                    <img style={{marginLeft: 'auto'}} height={'100'} src={logo}/>
                 </Paper>
             </Link>
         </Box>
-        // <Card className={classes.root}>
-        //         <CardActionArea onClick={() => console.log('Study page')}>
-        //         <CardMedia
-        //             className={classes.media}
-        //             image={study.logo}
-        //             title={study.schoolName}
-        //         />
-        //         <CardContent>
-        //             <Typography gutterBottom variant="h5" component="h2">
-        //                 {study.schoolName}
-        //             </Typography>
-        //             <Typography variant="body2" color="textSecondary" component="p">
-        //                 {study.description}
-        //             </Typography>
-        //         </CardContent>
-        //     </CardActionArea>
-        //     <CardActions>
-        //     <Link href={study.websiteUrl} target='_blank' style={{backgroundColor: ''}} color='primary'>
-        //         Lien vers le site de l'établissement
-        //     </Link>
-        //     </CardActions>
-        // </Card>
     )
 }
 
