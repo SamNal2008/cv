@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import ButtonLink from "./custom-material/Links/ButtonLink";
 import { useAuthState } from "./AuthContext";
 import { deleteDoc, doc } from "@firebase/firestore";
-import { fetchImage, firestore } from "../utils/firebase";
+import { deleteImage, deleteObj, fetchImage, firestore } from "../utils/firebase";
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useEffect, useState } from "react";
 
@@ -28,7 +28,8 @@ export default function ProjectCard({...project}: Project) {
     const {user} = useAuthState();
     const [loaded, setLoaded] = useState(false);
     const deleteFormation = async () => {
-      await deleteDoc(doc(firestore, 'projects', project.id));
+      deleteObj('projects', project);
+      deleteImage(`projects/${project.id}`);
       window.location.reload();
     }
 
