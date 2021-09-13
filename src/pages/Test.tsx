@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Markdown from 'markdown-to-jsx';
 // @ts-ignore
 import AppMarkdown from '../images/Titi.md';
 
@@ -51,6 +50,6 @@ export default function Test() {
   }, [])
 
     return (<Box className={classes.homeMainDiv}>
-        {mdFile ? <Markdown children={mdFile.md} /> : <></> }
+        ok
     </Box>)
 }

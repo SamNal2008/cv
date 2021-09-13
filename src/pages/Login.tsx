@@ -105,8 +105,8 @@ function ScrollableTabsButtonForce() {
                 <Tab label="Git" icon={<GitHubIcon />} {...a11yProps(1)} />
                 <Tab label="Google" icon={<GTranslateIcon />} {...a11yProps(2)} />
                 <Tab label="Facebook" icon={<FacebookIcon />} {...a11yProps(3)} />
-                <Tab label="Twitter" icon={<TwitterIcon />} {...a11yProps(4)} />
-                <Tab label="Microsoft" icon={<DesktopWindowsIcon />} {...a11yProps(5)} />
+                {/*<Tab label="Twitter" icon={<TwitterIcon />} {...a11yProps(4)} />
+                <Tab label="Microsoft" icon={<DesktopWindowsIcon />} {...a11yProps(5)} />*/}
             </Tabs>
             <Box style={{height: '60%'}}>
                 <TabPanel value={value} index={0}>
@@ -125,12 +125,13 @@ function ScrollableTabsButtonForce() {
                 <TabPanel value={value} index={3}>
                     <Button variant='outlined' onClick={() => signInWithFaceboook()} startIcon={<FacebookIcon/>}>Facebook</Button>
                 </TabPanel>
-                <TabPanel value={value} index={4}>
+                {/*<TabPanel value={value} index={4}>
                     <Button variant='outlined' startIcon={<TwitterIcon/>}>Twitter</Button>
                 </TabPanel>
                 <TabPanel value={value} index={5}>
-                    <Button variant='outlined' startIcon={<DesktopWindowsIcon/>}>Microsoft</Button>
+                <Button variant='outlined' startIcon={<DesktopWindowsIcon/>}>Microsoft</Button>
                 </TabPanel>
+                */}
             </Box>
         </div>
     );

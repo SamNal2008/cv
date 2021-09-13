@@ -12,12 +12,12 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        minHeight: '80vh',
         flexGrow: 1,
         paddingTop: '1%',
         paddingBottom: '1%',
-        height: '100%',
         
       },
       menuButton: {

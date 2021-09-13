@@ -55,7 +55,7 @@ export default function ProjectCard({...project}: Project) {
     return (
       <Box className={classes.main}>
         <Card className={classes.root}>
-          <CardActionArea> {/* onClick={() => history.push(`/cv/project?projectId=${project.id}`)}*/}
+          <CardActionArea onClick={() => history.push(`/cv/project?projectId=${project.id}`)}>
             <CardMedia
               className={classes.media}
               image={picture}

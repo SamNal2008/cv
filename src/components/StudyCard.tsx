@@ -42,7 +42,7 @@ const StudyCard = ( study: Study ) => {
           setLoaded(true);
         }
         loadImg();
-      }, [loaded])
+      }, [loaded]);
 
     return (
         <Box className={classes.root}>
