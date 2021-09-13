@@ -5,8 +5,8 @@ import { create } from "jss";
 
 
 export const writtingColor = '#373741';
-export const primaryMainColor = '#b28376';
-export const secondaryMainColor = '#e1d8cf'
+export const primaryMainColor = '#494c5c';
+export const secondaryMainColor = '#dbe4fd'
 
 let defaultTheme = createTheme({
     palette: {

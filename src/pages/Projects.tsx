@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "../components/AuthContext";
 import NewProjectForm from "../components/NewProjectForm";
 import ProjectCard from "../components/ProjectCard";
-import { firestore } from "../utils/firebase";
+import { firestore, get } from "../utils/firebase";
 import { Project, ProjectType } from "../utils/project";
 import theme from "../utils/theme";
 
@@ -59,18 +59,11 @@ export default function Projects() {
     }
 
     useEffect(() => {
-        const fetchProjects = async () => {
-            const q = query(collection(firestore, "projects"));
-            const querySnapshots = await getDocs(q);
-            let tmpProjects: any[] = [];
-            querySnapshots.forEach((project: any) => {
-                console.log(project.data());
-                tmpProjects.push(project.data());
-            });
-            setProjects(tmpProjects);
+        get('projects').then(res => {
+            if (res)
+                setProjects(res);
             setLoaded(true);
-        }
-        fetchProjects();
+        }).catch(() => setLoaded(true));
     }, [loaded])
 
     const { user } = useAuthState();

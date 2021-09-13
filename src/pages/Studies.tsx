@@ -1,7 +1,11 @@
-import { Box, Button, makeStyles, Typography } from "@material-ui/core";
-import { useState } from "react";
+import { query } from "@firebase/firestore";
+import { Box, Button, Collapse, makeStyles, Typography } from "@material-ui/core";
+import { collection } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { useAuthState } from "../components/AuthContext";
+import NewStudyForm from "../components/NewStudyForm";
 import StudyCard from "../components/StudyCard";
+import { get } from "../utils/firebase";
 import Study from "../utils/study";
 
 const useStyles = makeStyles((theme) => ({
@@ -13,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         paddingTop: '1%',
         paddingBottom: '1%',
-        height: '100%'
+        height: '100%',
+        
       },
       menuButton: {
         marginRight: theme.spacing(2),
@@ -23,12 +28,8 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
       },
       formationsBox: {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: '2%'
+        width: '80%',
+        paddingBottom: '10%'
       }
   }));
 
@@ -37,21 +38,23 @@ export const createNewFormation = (study: Study) => {
 }
 
 const Studies = (): JSX.Element => {
-    let epita: Study = {
-        description: 'Ecole sympathique',
-        diploma: 'Diplome d\'ingénieur',
-        finishedDate: new Date("2016-09-02"),
-        place: 'Paris, France',
-        schoolName: 'EPITA',
-        startedDate: new Date("2022-09-01"),
-        id: '1',
-        logo: '1',
-        websiteUrl: 'www.epita.fr'
-    };
-    const [studies, setStudies] = useState<Study[]>([epita, epita, epita, epita, epita]);
+    const [studies, setStudies] = useState<Study[]>([]);
+    const [open, setOpen] = useState(false);
     const classes = useStyles();
+    const [loaded, setLoaded] = useState(false);
     const { user } = useAuthState();
+
     document.title = 'Formations';
+
+    useEffect(() => {
+        get('studies').then(res => {
+          console.log(res);
+          if (res)
+            setStudies(res);
+          setLoaded(true);
+        });
+    }, [loaded])
+
     return (
         <Box className={classes.root}>
           <Box style={{paddingBottom: '2%'}}>
@@ -61,10 +64,13 @@ const Studies = (): JSX.Element => {
           </Box>
           <Box className={classes.formationsBox}>
             {
-                studies.map(study => <Box style={{padding: '1%'}}><StudyCard {...study}/></Box>)
+                studies.map(study => <StudyCard {...study}/>)
             }
           </Box>
-          {user?.isAdmin ? <Button>Ajouter une nouvelle formation</Button> : <></>}
+          {user?.isAdmin ? <Button onClick={() => setOpen(!open)}>Ajouter une nouvelle formation</Button> : <></>}
+            <Collapse in={open} style={{height: '100%'}}>
+                <NewStudyForm open={open} handleValidate={() => {setOpen(!open); setLoaded(false);}} handleClose={() => setOpen(!open)}/>
+            </Collapse>
         </Box>
     )
 }

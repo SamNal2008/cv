@@ -1,9 +1,5 @@
-import { Box, Button, Collapse, IconButton, makeStyles, Switch, Typography } from "@material-ui/core";
-import { primaryMainColor } from "../utils/theme";
-import Projects from "./Projects";
-import Studies from "./Studies";
+import { Box, IconButton, makeStyles, Typography } from "@material-ui/core";
 import profilPicture from '../images/costard.png';
-import { useState } from "react";
 import HomeBox from "../components/HomeBox";
 import StudiesList from "../components/StudiesList";
 import ProjectsList from "../components/ProjectsList";

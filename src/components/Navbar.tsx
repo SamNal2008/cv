@@ -74,11 +74,11 @@ const NavBar = () => {
     return (
       <AppBar position="static" style={{height: '100%'}}>
         <Toolbar className={classes.toolbar}>
-          {width >= 100 ? <ButtonLink content='Accueil' icon={<HomeIcon/>} path='/' />: <></>}
-          {width >= 384 ? <ButtonLink content='Formations' icon={<SchoolIcon/>} path='/studies'/> : <></>}
-          {width >= 768 ? <ButtonLink content='Expériences professionnelles' icon={<WorkIcon/>} path='/experiences' /> : <></>}
-          {width >= 1132 ? <ButtonLink content='Projets' icon={<CodeIcon/>} path='/projects'/> : <></>}
-          {width >= 1536 ? <ButtonLink content='A propos' icon={<InfoIcon/>} path='/about' /> : <></>}
+          {width >= 100 ? <ButtonLink content='Accueil' icon={<HomeIcon/>} path='/cv' />: <></>}
+          {width >= 384 ? <ButtonLink content='Formations' icon={<SchoolIcon/>} path='/cv/studies'/> : <></>}
+          {false && width >= 768 ? <ButtonLink content='Expériences professionnelles' icon={<WorkIcon/>} path='/cv/experiences' /> : <></>}
+          {width >= 1132 ? <ButtonLink content='Projets' icon={<CodeIcon/>} path='/cv/projects'/> : <></>}
+          {false && width >= 1536 ? <ButtonLink content='A propos' icon={<InfoIcon/>} path='/cv/about' /> : <></>}
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
             <MenuIcon />
           </IconButton>
@@ -90,37 +90,37 @@ const NavBar = () => {
             onClose={handleClose}
             style={{display: 'flex', flexDirection: 'column'}}
             >
-                <MenuItem onClick={handleClose}><Button style={{backgroundColor: ''}} color='primary' startIcon={<ChatIcon/>}>{GlobalWord.Navbar.contactMe}</Button></MenuItem>
+                <MenuItem onClick={handleClose}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); openInNewTab('https://www.linkedin.com/in/snal')}} startIcon={<ChatIcon/>}>{GlobalWord.Navbar.contactMe}</Button></MenuItem>
                 <MenuItem onClick={() => {handleClose(); openInNewTab('https://github.com/SamNal2008');}}><Button style={{backgroundColor: ''}} color='primary' startIcon={<GitHubIcon/>}>{GlobalWord.Navbar.myGithub}</Button></MenuItem>
                 
-                  <MenuItem style={width >= 100 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/')}} startIcon={<HomeIcon/>}>
+                  <MenuItem style={width >= 100 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv')}} startIcon={<HomeIcon/>}>
                     {GlobalWord.Navbar.home}
                   </Button></MenuItem>
                 
-                <MenuItem style={width >= 384 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/studies')}} startIcon={<SchoolIcon/>}>
+                <MenuItem style={width >= 384 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/studies')}} startIcon={<SchoolIcon/>}>
                     {GlobalWord.Navbar.studies}
                   </Button></MenuItem>
                 
-                <MenuItem style={width >= 768 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/experiences')}} startIcon={<WorkIcon/>}>
+                <MenuItem style={true || width >= 768 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/experiences')}} startIcon={<WorkIcon/>}>
                   {GlobalWord.Navbar.professionalExperiences}
                 </Button></MenuItem>
 
-                <MenuItem style={width >= 1132 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/projects')}} startIcon={<CodeIcon/>}>
+                <MenuItem style={width >= 1132 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/projects')}} startIcon={<CodeIcon/>}>
                   {GlobalWord.Navbar.projects}
                 </Button></MenuItem>
 
-                <MenuItem style={width >= 1536 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/about')}} startIcon={<InfoIcon/>}>
+                <MenuItem style={true || width >= 1536 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/about')}} startIcon={<InfoIcon/>}>
                   {GlobalWord.Navbar.about}
                 </Button></MenuItem>
 
-                <MenuItem style={!isAuthenticated ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/profile')}} startIcon={<AccountCircleIcon/>}>
+                <MenuItem style={!isAuthenticated ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/profile')}} startIcon={<AccountCircleIcon/>}>
                   {isAuthenticated && user.displayName ? user.displayName : 'Profile'}
                 </Button></MenuItem>
 
                 <MenuItem>
                   {isAuthenticated ? <Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); signOutFromApp(); history.push('/')}} startIcon={<ExitToAppIcon/>}>
                     Se deconnecter
-                  </Button> : <Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/login');}} startIcon={<LockOpenIcon/>}>
+                  </Button> : <Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/login');}} startIcon={<LockOpenIcon/>}>
                     Se connecter
                   </Button>}
                 </MenuItem>

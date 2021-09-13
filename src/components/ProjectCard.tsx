@@ -5,20 +5,20 @@ import { useHistory } from "react-router-dom";
 import ButtonLink from "./custom-material/Links/ButtonLink";
 import { useAuthState } from "./AuthContext";
 import { deleteDoc, doc } from "@firebase/firestore";
-import { fetchImage, firestore } from "../utils/firebase";
+import { deleteImage, deleteObj, fetchImage, firestore } from "../utils/firebase";
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useEffect, useState } from "react";
 
 const useStyles = makeStyles({
   main: {
     padding: '1%',
-    
   },
   root: {
-    width: 400
+    width: '20vw',
+    height: '100%',
   },
   media: {
-    height: 140,
+    height: '10rem',
   },
 });
 
@@ -28,7 +28,8 @@ export default function ProjectCard({...project}: Project) {
     const {user} = useAuthState();
     const [loaded, setLoaded] = useState(false);
     const deleteFormation = async () => {
-      await deleteDoc(doc(firestore, 'projects', project.id));
+      deleteObj('projects', project);
+      deleteImage(`projects/${project.id}`);
       window.location.reload();
     }
 
@@ -50,7 +51,7 @@ export default function ProjectCard({...project}: Project) {
     return (
       <Box className={classes.main}>
         <Card className={classes.root}>
-          <CardActionArea onClick={() => history.push(`/project?projectId=${project.id}`)}>
+          <CardActionArea> {/* onClick={() => history.push(`/cv/project?projectId=${project.id}`)}*/}
             <CardMedia
               className={classes.media}
               image={picture}
@@ -67,7 +68,7 @@ export default function ProjectCard({...project}: Project) {
           </CardActionArea>
           <CardActions>
             <ButtonLink disabled={!project.githubLink} color='primary' content='Git' icon={<></>} path={project.githubLink}/>
-            <ButtonLink color='primary' content='En savoir plus' icon={<></>} path={`/project?projectId=${project.id}`} />
+            <ButtonLink color='primary' content='En savoir plus' icon={<></>} path={`/cv/project?projectId=${project.id}`} />
             {user?.isAdmin ? <Button color='secondary' startIcon={<DeleteIcon/>} onClick={() => deleteFormation()}>Supprimer</Button> : <></>}
           </CardActions>
         </Card>

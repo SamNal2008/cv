@@ -2,10 +2,11 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, UserCredential, signInWithPopup, GoogleAuthProvider, signOut, GithubAuthProvider, FacebookAuthProvider } from 'firebase/auth';
-import { addDoc, collection, doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, query, setDoc } from 'firebase/firestore';
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { replacer } from "./functions";
 import { Project } from "./project";
+import Study from "./study";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -138,18 +139,40 @@ export const signOutFromApp = async () => {
   }
 }
 
-export const createNewProject = async (project: Project) => {
-  await setDoc(doc(firestore, "projects", project.id), project);
+// DB
+
+export const save = async (type: string, obj: any) => {
+  try {
+    await setDoc(doc(firestore, type, obj.id), obj);
+  }
+  catch (e) {
+    console.error(e);
+  }
 }
 
-export const uploadImageForProject = async (projectName: string, img: any) => {
-  const storageRef = ref(storage, `projects/${projectName}`);
-  return await uploadBytes(storageRef, img).then((snapshot: any) => {
-    console.log('Image uploaded');
-    return snapshot;
-  });
+export const get = async (type: string) => {
+  try {
+    const q = query(collection(firestore, type));
+    const querySnapshots = await getDocs(q);
+    let tmp: any[] = [];
+    querySnapshots.forEach((project: any) => {
+      console.log(project.data());
+      tmp.push(project.data());
+    });
+    return tmp;
+  }
+  catch (e) {
+    console.error(e);
+    return [];
+  }
 }
 
+export const deleteObj = async (type: string, obj: any) => {
+  await deleteDoc(doc(firestore, type, obj.id));
+}
+
+
+// STORAGE
 
 export async function fetchImage(url: string) {
   try {
@@ -164,7 +187,34 @@ export async function fetchImage(url: string) {
     xhr.open('GET', url_1);
     xhr.send();
     return url_1;
-  } catch (error) { } 
+  } catch (error) { console.error(error); return ''; } 
+}
+
+export const uploadImageFor = async (type: string, name: string, img: any) => {
+  try {
+    const storageRef = ref(storage, `${type}/${name}`);
+    return await uploadBytes(storageRef, img).then((snapshot: any) => {
+      console.log('Image uploaded');
+      return snapshot;
+    });
+  }
+  catch (e) {
+    console.error(e);
+  }
+}
+
+export const deleteImage = (imgPath: string) => {
+  // Create a reference to the file to delete
+  const imgRef = ref(storage, imgPath);
+
+  // Delete the file
+  deleteObject(imgRef).then(() => {
+    // File deleted successfully
+    console.log('image deleted');
+  }).catch((error) => {
+    // Uh-oh, an error occurred!
+    console.error(error);
+  });
 }
 
 

@@ -4,10 +4,13 @@ const SubBox = withStyles({
     root: {
         display: 'flex',
         flexDirection: 'column',
+        flexGrow: 1,
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         width: '95%',
-        marginBottom: '2%'
+        height: '100%',
+        paddingBottom: '2%',
+        backgroundColor: 'yellow'
     }
 })(Box)
 

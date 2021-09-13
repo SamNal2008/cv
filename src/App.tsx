@@ -17,7 +17,7 @@ function App() {
       <AuthContextProvider>
         <BrowserRouter>
           <ThemeProvider theme={defaultTheme}>
-            <div style={{height: '7%'}}>
+            <div style={{height: '60px'}}>
               <NavBar/>
             </div>
             <div style={{minHeight: '82.5%', backgroundColor: 'whitesmoke'}}>
