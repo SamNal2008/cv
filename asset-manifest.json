@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/cv-react/static/css/main.8853aa6a.chunk.css",
-    "main.js": "/cv-react/static/js/main.4226ec44.chunk.js",
-    "main.js.map": "/cv-react/static/js/main.4226ec44.chunk.js.map",
-    "runtime-main.js": "/cv-react/static/js/runtime-main.3472b133.js",
-    "runtime-main.js.map": "/cv-react/static/js/runtime-main.3472b133.js.map",
-    "static/js/2.fb59bf60.chunk.js": "/cv-react/static/js/2.fb59bf60.chunk.js",
-    "static/js/2.fb59bf60.chunk.js.map": "/cv-react/static/js/2.fb59bf60.chunk.js.map",
-    "static/js/3.244da8ab.chunk.js": "/cv-react/static/js/3.244da8ab.chunk.js",
-    "static/js/3.244da8ab.chunk.js.map": "/cv-react/static/js/3.244da8ab.chunk.js.map",
-    "index.html": "/cv-react/index.html",
-    "static/css/main.8853aa6a.chunk.css.map": "/cv-react/static/css/main.8853aa6a.chunk.css.map",
-    "static/js/2.fb59bf60.chunk.js.LICENSE.txt": "/cv-react/static/js/2.fb59bf60.chunk.js.LICENSE.txt",
-    "static/media/Home.css": "/cv-react/static/media/costard.86375ac1.png",
-    "static/media/InProgress.css": "/cv-react/static/media/renovation.aaef9b77.jpg"
+    "main.css": "/cv/static/css/main.13f7857c.chunk.css",
+    "main.js": "/cv/static/js/main.e7a7e35c.chunk.js",
+    "main.js.map": "/cv/static/js/main.e7a7e35c.chunk.js.map",
+    "runtime-main.js": "/cv/static/js/runtime-main.3602ea8f.js",
+    "runtime-main.js.map": "/cv/static/js/runtime-main.3602ea8f.js.map",
+    "static/js/2.24a5ff41.chunk.js": "/cv/static/js/2.24a5ff41.chunk.js",
+    "static/js/2.24a5ff41.chunk.js.map": "/cv/static/js/2.24a5ff41.chunk.js.map",
+    "static/js/3.01a8af1c.chunk.js": "/cv/static/js/3.01a8af1c.chunk.js",
+    "static/js/3.01a8af1c.chunk.js.map": "/cv/static/js/3.01a8af1c.chunk.js.map",
+    "index.html": "/cv/index.html",
+    "static/css/main.13f7857c.chunk.css.map": "/cv/static/css/main.13f7857c.chunk.css.map",
+    "static/js/2.24a5ff41.chunk.js.LICENSE.txt": "/cv/static/js/2.24a5ff41.chunk.js.LICENSE.txt",
+    "static/media/Home.css": "/cv/static/media/costard.86375ac1.png",
+    "static/media/InProgress.css": "/cv/static/media/renovation.aaef9b77.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.3472b133.js",
-    "static/js/2.fb59bf60.chunk.js",
-    "static/css/main.8853aa6a.chunk.css",
-    "static/js/main.4226ec44.chunk.js"
+    "static/js/runtime-main.3602ea8f.js",
+    "static/js/2.24a5ff41.chunk.js",
+    "static/css/main.13f7857c.chunk.css",
+    "static/js/main.e7a7e35c.chunk.js"
   ]
 }
