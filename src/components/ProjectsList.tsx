@@ -19,10 +19,10 @@ const useStyles = makeStyles({
     root: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
         flexWrap: 'wrap',
-        width: '80%',
+        width: '100%',
         height: '100%'
     }
 })

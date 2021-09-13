@@ -64,7 +64,7 @@ const StudyCard = ( study: Study ) => {
                             {study.startedDate} - {study.finishedDate}
                         </Typography>
                     </Box>
-                    <img style={{marginLeft: 'auto'}} height={'100'} src={logo}/>
+                    <img  height={'100'} style={{marginLeft: 'auto'}} src={logo}/>
                 </Paper>
             </a>
         </Box>

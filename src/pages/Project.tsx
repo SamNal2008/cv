@@ -19,9 +19,17 @@ const useStyles = makeStyles({
         alignItems: 'center',
         justifyContent: 'center',
         height: '100%',
+        width: '100%',
         flexGrow: 1,
         paddingTop: '2%'
-    }
+    },
+    homeMainDiv: {
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
 })
 
 const ProjectView = () => {
@@ -30,6 +38,8 @@ const ProjectView = () => {
     const history = useHistory();
     const [project, setProject] = useState<Project>();
     const classes = useStyles();
+    const [mdFile, setMdFile] = useState<any>();
+    
     useEffect(() => {
         const fetchProjectInfo = async (projectId: string) => {
             const docRef = doc(firestore, 'projects', projectId);
@@ -48,21 +58,19 @@ const ProjectView = () => {
         else 
             history.push('/')
     }, [project]);
+    
+    useEffect(()=> {
+      fetch(AppMarkdown)
+          .then((res) => res.text())
+          .then((md) => {
+              setMdFile({ md })
+          })
+  }, []);
     return (
        <Box className={classes.root}>
             {
                 !project ? <CircularProgress /> :
-                <Box className={classes.root}>
-                    <Typography variant='h3'>{project.title}</Typography>
-                    <Box style={{display: 'flex', flexDirection: 'column', height: '80%', justifyContent: 'space-around', alignItems: 'flex-start'}}>
-                        <Typography variant='h4'>
-                            {project?.description}
-                        </Typography>
-                        <Typography>
-                            {project?.content}
-                        </Typography>
-                    </Box>
-                </Box>
+                
             }
         </Box>
     )

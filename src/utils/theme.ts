@@ -31,18 +31,12 @@ let defaultTheme = createTheme({
     },
     typography: {
         h1: {
-            fontFamily: ['Impact', 'Haettenschweiler', 'Arial Narrow Bold', 'sans-serif'].join(','),
-            '@media screen and (max-width: 1300px)': {
-                fontSize: '2rem'
-            }
+            fontFamily: ['Impact', 'Haettenschweiler', 'Arial Narrow Bold', 'sans-serif'].join(',')
         },
         h2: {
             fontFamily: [
                 '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', 'sans-serif'
-            ].join(','),
-            '@media screen and (max-width: 1300px)': {
-                fontSize: '1.7rem'
-            }
+            ].join(',')
         },
         allVariants: {
             color: writtingColor,

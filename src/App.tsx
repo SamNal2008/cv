@@ -1,5 +1,15 @@
 import React from 'react';
 import './App.css';
+import './App.scss';
+
+import {
+  Configuration,
+  Layout,
+  useLayoutNavigation,
+  Text,
+  Button,
+} from 'react-md';
+
 import {
   HashRouter,
   BrowserRouter
@@ -11,19 +21,21 @@ import defaultTheme, { primaryMainColor, secondaryMainColor } from './utils/them
 import { AuthContextProvider } from './components/AuthContext';
 import StickyFooter from './components/Footer';
 
+const routes = {};
+
 function App() {
   return (
-    <div style={{height: '100vh'}}>
+    <div style={{minHeight: '100vh'}}>
       <AuthContextProvider>
         <BrowserRouter>
           <ThemeProvider theme={defaultTheme}>
-            <div style={{height: '60px'}}>
+            <div style={{minHeight: '60px'}}>
               <NavBar/>
             </div>
             <div style={{minHeight: '82.5%', backgroundColor: 'whitesmoke'}}>
                 <MySwitch/>
             </div>
-            <div style={{height: '10%'}}>
+            <div style={{minHeight: '10%'}}>
               <StickyFooter/>
             </div>
           </ThemeProvider>

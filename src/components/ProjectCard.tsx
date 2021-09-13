@@ -14,8 +14,12 @@ const useStyles = makeStyles({
     padding: '1%',
   },
   root: {
-    width: '20vw',
-    height: '100%',
+    height: '400px',
+    width: '400px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
   },
   media: {
     height: '10rem',
@@ -66,7 +70,7 @@ export default function ProjectCard({...project}: Project) {
               </Typography>
             </CardContent>
           </CardActionArea>
-          <CardActions>
+          <CardActions style={{marginTop: 'auto'}}>
             <ButtonLink disabled={!project.githubLink} color='primary' content='Git' icon={<></>} path={project.githubLink}/>
             <ButtonLink color='primary' content='En savoir plus' icon={<></>} path={`/cv/project?projectId=${project.id}`} />
             {user?.isAdmin ? <Button color='secondary' startIcon={<DeleteIcon/>} onClick={() => deleteFormation()}>Supprimer</Button> : <></>}

@@ -1,11 +1,13 @@
 import Container from '@material-ui/core/Container';
 import { Backdrop, Box, Button, IconButton, Menu, MenuItem, Tab, Tabs, Toolbar, Typography } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-
+import Markdown from 'markdown-to-jsx';
+// @ts-ignore
+import AppMarkdown from '../images/Titi.md';
 
 const useStyles = makeStyles((theme) => ({
     backdrop: {
@@ -36,107 +38,19 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function Test() {
-
     document.title = 'Page de test';
 
     const classes = useStyles();
-    const [value, setValue] = useState(0);
+    const [mdFile, setMdFile] = useState<any>();
+    useEffect(()=> {
+      fetch(AppMarkdown)
+          .then((res) => res.text())
+          .then((md) => {
+              setMdFile({ md })
+          })
+  }, [])
 
-    const [open, setOpen] = useState(false);
-    const [auth, setAuth] = useState(false);
-
-    const [anchorEl, setAnchorEl] = useState(null);
-
-
-    const handleChange = (e: any, v: any) => {
-      setValue(v);
-    }
-
-    const handleMenu = () => {
-        console.log('Clicked on menu')
-    }
-    
-    const handleClose = () => {
-        setOpen(false);
-    }
-
-    return (<Box className={classes.homeMainDiv} onClick={() => {
-        if (open || !open) {
-            setOpen(false);
-        }
-    }}>
-        <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Button>
-            <Typography variant="h6" className={classes.title} >
-                Photos
-            </Typography>
-          </Button>
-          <Button color={'secondary'}>
-            OK
-          </Button>
-          {auth && (
-            <div>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-            </div>
-          )}
-        </Toolbar>
-      </AppBar>
-        <Button variant='contained' className={'button-backdrop'} onClick={(e) => {
-            e.stopPropagation()
-            setOpen(true)
-        }}>
-            OK
-        </Button>
-        <Backdrop
-            className={classes.backdrop}
-            open={open}
-            onClick={handleClose}
-            >
-            OK
-        </Backdrop>
-        <Tabs
-            value={value}
-            indicatorColor="primary"
-            textColor="primary"
-            onChange={handleChange}
-            aria-label="disabled tabs example"
-          >
-            <Tab label="Active" />
-            <Tab label="Disabled" disabled />
-            <Tab label="Active" />
-          </Tabs>
-          <div>
-            <Typography variant={'h1'}>OK</Typography>
-          </div>
+    return (<Box className={classes.homeMainDiv}>
+        {mdFile ? <Markdown children={mdFile.md} /> : <></> }
     </Box>)
 }
