@@ -33,7 +33,7 @@ const StudiesList = () => {
 
     useEffect(() => {
         get('studies').then(res => {
-            if (res)
+            if (res){}
                 setStudies(res);
             setLoaded(true);
         }).catch(() => setLoaded(true));

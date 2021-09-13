@@ -14,8 +14,8 @@ const useStyles = makeStyles({
     padding: '1%',
   },
   root: {
-    width: '100%',
-    height: '100%'
+    width: '20vw',
+    height: '100%',
   },
   media: {
     height: '10rem',
@@ -51,7 +51,7 @@ export default function ProjectCard({...project}: Project) {
     return (
       <Box className={classes.main}>
         <Card className={classes.root}>
-          <CardActionArea onClick={() => history.push(`/project?projectId=${project.id}`)}>
+          <CardActionArea> {/* onClick={() => history.push(`/project?projectId=${project.id}`)}*/}
             <CardMedia
               className={classes.media}
               image={picture}

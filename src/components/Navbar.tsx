@@ -76,9 +76,9 @@ const NavBar = () => {
         <Toolbar className={classes.toolbar}>
           {width >= 100 ? <ButtonLink content='Accueil' icon={<HomeIcon/>} path='/' />: <></>}
           {width >= 384 ? <ButtonLink content='Formations' icon={<SchoolIcon/>} path='/studies'/> : <></>}
-          {width >= 768 ? <ButtonLink content='Expériences professionnelles' icon={<WorkIcon/>} path='/experiences' /> : <></>}
+          {false && width >= 768 ? <ButtonLink content='Expériences professionnelles' icon={<WorkIcon/>} path='/experiences' /> : <></>}
           {width >= 1132 ? <ButtonLink content='Projets' icon={<CodeIcon/>} path='/projects'/> : <></>}
-          {width >= 1536 ? <ButtonLink content='A propos' icon={<InfoIcon/>} path='/about' /> : <></>}
+          {false && width >= 1536 ? <ButtonLink content='A propos' icon={<InfoIcon/>} path='/about' /> : <></>}
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
             <MenuIcon />
           </IconButton>
@@ -90,7 +90,7 @@ const NavBar = () => {
             onClose={handleClose}
             style={{display: 'flex', flexDirection: 'column'}}
             >
-                <MenuItem onClick={handleClose}><Button style={{backgroundColor: ''}} color='primary' startIcon={<ChatIcon/>}>{GlobalWord.Navbar.contactMe}</Button></MenuItem>
+                <MenuItem onClick={handleClose}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); openInNewTab('https://www.linkedin.com/in/snal')}} startIcon={<ChatIcon/>}>{GlobalWord.Navbar.contactMe}</Button></MenuItem>
                 <MenuItem onClick={() => {handleClose(); openInNewTab('https://github.com/SamNal2008');}}><Button style={{backgroundColor: ''}} color='primary' startIcon={<GitHubIcon/>}>{GlobalWord.Navbar.myGithub}</Button></MenuItem>
                 
                   <MenuItem style={width >= 100 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/')}} startIcon={<HomeIcon/>}>
@@ -101,7 +101,7 @@ const NavBar = () => {
                     {GlobalWord.Navbar.studies}
                   </Button></MenuItem>
                 
-                <MenuItem style={width >= 768 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/experiences')}} startIcon={<WorkIcon/>}>
+                <MenuItem style={true || width >= 768 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/experiences')}} startIcon={<WorkIcon/>}>
                   {GlobalWord.Navbar.professionalExperiences}
                 </Button></MenuItem>
 
@@ -109,7 +109,7 @@ const NavBar = () => {
                   {GlobalWord.Navbar.projects}
                 </Button></MenuItem>
 
-                <MenuItem style={width >= 1536 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/about')}} startIcon={<InfoIcon/>}>
+                <MenuItem style={true || width >= 1536 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/about')}} startIcon={<InfoIcon/>}>
                   {GlobalWord.Navbar.about}
                 </Button></MenuItem>
 

@@ -46,22 +46,27 @@ const StudyCard = ( study: Study ) => {
 
     return (
         <Box className={classes.root}>
-            <Link style={{textDecoration: 'none'}} to={`/study/view?studyId=${study.id}`} >
+            <a style={{textDecoration: 'none'}} href={study.websiteUrl} target='_blank'>
                 <Paper className={classes.main} elevation={5} >
                     <Box>
                         <Typography variant='h4'>
                             {study.schoolName}
                         </Typography>
+                        ----
+                        <Typography variant='subtitle2'>
+                            {study.place}
+                        </Typography>
+                        ----
                         <Typography>
                             {study.description}
                         </Typography>
                         <Typography>
-                            {study.startedDate} -- {study.finishedDate}
+                            {study.startedDate} - {study.finishedDate}
                         </Typography>
                     </Box>
                     <img style={{marginLeft: 'auto'}} height={'100'} src={logo}/>
                 </Paper>
-            </Link>
+            </a>
         </Box>
     )
 }

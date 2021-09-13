@@ -31,7 +31,7 @@ export default function StickyFooter() {
         <footer className={classes.footer}>
           <Container maxWidth="xs">
               <Typography variant="body1">Me contacter : <Link style={{cursor: 'pointer'}} href='https://linkedin.com/in/snal.com' target='_blank'>Linkedin</Link></Typography>
-                <Link style={{cursor: 'pointer'}} color="primary" href="https://samnal2008.github.io/cv-react" target='_blank'>
+                <Link style={{cursor: 'pointer'}} color="primary" href="https://samnal2008.github.io/cv" target='_blank'>
                 Mon CV en ligne
               </Link>
               <Copyright />

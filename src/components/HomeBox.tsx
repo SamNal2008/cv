@@ -7,7 +7,7 @@ import SubBox from "./custom-material/Box/SubBox";
 import SubTitleBox from "./custom-material/Box/SubTitleBox";
 
 const HomeBox = ({title, message, component} : {title: string, message: string, component: JSX.Element}) => {
-    const [checked, setChecked] = useState(true);
+    const [checked, setChecked] = useState(false);
     const {user} = useAuthState();
 
     const handleChange = () => {
