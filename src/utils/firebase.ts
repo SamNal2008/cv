@@ -4,7 +4,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, UserCredential, signInWithPopup, GoogleAuthProvider, signOut, GithubAuthProvider, FacebookAuthProvider } from 'firebase/auth';
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, query, setDoc } from 'firebase/firestore';
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { replacer } from "./functions";
+import { replacer, str2ab } from "./functions";
 import { Project } from "./project";
 import Study from "./study";
 
@@ -201,6 +201,34 @@ export const uploadImageFor = async (type: string, name: string, img: any) => {
   catch (e) {
     console.error(e);
   }
+}
+
+export const uploadProjectContent = async (type: string, name: string, content: string, ressource: any) => {
+  try {
+    const arrayBuffer = str2ab(content)
+    const storageRef = ref(storage, `${type}/${name}`);
+    return await uploadBytes(storageRef, arrayBuffer).then((snapshot: any) => {
+      console.log('file uploaded');
+      return snapshot;
+    });
+  }
+  catch (e) {
+    console.error(e);
+  }
+}
+
+export async function fetchProjectContent(url: string) {
+  try {
+    const url_1 = await getDownloadURL(ref(storage, url));
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'arraybuffer';
+    xhr.onload = (event) => {
+      const blob = xhr.response;
+    };
+    xhr.open('GET', url_1);
+    xhr.send();
+    return url_1;
+  } catch (error) { console.error(error); return ''; } 
 }
 
 export const deleteImage = (imgPath: string) => {

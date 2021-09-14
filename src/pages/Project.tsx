@@ -1,9 +1,9 @@
 import { getFirestore } from "@firebase/firestore";
-import { Box, makeStyles, TextareaAutosize, Typography } from "@material-ui/core";
+import { Box, Button, makeStyles, TextareaAutosize, Typography } from "@material-ui/core";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { fetchImage, firestore } from "../utils/firebase";
+import { fetchImage, fetchProjectContent, firestore, save, uploadProjectContent } from "../utils/firebase";
 import { Project, ProjectType } from "../utils/project";
 import CircularProgress from '@material-ui/core/CircularProgress';
 // @ts-ignore
@@ -34,6 +34,16 @@ const useStyles = makeStyles({
     editor: {
         minHeight: '80vh',
         minWidth: '80vw',
+    },
+    displayer: {
+        padding: '2%',
+        minHeight: '80vh',
+        minWidth: '80vw',
+        margin: '1%',
+    },
+    displayContent : {
+        minWidth: '70vw',
+        minHeight: '70vh',
     }
 })
 
@@ -46,25 +56,7 @@ const ProjectView = () => {
     const { user } = useAuthState();
 
     const [project, setProject] = useState<Project>();
-    const [mdFile, setMdFile] = useState<any>('');
     const [loaded, setLoaded] = useState(false);
-
-    const loadContent = async () => {
-        if (project && project.id !== '-1') {
-            let mdUrl = await fetchImage(`projects/${project?.id}`);
-            if (mdUrl) {
-                fetch(mdUrl)
-                .then((res) => res.text())
-                .then((md) => { setMdFile(md) });
-            }
-            else {
-                fetch(AppMarkdown)
-                .then((res) => res.text())
-                .then((md) => { setMdFile(md) });
-            }
-        }
-    }
-
 
     const fetchProjectInfo = async (projectId: string) => {
         if (projectId === 'id') {
@@ -79,25 +71,20 @@ const ProjectView = () => {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             let data: any = docSnap.data();
-            setProject(data);
-            if (data.id !== '-1') {
-                /*let mdUrl = await fetchImage(`projects/${data.id}`);
-                if (mdUrl) {
-                    fetch(mdUrl)
-                    .then((res) => res.text())
-                    .then((md) => { setMdFile(md) });
-                }
-                else {
-                    fetch(AppMarkdown)
-                    .then((res) => res.text())
-                    .then((md) => { setMdFile(md) });
-                }*/
+            if (!data.content) {
+                data.content = '# Fill me'
             }
+            setProject(data);
         }
         else {
             console.log('Project not found');
             history.push('/cv');
         }
+    }
+
+    const updateContent = () => {
+        save('projects', project);
+        console.log('Project updated')
     }
       
     
@@ -113,7 +100,8 @@ const ProjectView = () => {
                     description: 'Petite description',
                     id: '-1',
                     title: 'Projet titre',
-                    type: ProjectType.Professional
+                    type: ProjectType.Professional,
+                    content: '# Fill me'
                 })
             }
             setLoaded(true);
@@ -128,12 +116,21 @@ const ProjectView = () => {
                     <Typography variant='h2'>
                         {project?.title}
                     </Typography>
-                    {true || user?.isAdmin ? <MDEditor
+                    {user?.isAdmin ? <><MDEditor
                         className={classes.editor}
-                        value={mdFile}
-                        onChange={setMdFile}
-                      /> : <></>}
-                    <MDEditor.Markdown source={mdFile} />
+                        value={project.content}
+                        onChange={(e) => setProject({
+                            description: project.description,
+                            id: project.id,
+                            title: project.title,
+                            type: project.type,
+                            content: e,
+                            githubLink: project.githubLink,
+                            photoUrl: project.photoUrl
+                        })}
+                      /><Button onClick={updateContent}>Valider</Button></> :  <div className={classes.displayer}><MDEditor.Markdown className={classes.displayContent} source={project.content} /></div>
+                    }
+                   
                 </>   
             }
         </Box>
