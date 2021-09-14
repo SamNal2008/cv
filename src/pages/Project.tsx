@@ -30,6 +30,10 @@ const useStyles = makeStyles({
     main: {
         minHeight: '60vh',
         minWidth: '60vw'
+    },
+    editor: {
+        minHeight: '80vh',
+        minWidth: '80vw',
     }
 })
 
@@ -61,28 +65,23 @@ const ProjectView = () => {
         }
     }
 
-    setTimeout(() => {
-        if (!project) {
-            setProject({
-                description: 'Projet de test si firebase est down',
-                id: '-1',
-                title: 'Projet offline',
-                type: ProjectType.Professional,
-            })
-        }
-        else {
-            console.log('ko')
-        }
-    }, 2000);
 
     const fetchProjectInfo = async (projectId: string) => {
+        if (projectId === 'id') {
+            setProject({
+                description: 'description',
+                id: 'id',
+                title: 'title',
+                type: ProjectType.Personal,
+            })
+        }
         const docRef = doc(firestore, 'projects', projectId);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             let data: any = docSnap.data();
             setProject(data);
             if (data.id !== '-1') {
-                let mdUrl = await fetchImage(`projects/${data.id}`);
+                /*let mdUrl = await fetchImage(`projects/${data.id}`);
                 if (mdUrl) {
                     fetch(mdUrl)
                     .then((res) => res.text())
@@ -92,7 +91,7 @@ const ProjectView = () => {
                     fetch(AppMarkdown)
                     .then((res) => res.text())
                     .then((md) => { setMdFile(md) });
-                }
+                }*/
             }
         }
         else {
@@ -103,11 +102,22 @@ const ProjectView = () => {
       
     
     useEffect(() => {
-        if (projectId && !loaded) {
-            fetchProjectInfo(projectId).then(() => setLoaded(true));
+        if (!loaded) {
+
+            if (projectId && !project) {
+                fetchProjectInfo(projectId).then(() => setLoaded(true));
+            }
+            else
+            {
+                setProject({
+                    description: 'Petite description',
+                    id: '-1',
+                    title: 'Projet titre',
+                    type: ProjectType.Professional
+                })
+            }
+            setLoaded(true);
         }
-        else 
-            history.push('/')
     }, [loaded]);
     
     return (
@@ -115,14 +125,16 @@ const ProjectView = () => {
             {
                 !project ? <CircularProgress /> :
                 <>
-                    {true ? <MDEditor
+                    <Typography variant='h2'>
+                        {project?.title}
+                    </Typography>
+                    {true || user?.isAdmin ? <MDEditor
+                        className={classes.editor}
                         value={mdFile}
-                        // @ts-ignore
                         onChange={setMdFile}
                       /> : <></>}
                     <MDEditor.Markdown source={mdFile} />
-                </>
-                        
+                </>   
             }
         </Box>
     )

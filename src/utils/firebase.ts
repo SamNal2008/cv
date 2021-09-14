@@ -163,7 +163,7 @@ export const get = async (type: string) => {
   }
   catch (e) {
     console.error(e);
-    return [];
+    throw e;
   }
 }
 

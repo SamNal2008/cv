@@ -63,7 +63,14 @@ export default function Projects() {
             if (res)
                 setProjects(res);
             setLoaded(true);
-        }).catch(() => setLoaded(true));
+        }).catch(() => {setLoaded(true); setProjects([
+            {
+                description: 'description',
+                id: 'id',
+                title: 'title',
+                type: ProjectType.Personal,
+            }
+        ])});
     }, [loaded])
 
     const { user } = useAuthState();
