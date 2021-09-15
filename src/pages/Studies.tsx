@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "../components/AuthContext";
 import NewStudyForm from "../components/NewStudyForm";
 import StudyCard from "../components/StudyCard";
+import ContentType from "../utils/contentTypes";
 import { get } from "../utils/firebase";
 import Study from "../utils/study";
 
@@ -47,7 +48,7 @@ const Studies = (): JSX.Element => {
     document.title = 'Formations';
 
     useEffect(() => {
-        get('studies').then(res => {
+        get(ContentType.projects).then(res => {
           console.log(res);
           if (res)
             setStudies(res);
@@ -63,9 +64,7 @@ const Studies = (): JSX.Element => {
             </Typography>
           </Box>
           <Box className={classes.formationsBox}>
-            {
-                studies.map(study => <StudyCard {...study}/>)
-            }
+            {studies?.sort((a, b) => (new Date(a.finishedDate)).getTime() - (new Date(b.finishedDate).getTime())).map(std => <StudyCard {...std}/>)}
           </Box>
           {user?.isAdmin ? <Button onClick={() => setOpen(!open)}>Ajouter une nouvelle formation</Button> : <></>}
             <Collapse in={open} style={{height: '100%'}}>

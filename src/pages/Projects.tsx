@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "../components/AuthContext";
 import NewProjectForm from "../components/NewProjectForm";
 import ProjectCard from "../components/ProjectCard";
+import ContentType from "../utils/contentTypes";
 import { firestore, get } from "../utils/firebase";
 import { Project, ProjectType } from "../utils/project";
 import theme from "../utils/theme";
@@ -59,7 +60,7 @@ export default function Projects() {
     }
 
     useEffect(() => {
-        get('projects').then(res => {
+        get(ContentType.projects).then(res => {
             if (res)
                 setProjects(res);
             setLoaded(true);

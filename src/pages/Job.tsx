@@ -1,12 +1,13 @@
-import { doc, getDoc } from "@firebase/firestore";
-import { Box, Button, CircularProgress, makeStyles, Typography } from "@material-ui/core"
+import { doc } from "@firebase/firestore";
+import { Box, Button, CircularProgress, makeStyles, Typography } from "@material-ui/core";
 import MDEditor from "@uiw/react-md-editor";
+import { getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useAuthState } from "../components/AuthContext";
 import ContentType from "../utils/contentTypes";
 import { firestore, save } from "../utils/firebase";
-import Study from "../utils/study";
+import Job from "../utils/job";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -43,67 +44,63 @@ const useStyles = makeStyles({
     }
 });
 
-
-const defaultStudy: Study = {
+const defaultJob = {
     description: 'description',
     id: 'id',
-    finishedDate: '11/09/2013',
-    startedDate: '11/09/2016',
-    logo: 'toto.png',
-    place: 'Rabat, Maroc',
-    schoolName: 'Lycée Descartes',
-    websiteUrl: 'https://www.descartes.ma',
-    diploma: 'Bac'
-}
+    company: 'Company',
+    finishedDate: '',
+    jobName: '',
+    logo: '',
+    place: '',
+    startedDate: '',
+    websiteUrl: ''
+};
 
-const StudyView = () => {
-    document.title = 'Formation';
+const JobView = () => {
     const query = useQuery();
-    const studyId = query.get('studyId');
+    const jobId = query.get('jobId');
     const history = useHistory();
     const classes = useStyles();
 
     const { user } = useAuthState();
 
-    const [study, setStudy] = useState<Study>();
+    const [job, setJob] = useState<Job>();
     const [loaded, setLoaded] = useState(false);
     
-    const fetchStudyInfo = async (studyId: string) => {
-        if (studyId === 'id') {
-            setStudy(defaultStudy);
+    const fetchProjectInfo = async (jobId: string) => {
+        if (jobId === 'id') {
+            setJob(defaultJob);
         }
-        const docRef = doc(firestore, ContentType.studies, studyId);
+        const docRef = doc(firestore, ContentType.job, jobId);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             let data: any = docSnap.data();
             if (!data.content) {
                 data.content = '# Fill me'
             }
-            if (data.schoolName) {
-                document.title = 'data.schoolName';
-            }
-            setStudy(data);
+            setJob(data);
         }
         else {
-            console.log('Study not found');
+            console.log('Project not found');
+            history.push('/cv');
         }
     }
 
     const updateContent = () => {
-        save(ContentType.studies, study);
-        console.log('Study updated')
+        save(ContentType.job, job);
+        console.log('Job updated')
     }
       
     
     useEffect(() => {
         if (!loaded) {
 
-            if (studyId && !study) {
-                fetchStudyInfo(studyId).then(() => setLoaded(true));
+            if (jobId && !jobId) {
+                fetchProjectInfo(jobId).then(() => setLoaded(true));
             }
             else
             {
-                setStudy(defaultStudy);
+                setJob(defaultJob)
             }
             setLoaded(true);
         }
@@ -112,27 +109,27 @@ const StudyView = () => {
     return (
        <Box className={classes.root}>
             {
-                !study ? <CircularProgress /> :
+                !job ? <CircularProgress /> :
                 <>
                     <Typography variant='h2'>
-                        {study?.schoolName}
+                        {job?.jobName}
                     </Typography>
                     {user?.isAdmin ? <><MDEditor
                         className={classes.editor}
-                        value={study.content}
-                        onChange={(e) => setStudy({
-                            description: study.description,
-                            id: study.id,
-                            schoolName: study.schoolName,
-                            finishedDate: study.finishedDate,
-                            startedDate: study.startedDate,
+                        value={job.content}
+                        onChange={(e) => setJob({
+                            description: job.description,
+                            id: job.id,
                             content: e,
-                            logo: study.logo,
-                            place: study.place,
-                            websiteUrl: study.websiteUrl,
-                            diploma: study.diploma
+                            jobName: job.jobName,
+                            company: job.company,
+                            finishedDate: job.finishedDate,
+                            logo: job.logo,
+                            place: job.place,
+                            startedDate: job.startedDate,
+                            websiteUrl: job.websiteUrl
                         })}
-                      /><Button onClick={updateContent}>Valider</Button></> :  <div className={classes.displayer}><MDEditor.Markdown className={classes.displayContent} source={study.content} /></div>
+                      /><Button onClick={updateContent}>Valider</Button></> :  <div className={classes.displayer}><MDEditor.Markdown className={classes.displayContent} source={job.content} /></div>
                     }
                    
                 </>   
@@ -141,4 +138,4 @@ const StudyView = () => {
     )
 }
 
-export default StudyView;
+export default JobView;

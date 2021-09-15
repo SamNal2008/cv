@@ -1,16 +1,13 @@
-import { getFirestore } from "@firebase/firestore";
-import { Box, Button, makeStyles, TextareaAutosize, Typography } from "@material-ui/core";
+import { Box, Button, makeStyles, Typography } from "@material-ui/core";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { fetchImage, fetchProjectContent, firestore, save, uploadProjectContent } from "../utils/firebase";
+import { firestore, save } from "../utils/firebase";
 import { Project, ProjectType } from "../utils/project";
-import CircularProgress from '@material-ui/core/CircularProgress';
-// @ts-ignore
-import AppMarkdown from '../images/Titi.md'; 
+import CircularProgress from '@material-ui/core/CircularProgress'; 
 import { useAuthState } from "../components/AuthContext";
 import MDEditor from '@uiw/react-md-editor';
-import { useTimeout } from "@react-md/utils";
+import ContentType from "../utils/contentTypes";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -67,7 +64,7 @@ const ProjectView = () => {
                 type: ProjectType.Personal,
             })
         }
-        const docRef = doc(firestore, 'projects', projectId);
+        const docRef = doc(firestore, ContentType.projects, projectId);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             let data: any = docSnap.data();
@@ -83,7 +80,7 @@ const ProjectView = () => {
     }
 
     const updateContent = () => {
-        save('projects', project);
+        save(ContentType.projects, project);
         console.log('Project updated')
     }
       

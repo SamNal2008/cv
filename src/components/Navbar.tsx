@@ -76,7 +76,7 @@ const NavBar = () => {
         <Toolbar className={classes.toolbar}>
           {width >= 100 ? <ButtonLink content='Accueil' icon={<HomeIcon/>} path='/cv' />: <></>}
           {width >= 384 ? <ButtonLink content='Formations' icon={<SchoolIcon/>} path='/cv/studies'/> : <></>}
-          {false && width >= 768 ? <ButtonLink content='Expériences professionnelles' icon={<WorkIcon/>} path='/cv/experiences' /> : <></>}
+          {width >= 768 ? <ButtonLink content='Expériences professionnelles' icon={<WorkIcon/>} path='/cv/experiences' /> : <></>}
           {width >= 1132 ? <ButtonLink content='Projets' icon={<CodeIcon/>} path='/cv/projects'/> : <></>}
           {false && width >= 1536 ? <ButtonLink content='A propos' icon={<InfoIcon/>} path='/cv/about' /> : <></>}
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
@@ -101,8 +101,8 @@ const NavBar = () => {
                     {GlobalWord.Navbar.studies}
                   </Button></MenuItem>
                 
-                <MenuItem style={true || width >= 768 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/experiences')}} startIcon={<WorkIcon/>}>
-                  {GlobalWord.Navbar.professionalExperiences}
+                <MenuItem style={width >= 768 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/experiences')}} startIcon={<WorkIcon/>}>
+                  {GlobalWord.Navbar.job}
                 </Button></MenuItem>
 
                 <MenuItem style={width >= 1132 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/projects')}} startIcon={<CodeIcon/>}>

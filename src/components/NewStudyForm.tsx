@@ -1,5 +1,6 @@
 import { Box, Button, createStyles, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, Input, InputLabel, makeStyles, MenuItem, TextareaAutosize, TextField, Theme, useMediaQuery, useTheme } from "@material-ui/core";
 import { useState } from "react";
+import ContentType from "../utils/contentTypes";
 import { save, uploadImageFor } from "../utils/firebase";
 import Study from "../utils/study";
 import { primaryMainColor } from "../utils/theme";
@@ -43,7 +44,7 @@ const NewStudyForm = ({...props}: any) => {
 
     const validateForm = async (e: any) => {
         e.preventDefault();
-        let realImg = await uploadImageFor('studies', name, tmpPicture);
+        let realImg = await uploadImageFor(ContentType.studies, name, tmpPicture);
         let realStudy: Study = {
             description: description,
             finishedDate: finishedDate,
@@ -55,7 +56,7 @@ const NewStudyForm = ({...props}: any) => {
             websiteUrl: websiteUrl,
             diploma: diploma
         };
-        save('studies', realStudy);
+        save(ContentType.studies, realStudy);
         props.handleValidate();
     }
 

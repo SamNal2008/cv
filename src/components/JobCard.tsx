@@ -1,14 +1,10 @@
-import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Icon, makeStyles, Paper, Typography } from "@material-ui/core";
-import Study from "../utils/study";
-import WorkIcon from '@material-ui/icons/Work';
-import { openInNewTab } from "../utils/functions";
-import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
+import { Box, makeStyles, Paper, Typography } from "@material-ui/core";
 import { useEffect, useState } from "react";
-import { fetchImage } from "../utils/firebase";
-import renovation from '../images/renovation.jpg';
+import { Link, useHistory } from "react-router-dom";
 import ContentType from "../utils/contentTypes";
- 
+import { fetchImage } from "../utils/firebase";
+import Job from "../utils/job";
+import renovation from '../images/renovation.jpg';
 
 const useStyles = makeStyles({
     root: {
@@ -30,7 +26,7 @@ const useStyles = makeStyles({
     }
 });
 
-const StudyCard = ( study: Study ) => {
+const JobCard = ( job: Job ) => {
     const classes = useStyles();
     const history = useHistory();
     const [logo, setLogo] = useState('');
@@ -38,7 +34,7 @@ const StudyCard = ( study: Study ) => {
 
     useEffect(() => {
         const loadImg = async () => {
-          let imgUrl = await fetchImage(`${ContentType.studies}/${study.id}`);
+          let imgUrl = await fetchImage(`${ContentType.job}/${job.id}`);
           if (imgUrl)
             setLogo(imgUrl);
           else {
@@ -51,24 +47,24 @@ const StudyCard = ( study: Study ) => {
 
     return (
         <Box className={classes.root}>
-            <Link style={{textDecoration: 'none'}} to={`/cv/study?studyId=${study.id}`}>
+            <Link style={{textDecoration: 'none'}} to={`/cv/job?jobId=${job.id}`}>
                 <Paper className={classes.main} elevation={5} >
                     <Box>
                         <Typography variant='h4'>
-                            {study.schoolName}
+                            {job.jobName}
                         </Typography>
                         ----
                         <Typography variant='subtitle2'>
-                            {study.place}
+                            {job.place}
                         </Typography>
                         ----
                         <Typography>
                             <pre style={{ fontFamily: 'inherit' }}>
-                                {study.description}
+                                {job.description}
                             </pre>
                         </Typography>
                         <Typography>
-                            {study.startedDate} - {study.finishedDate}
+                            {job.startedDate} - {job.finishedDate}
                         </Typography>
                     </Box>
                     <img  height={'100'} style={{marginLeft: 'auto'}} src={logo}/>
@@ -78,4 +74,4 @@ const StudyCard = ( study: Study ) => {
     )
 }
 
-export default StudyCard;
+export default JobCard;

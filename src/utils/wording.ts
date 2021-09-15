@@ -7,7 +7,7 @@ interface WordInterface {
     Navbar : {
         home: string,
         studies: string,
-        professionalExperiences: string,
+        job: string,
         projects: string,
         about: string,
         contactMe: string,
@@ -19,7 +19,7 @@ const FrenchWord: WordInterface = {
     Navbar: {
         home: 'Accueil',
         studies: 'Formations',
-        professionalExperiences: 'Expériences professionnels',
+        job: 'Expériences professionnels',
         projects: 'Projets',
         about: 'A propos',
         contactMe: 'Me contacter',
@@ -32,7 +32,7 @@ const EnglishWord: WordInterface = {
     Navbar: {
         home: 'Home',
         studies: 'Studies',
-        professionalExperiences: 'Professional experiences',
+        job: 'Professional experiences',
         projects: 'Projects',
         about: 'About',
         contactMe: 'Contact me',

@@ -5,6 +5,7 @@ import { primaryMainColor } from "../utils/theme";
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { save, uploadImageFor } from "../utils/firebase";
 import { Project, ProjectType } from "../utils/project";
+import ContentType from "../utils/contentTypes";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -55,7 +56,6 @@ const NewProjectForm = ({...props}: any) => {
     const [projectDescription, setProjectDescription] = useState('');
     const [projectType, setProjectType] = useState<ProjectType>(ProjectType.School);
     const [githubLink, setGithubLink] = useState('');
-    const [projectPicture, setProjectPicture] = useState();
 
     const [tmpPicture, setTmpPicture] = useState();
 
@@ -76,7 +76,7 @@ const NewProjectForm = ({...props}: any) => {
     const validateForm = async (e: any) => {
         e.preventDefault();
         console.log(projectName);
-        let realImg = await uploadImageFor('projects', projectName, tmpPicture);
+        let realImg = await uploadImageFor(ContentType.projects, projectName, tmpPicture);
         let newProject: Project = {
             description: projectDescription,
             id: projectName,
@@ -84,9 +84,9 @@ const NewProjectForm = ({...props}: any) => {
             type: projectType,
             githubLink: githubLink,
             content: '# Fill me',
-            photoUrl: `projects/${projectName}`
+            photoUrl: `${ContentType.projects}/${projectName}`
         }
-        save('projects', newProject);
+        save(ContentType.projects, newProject);
         props.handleValidate();
     }
 

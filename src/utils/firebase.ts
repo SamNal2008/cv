@@ -150,6 +150,10 @@ export const save = async (type: string, obj: any) => {
   }
 }
 
+export const getOne = async (type: string, id: string) => {
+  return 'ok'
+}
+
 export const get = async (type: string) => {
   try {
     const q = query(collection(firestore, type));

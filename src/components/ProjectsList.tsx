@@ -2,6 +2,7 @@ import { Box, CircularProgress, makeStyles } from "@material-ui/core"
 import { collection, getDocs, query } from "firebase/firestore";
 import { useEffect } from "react";
 import { useState } from "react";
+import ContentType from "../utils/contentTypes";
 import { firestore, get } from "../utils/firebase";
 import { Project } from "../utils/project";
 import ProjectCard from "./ProjectCard";
@@ -34,7 +35,7 @@ const ProjectsList = () => {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        get('projects').then(res => {
+        get(ContentType.projects).then(res => {
             if (res)
                 setProjects(res);
             setLoaded(true);

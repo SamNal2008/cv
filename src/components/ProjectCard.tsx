@@ -8,6 +8,7 @@ import { deleteDoc, doc } from "@firebase/firestore";
 import { deleteImage, deleteObj, fetchImage, firestore } from "../utils/firebase";
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useEffect, useState } from "react";
+import ContentType from "../utils/contentTypes";
 
 const useStyles = makeStyles({
   main: {
@@ -32,8 +33,8 @@ export default function ProjectCard({...project}: Project) {
     const {user} = useAuthState();
     const [loaded, setLoaded] = useState(false);
     const deleteFormation = async () => {
-      deleteObj('projects', project);
-      deleteImage(`projects/${project.id}`);
+      deleteObj(ContentType.projects, project);
+      deleteImage(`${ContentType.projects}/${project.id}`);
       window.location.reload();
     }
 
@@ -41,7 +42,7 @@ export default function ProjectCard({...project}: Project) {
 
     useEffect(() => {
       const loadImg = async () => {
-        let imgUrl = await fetchImage(`projects/${project.id}`);
+        let imgUrl = await fetchImage(`${ContentType.projects}/${project.id}`);
         if (imgUrl)
           setPicture(imgUrl);
         else {
