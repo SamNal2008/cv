@@ -57,7 +57,7 @@ const ProjectView = () => {
 
     const [project, setProject] = useState<Project>();
     const [loaded, setLoaded] = useState(false);
-
+    
     const fetchProjectInfo = async (projectId: string) => {
         if (projectId === 'id') {
             setProject({

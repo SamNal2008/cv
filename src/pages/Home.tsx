@@ -52,7 +52,7 @@ const Home = () => {
             <Box className={classes.root}>
                 <Box className={classes.introductionBox}>
                     <Typography  variant='h1'>
-                        Bienvenu sur mon site
+                        Bienvenue sur mon site
                     </Typography>
                     <Box className={classes.subBox}>
                         <img className={classes.photo} src={profilPicture} alt='profile-picture'/>

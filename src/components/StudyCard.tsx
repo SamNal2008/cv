@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchImage } from "../utils/firebase";
 import renovation from '../images/renovation.jpg';
+ 
 
 const useStyles = makeStyles({
     root: {
@@ -46,7 +47,7 @@ const StudyCard = ( study: Study ) => {
 
     return (
         <Box className={classes.root}>
-            <a style={{textDecoration: 'none'}} href={study.websiteUrl} target='_blank'>
+            <Link style={{textDecoration: 'none'}} to={`/cv/study?studyId=${study.id}`}>
                 <Paper className={classes.main} elevation={5} >
                     <Box>
                         <Typography variant='h4'>
@@ -66,7 +67,7 @@ const StudyCard = ( study: Study ) => {
                     </Box>
                     <img  height={'100'} style={{marginLeft: 'auto'}} src={logo}/>
                 </Paper>
-            </a>
+            </Link>
         </Box>
     )
 }

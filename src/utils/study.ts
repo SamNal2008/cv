@@ -7,5 +7,6 @@ export default interface Study {
     diploma?: string, // FIXME
     id: string,
     logo: string,
-    websiteUrl: string
+    websiteUrl: string,
+    content?: string
 }

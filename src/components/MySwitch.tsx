@@ -8,6 +8,9 @@ import { useAuthState } from './AuthContext';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 import ProjectView from '../pages/Project';
+import StudyView from '../pages/Study';
+import { Collapse, Fade } from '@material-ui/core';
+import { useEffect, useState } from 'react';
 
 
 const AuthenticatedRoute = ({component: Component, ...props}: any) => {
@@ -31,6 +34,12 @@ const UnauthenticatedRoute = ({component: Component, ...props}: any) => {
 }
 
 const MySwitch = () => {
+    const [collapse, setCollapse] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => setCollapse(true), 300);
+    }, [])
+
     return (
         <Switch>
             <Route path='/cv/about' exact component={() => <Test/>}/>
@@ -40,6 +49,7 @@ const MySwitch = () => {
             <Route path='/cv' exact component={() => <Home/>}/>
             <Route path='/cv/in-progress' exact component={InProgress}/>
             <Route path='/cv/project' exact component={ProjectView}/>
+            <Route path='/cv/study' exact component={StudyView}/>
             <AuthenticatedRoute path='/cv/profile' exact component={Profile}/>
             <UnauthenticatedRoute exact path='/cv/login' component={Login}/>
             <Redirect to='/cv'/>
