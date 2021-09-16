@@ -44,19 +44,19 @@ const MySwitch = () => {
 
     return (
         <Switch>
-            <Route path='/cv/about' exact component={() => <Test/>}/>
-            <Route path='/cv/studies' exact component={() => <Studies/>}/>
+            <Route path='/about' exact component={() => <Test/>}/>
+            <Route path='/studies' exact component={() => <Studies/>}/>
             <Route path='/projects' exact component={() => <Projects/>}/>
-            <Route path='/cv/experiences' exact component={InProgress}/>
-            <Route path='/cv' exact component={() => <Home/>}/>
-            <Route path='/cv/in-progress' exact component={InProgress}/>
-            <Route path='/cv/project' exact component={ProjectView}/>
-            <Route path='/cv/study' exact component={StudyView}/>
-            <Route path='/cv/jobs' exact component={Jobs}/>
-            <Route path='/cv/job' exact component={JobView}/>
-            <AuthenticatedRoute path='/cv/profile' exact component={Profile}/>
-            <UnauthenticatedRoute exact path='/cv/login' component={Login}/>
-            <Redirect to='/cv'/>
+            <Route path='/experiences' exact component={InProgress}/>
+            <Route path='/' exact component={() => <Home/>}/>
+            <Route path='/in-progress' exact component={InProgress}/>
+            <Route path='/project' exact component={ProjectView}/>
+            <Route path='/study' exact component={StudyView}/>
+            <Route path='/jobs' exact component={Jobs}/>
+            <Route path='/job' exact component={JobView}/>
+            <AuthenticatedRoute path='/profile' exact component={Profile}/>
+            <UnauthenticatedRoute exact path='/login' component={Login}/>
+            <Redirect to='/'/>
         </Switch>
     )
 }

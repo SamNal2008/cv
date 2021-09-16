@@ -27,7 +27,7 @@ function App() {
   return (
     <div style={{minHeight: '100vh'}}>
       <AuthContextProvider>
-        <BrowserRouter>
+        <BrowserRouter basename='/cv'>
           <ThemeProvider theme={defaultTheme}>
             <div style={{minHeight: '60px'}}>
               <NavBar/>

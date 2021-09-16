@@ -83,7 +83,7 @@ const JobView = () => {
         }
         else {
             console.log('Project not found');
-            history.push('/cv');
+            history.push('/');
         }
     }
 

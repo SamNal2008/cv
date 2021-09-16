@@ -60,7 +60,7 @@ const StudyCard = ( study: Study ) => {
     return (
         <Box className={classes.root}>
             {user?.isAdmin ? <Button onClick={deleteStudy}>Supprimer</Button> : <></>}
-            <Link style={{textDecoration: 'none'}} to={`/cv/study?studyId=${study.id}`}>
+            <Link style={{textDecoration: 'none'}} to={`/study?studyId=${study.id}`}>
                 <Paper className={classes.main} elevation={5} >
                     <Box>
                         <Typography variant='h4'>

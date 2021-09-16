@@ -53,7 +53,7 @@ const JobCard = ( job: Job ) => {
     return (
         <Box className={classes.root}>
             {user?.isAdmin ? <Button onClick={deleteJob}>Supprimer</Button> : <></>}
-            <Link style={{textDecoration: 'none'}} to={`/cv/job?jobId=${job.jobName}`}>
+            <Link style={{textDecoration: 'none'}} to={`/job?jobId=${job.jobName}`}>
                 <Paper className={classes.main} elevation={5} >
                     <img  height={'100'} style={{marginRight: '10%'}} src={logo}/>
                     <Box>

@@ -56,7 +56,7 @@ export default function ProjectCard({...project}: Project) {
     return (
       <Box className={classes.main}>
         <Card className={classes.root}>
-          <CardActionArea onClick={() => history.push(`/cv/project?projectId=${project.id}`)}>
+          <CardActionArea onClick={() => history.push(`/project?projectId=${project.id}`)}>
             <CardMedia
               className={classes.media}
               image={picture}
@@ -73,7 +73,7 @@ export default function ProjectCard({...project}: Project) {
           </CardActionArea>
           <CardActions style={{marginTop: 'auto'}}>
             <ButtonLink disabled={!project.githubLink} color='primary' content='Git' icon={<></>} path={project.githubLink}/>
-            <ButtonLink color='primary' content='En savoir plus' icon={<></>} path={`/cv/project?projectId=${project.id}`} />
+            <ButtonLink color='primary' content='En savoir plus' icon={<></>} path={`/project?projectId=${project.id}`} />
             {user?.isAdmin ? <Button color='secondary' startIcon={<DeleteIcon/>} onClick={() => deleteFormation()}>Supprimer</Button> : <></>}
           </CardActions>
         </Card>
