@@ -27,7 +27,7 @@ function App() {
   return (
     <div style={{minHeight: '100vh'}}>
       <AuthContextProvider>
-        <BrowserRouter basename='/cv'>
+        <HashRouter>
           <ThemeProvider theme={defaultTheme}>
             <div style={{minHeight: '60px'}}>
               <NavBar/>
@@ -39,7 +39,7 @@ function App() {
               <StickyFooter/>
             </div>
           </ThemeProvider>
-        </BrowserRouter>
+        </HashRouter>
       </AuthContextProvider>
     </div>
   );

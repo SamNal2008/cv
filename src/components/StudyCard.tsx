@@ -1,7 +1,5 @@
-import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Icon, makeStyles, Paper, Typography } from "@material-ui/core";
+import { Box, Button, makeStyles, Paper, Typography } from "@material-ui/core";
 import Study from "../utils/study";
-import WorkIcon from '@material-ui/icons/Work';
-import { openInNewTab } from "../utils/functions";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";

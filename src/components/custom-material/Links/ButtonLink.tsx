@@ -1,5 +1,6 @@
-import { Link, Button } from "@material-ui/core"
+import { Button } from "@material-ui/core";
 import { Component, ReactElement } from "react"
+import { Link } from 'react-router-dom';
 
 interface ButtonLinkProps {
     path: string,
@@ -10,7 +11,7 @@ interface ButtonLinkProps {
 
 const ButtonLink = ({...props}: any) => {
     return (
-        <Link href={props.path} onClick={(e) => {
+        <Link to={props.path} style={{textDecoration: 'none'}} onClick={(e) => {
             if (props.disabled) {
                 e.preventDefault();
             }

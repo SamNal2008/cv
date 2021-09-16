@@ -43,7 +43,7 @@ const MySwitch = () => {
     }, [])
 
     return (
-        <Switch>
+        <>
             <Route path='/about' exact component={() => <Test/>}/>
             <Route path='/studies' exact component={() => <Studies/>}/>
             <Route path='/projects' exact component={() => <Projects/>}/>
@@ -56,8 +56,7 @@ const MySwitch = () => {
             <Route path='/job' exact component={JobView}/>
             <AuthenticatedRoute path='/profile' exact component={Profile}/>
             <UnauthenticatedRoute exact path='/login' component={Login}/>
-            <Redirect to='/'/>
-        </Switch>
+        </>
     )
 }
 

@@ -1,4 +1,4 @@
-import { AppBar, Button, IconButton, makeStyles, Menu, MenuItem, Toolbar, Link } from "@material-ui/core";
+import { AppBar, Button, IconButton, makeStyles, Menu, MenuItem, Toolbar } from "@material-ui/core";
 import { useHistory } from "react-router-dom"
 import MenuIcon from '@material-ui/icons/Menu';
 import { useEffect, useState } from "react";
@@ -105,7 +105,7 @@ const NavBar = () => {
                   {GlobalWord.Navbar.job}
                 </Button></MenuItem>
 
-                <MenuItem style={width >= 1132 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/projects')}} startIcon={<CodeIcon/>}>
+                <MenuItem style={width >= 1132 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/projects')}} startIcon={<CodeIcon/>}>
                   {GlobalWord.Navbar.projects}
                 </Button></MenuItem>
 

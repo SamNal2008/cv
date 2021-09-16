@@ -11,6 +11,7 @@ import HomeContent from "../utils/home";
 import { firestore, get, save } from "../utils/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import JobsList from "../components/JobsList";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
