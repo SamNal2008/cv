@@ -49,7 +49,7 @@ const defaultJob = {
     id: 'id',
     company: 'Company',
     finishedDate: '',
-    jobName: '',
+    jobName: 'test',
     logo: '',
     place: '',
     startedDate: '',
@@ -67,8 +67,9 @@ const JobView = () => {
     const [job, setJob] = useState<Job>();
     const [loaded, setLoaded] = useState(false);
     
-    const fetchProjectInfo = async (jobId: string) => {
+    const fetchJobInfo = async (jobId: string) => {
         if (jobId === 'id') {
+            console.log('oui')
             setJob(defaultJob);
         }
         const docRef = doc(firestore, ContentType.job, jobId);
@@ -95,8 +96,8 @@ const JobView = () => {
     useEffect(() => {
         if (!loaded) {
 
-            if (jobId && !jobId) {
-                fetchProjectInfo(jobId).then(() => setLoaded(true));
+            if (jobId && !job) {
+                fetchJobInfo(jobId).then(() => setLoaded(true));
             }
             else
             {
@@ -107,7 +108,7 @@ const JobView = () => {
     }, [loaded]);
     
     return (
-       <Box className={classes.root}>
+       <Box className={classes.root} onMouseEnter={() => console.log(jobId)}>
             {
                 !job ? <CircularProgress /> :
                 <>
@@ -131,7 +132,6 @@ const JobView = () => {
                         })}
                       /><Button onClick={updateContent}>Valider</Button></> :  <div className={classes.displayer}><MDEditor.Markdown className={classes.displayContent} source={job.content} /></div>
                     }
-                   
                 </>   
             }
         </Box>

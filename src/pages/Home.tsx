@@ -90,9 +90,7 @@ const Home = () => {
             {loaded ? <Box className={classes.root}>
                 <Box className={classes.introductionBox}>
                     <Typography variant='h1'>
-                        <pre style={{ fontFamily: 'inherit' }}>
                             {home.mainTitle}
-                        </pre>
                     </Typography>
                     {user?.isAdmin ? <TextField multiline value={home.mainTitle} onChange={(e) => setHome({
                         id: home.id,

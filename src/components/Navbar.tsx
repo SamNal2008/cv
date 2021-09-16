@@ -76,8 +76,8 @@ const NavBar = () => {
         <Toolbar className={classes.toolbar}>
           {width >= 100 ? <ButtonLink content='Accueil' icon={<HomeIcon/>} path='/cv' />: <></>}
           {width >= 384 ? <ButtonLink content='Formations' icon={<SchoolIcon/>} path='/cv/studies'/> : <></>}
-          {width >= 768 ? <ButtonLink content='Expériences professionnelles' icon={<WorkIcon/>} path='/cv/experiences' /> : <></>}
-          {width >= 1132 ? <ButtonLink content='Projets' icon={<CodeIcon/>} path='/cv/projects'/> : <></>}
+          {width >= 768 ? <ButtonLink content='Expériences professionnelles' icon={<WorkIcon/>} path='/cv/jobs' /> : <></>}
+          {width >= 1132 ? <ButtonLink content='Projets' icon={<CodeIcon/>} path='/projects'/> : <></>}
           {false && width >= 1536 ? <ButtonLink content='A propos' icon={<InfoIcon/>} path='/cv/about' /> : <></>}
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
             <MenuIcon />
@@ -101,11 +101,11 @@ const NavBar = () => {
                     {GlobalWord.Navbar.studies}
                   </Button></MenuItem>
                 
-                <MenuItem style={width >= 768 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/experiences')}} startIcon={<WorkIcon/>}>
+                <MenuItem style={width >= 768 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/jobs')}} startIcon={<WorkIcon/>}>
                   {GlobalWord.Navbar.job}
                 </Button></MenuItem>
 
-                <MenuItem style={width >= 1132 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/projects')}} startIcon={<CodeIcon/>}>
+                <MenuItem style={width >= 1132 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/projects')}} startIcon={<CodeIcon/>}>
                   {GlobalWord.Navbar.projects}
                 </Button></MenuItem>
 

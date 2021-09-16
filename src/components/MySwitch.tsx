@@ -12,6 +12,7 @@ import StudyView from '../pages/Study';
 import { Collapse, Fade } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import JobView from '../pages/Job';
+import Jobs from '../pages/Jobs';
 
 
 const AuthenticatedRoute = ({component: Component, ...props}: any) => {
@@ -45,13 +46,14 @@ const MySwitch = () => {
         <Switch>
             <Route path='/cv/about' exact component={() => <Test/>}/>
             <Route path='/cv/studies' exact component={() => <Studies/>}/>
-            <Route path='/cv/projects' exact component={() => <Projects/>}/>
+            <Route path='/projects' exact component={() => <Projects/>}/>
             <Route path='/cv/experiences' exact component={InProgress}/>
             <Route path='/cv' exact component={() => <Home/>}/>
             <Route path='/cv/in-progress' exact component={InProgress}/>
             <Route path='/cv/project' exact component={ProjectView}/>
             <Route path='/cv/study' exact component={StudyView}/>
-            <Route path='/cv/jobs' exact component={JobView}/>
+            <Route path='/cv/jobs' exact component={Jobs}/>
+            <Route path='/cv/job' exact component={JobView}/>
             <AuthenticatedRoute path='/cv/profile' exact component={Profile}/>
             <UnauthenticatedRoute exact path='/cv/login' component={Login}/>
             <Redirect to='/cv'/>

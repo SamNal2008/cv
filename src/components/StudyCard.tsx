@@ -5,9 +5,10 @@ import { openInNewTab } from "../utils/functions";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchImage } from "../utils/firebase";
+import { deleteImage, deleteObj, fetchImage } from "../utils/firebase";
 import renovation from '../images/renovation.jpg';
 import ContentType from "../utils/contentTypes";
+import { useAuthState } from "./AuthContext";
  
 
 const useStyles = makeStyles({
@@ -33,8 +34,15 @@ const useStyles = makeStyles({
 const StudyCard = ( study: Study ) => {
     const classes = useStyles();
     const history = useHistory();
+    const { user } = useAuthState();
     const [logo, setLogo] = useState('');
     const [loaded, setLoaded] = useState(false);
+
+    const deleteStudy = async () => {
+        deleteImage(`${ContentType.studies}/${study.id}`);
+        await deleteObj(ContentType.studies, study);
+        window.location.reload();
+    }
 
     useEffect(() => {
         const loadImg = async () => {
@@ -51,6 +59,7 @@ const StudyCard = ( study: Study ) => {
 
     return (
         <Box className={classes.root}>
+            {user?.isAdmin ? <Button onClick={deleteStudy}>Supprimer</Button> : <></>}
             <Link style={{textDecoration: 'none'}} to={`/cv/study?studyId=${study.id}`}>
                 <Paper className={classes.main} elevation={5} >
                     <Box>

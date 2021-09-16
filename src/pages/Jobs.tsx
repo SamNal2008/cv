@@ -3,10 +3,13 @@ import { Box, Button, Collapse, makeStyles, Typography } from "@material-ui/core
 import { collection } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useAuthState } from "../components/AuthContext";
+import JobCard from "../components/JobCard";
+import NewJobForm from "../components/NewJobForm";
 import NewStudyForm from "../components/NewStudyForm";
 import StudyCard from "../components/StudyCard";
 import ContentType from "../utils/contentTypes";
 import { get } from "../utils/firebase";
+import Job from "../utils/job";
 import Study from "../utils/study";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,24 +37,20 @@ const useStyles = makeStyles((theme) => ({
       }
   }));
 
-export const createNewFormation = (study: Study) => {
-  console.log(study);
-}
-
-const Studies = (): JSX.Element => {
-    const [studies, setStudies] = useState<Study[]>([]);
+const Jobs = (): JSX.Element => {
+    const [jobs, setJobs] = useState<Job[]>([]);
     const [open, setOpen] = useState(false);
     const classes = useStyles();
     const [loaded, setLoaded] = useState(false);
     const { user } = useAuthState();
 
-    document.title = 'Formations';
+    document.title = 'Expériences professionnelles';
 
     useEffect(() => {
-        get(ContentType.studies).then(res => {
+        get(ContentType.job).then(res => {
           console.log(res);
           if (res)
-            setStudies(res);
+            setJobs(res);
           setLoaded(true);
         });
     }, [loaded])
@@ -60,18 +59,18 @@ const Studies = (): JSX.Element => {
         <Box className={classes.root}>
           <Box style={{paddingBottom: '2%'}}>
             <Typography variant="h2">
-              Formations
+              Expériences professionnelles
             </Typography>
           </Box>
           <Box className={classes.formationsBox}>
-            {studies?.sort((a, b) => (new Date(a.finishedDate)).getTime() - (new Date(b.finishedDate).getTime())).map(std => <StudyCard {...std}/>)}
+            {jobs?.sort((a, b) => (new Date(a.finishedDate)).getTime() - (new Date(b.finishedDate).getTime())).map(tmp => <JobCard {...tmp}/>)}
           </Box>
-          {user?.isAdmin ? <Button onClick={() => setOpen(!open)}>Ajouter une nouvelle formation</Button> : <></>}
+          {user?.isAdmin ? <Button onClick={() => setOpen(!open)}>Ajouter une nouvelle expérience</Button> : <></>}
             <Collapse in={open} style={{height: '100%'}}>
-                <NewStudyForm open={open} handleValidate={() => {setOpen(!open); setLoaded(false);}} handleClose={() => setOpen(!open)}/>
+                <NewJobForm open={open} handleValidate={() => {setOpen(!open); setLoaded(false);}} handleClose={() => setOpen(!open)}/>
             </Collapse>
         </Box>
     )
 }
 
-export default Studies;
+export default Jobs;
