@@ -13,6 +13,7 @@ import { Collapse, Fade } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import JobView from '../pages/Job';
 import Jobs from '../pages/Jobs';
+import About from '../pages/About';
 
 
 const AuthenticatedRoute = ({component: Component, ...props}: any) => {
@@ -36,19 +37,14 @@ const UnauthenticatedRoute = ({component: Component, ...props}: any) => {
 }
 
 const MySwitch = () => {
-    const [collapse, setCollapse] = useState(false);
-
-    useEffect(() => {
-        setTimeout(() => setCollapse(true), 300);
-    }, [])
 
     return (
         <>
-            <Route path='/about' exact component={() => <Test/>}/>
-            <Route path='/studies' exact component={() => <Studies/>}/>
-            <Route path='/projects' exact component={() => <Projects/>}/>
+            <Route path='/about' exact component={About}/>
+            <Route path='/studies' exact component={Studies}/>
+            <Route path='/projects' exact component={Projects}/>
             <Route path='/experiences' exact component={InProgress}/>
-            <Route path='/' exact component={() => <Home/>}/>
+            <Route path='/' exact component={Home}/>
             <Route path='/in-progress' exact component={InProgress}/>
             <Route path='/project' exact component={ProjectView}/>
             <Route path='/study' exact component={StudyView}/>

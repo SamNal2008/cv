@@ -78,7 +78,7 @@ const NavBar = () => {
           {width >= 384 ? <ButtonLink content='Formations' icon={<SchoolIcon/>} path='/studies'/> : <></>}
           {width >= 768 ? <ButtonLink content='Expériences professionnelles' icon={<WorkIcon/>} path='/jobs' /> : <></>}
           {width >= 1132 ? <ButtonLink content='Projets' icon={<CodeIcon/>} path='/projects'/> : <></>}
-          {false && width >= 1536 ? <ButtonLink content='A propos' icon={<InfoIcon/>} path='/about' /> : <></>}
+          {width >= 1536 ? <ButtonLink content='A propos' icon={<InfoIcon/>} path='/about' /> : <></>}
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
             <MenuIcon />
           </IconButton>
@@ -109,9 +109,7 @@ const NavBar = () => {
                   {GlobalWord.Navbar.projects}
                 </Button></MenuItem>
 
-                <MenuItem style={true || width >= 1536 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/about')}} startIcon={<InfoIcon/>}>
-                  {GlobalWord.Navbar.about}
-                </Button></MenuItem>
+                <MenuItem style={width >= 1536 ? {display: 'None'} : {}}><ButtonLink newLink={true} content={GlobalWord.Navbar.about} path={'/about'} icon={<InfoIcon/>}/></MenuItem>
 
                 <MenuItem style={!isAuthenticated ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/profile')}} startIcon={<AccountCircleIcon/>}>
                   {isAuthenticated && user.displayName ? user.displayName : 'Profile'}
