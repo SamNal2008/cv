@@ -71,6 +71,13 @@ const NavBar = () => {
       }
     }, []);
 
+    const signOutIfSignedId = () => {
+      handleClose();
+      if (isAuthenticated) {
+        signOutFromApp()
+      }
+    }
+
     return (
       <AppBar position="static" style={{height: '100%'}}>
         <Toolbar className={classes.toolbar}>
@@ -90,37 +97,46 @@ const NavBar = () => {
             onClose={handleClose}
             style={{display: 'flex', flexDirection: 'column'}}
             >
-                <MenuItem onClick={handleClose}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); openInNewTab('https://www.linkedin.com/in/snal')}} startIcon={<ChatIcon/>}>{GlobalWord.Navbar.contactMe}</Button></MenuItem>
-                <MenuItem onClick={() => {handleClose(); openInNewTab('https://github.com/SamNal2008');}}><Button style={{backgroundColor: ''}} color='primary' startIcon={<GitHubIcon/>}>{GlobalWord.Navbar.myGithub}</Button></MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <a href='https://www.linkedin.com/in/snal' target='_blank' style={{textDecoration: 'none'}}>
+                    <Button style={{backgroundColor: ''}} color='primary' startIcon={<ChatIcon/>}>{GlobalWord.Navbar.contactMe}</Button>
+                  </a>
+                </MenuItem>
                 
-                  <MenuItem style={width >= 100 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('')}} startIcon={<HomeIcon/>}>
-                    {GlobalWord.Navbar.home}
-                  </Button></MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <a style={{textDecoration: 'none'}} href='https://github.com/SamNal2008' onClick={handleClose} target='_blank'>
+                    <Button style={{backgroundColor: ''}} color='primary' startIcon={<GitHubIcon/>}>Mon GitHub</Button>
+                  </a>
+                </MenuItem>
+          
+                <MenuItem onClick={handleClose} style={width >= 100 ? {display: 'None'} : {}}>
+                  <ButtonLink content='Accueil' inMenu={true} icon={<HomeIcon/>} path='/'/>
+                </MenuItem>
+    
+                <MenuItem onClick={handleClose} style={width >= 384 ? {display: 'None'} : {}}>
+                  <ButtonLink path='/studies' content={GlobalWord.Navbar.studies} inMenu={true} icon={<SchoolIcon/>} />
+                </MenuItem>
                 
-                <MenuItem style={width >= 384 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/studies')}} startIcon={<SchoolIcon/>}>
-                    {GlobalWord.Navbar.studies}
-                  </Button></MenuItem>
-                
-                <MenuItem style={width >= 768 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/jobs')}} startIcon={<WorkIcon/>}>
-                  {GlobalWord.Navbar.job}
-                </Button></MenuItem>
+                <MenuItem onClick={handleClose} style={width >= 768 ? {display: 'None'} : {}}>
+                  <ButtonLink path='/jobs' content={GlobalWord.Navbar.job} icon={<WorkIcon/>} inMenu={true}/>
+                </MenuItem>
 
-                <MenuItem style={width >= 1132 ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/cv/projects')}} startIcon={<CodeIcon/>}>
-                  {GlobalWord.Navbar.projects}
-                </Button></MenuItem>
+                <MenuItem onClick={handleClose} style={width >= 1132 ? {display: 'None'} : {}}>
+                  <ButtonLink path='/projects' content={GlobalWord.Navbar.projects} icon={<CodeIcon/>} inMenu={true}/>
+                </MenuItem>
 
-                <MenuItem style={width >= 1536 ? {display: 'None'} : {}}><ButtonLink newLink={true} content={GlobalWord.Navbar.about} path={'/about'} icon={<InfoIcon/>}/></MenuItem>
+                <MenuItem style={width >= 1536 ? {display: 'None'} : {}}>
+                  <ButtonLink inMenu={true} content={GlobalWord.Navbar.about} path={'/about'} icon={<InfoIcon/>}/>
+                </MenuItem>
 
-                <MenuItem style={!isAuthenticated ? {display: 'None'} : {}}><Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/profile')}} startIcon={<AccountCircleIcon/>}>
-                  {isAuthenticated && user.displayName ? user.displayName : 'Profile'}
-                </Button></MenuItem>
+                <MenuItem style={!isAuthenticated ? {display: 'none'} : {}} onClick={handleClose}>
+                  <ButtonLink inMenu={true} path={'/profile'} content='Profile' icon={<AccountCircleIcon/>}/>
+                </MenuItem>
 
-                <MenuItem>
-                  {isAuthenticated ? <Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); signOutFromApp(); history.push('/')}} startIcon={<ExitToAppIcon/>}>
-                    Se deconnecter
-                  </Button> : <Button style={{backgroundColor: ''}} color='primary' onClick={() => {handleClose(); history.push('/login');}} startIcon={<LockOpenIcon/>}>
-                    Se connecter
-                  </Button>}
+                <MenuItem onClick={signOutIfSignedId}>
+                  {isAuthenticated ? <ButtonLink inMenu={true} icon={<ExitToAppIcon/>} content={'Se deconnecter'} path={'/'}/>
+                  :
+                  <ButtonLink inMenu={true} content={'Se connecter'} path='/login' icon={<LockOpenIcon/>}/>}
                 </MenuItem>
           </Menu>
         </Toolbar>
