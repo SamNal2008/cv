@@ -66,7 +66,7 @@ const JobCard = ( job: Job ) => {
                         </Typography>
                         ----
                         <Typography>
-                            <pre style={{ fontFamily: 'inherit' }}>
+                            <pre style={{ fontFamily: 'inherit', wordWrap: 'break-word' }}>
                                 {job.description}
                             </pre>
                         </Typography>
