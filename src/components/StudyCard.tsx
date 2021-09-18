@@ -78,7 +78,7 @@ const StudyCard = ( study: Study ) => {
                             {study.startedDate} - {study.finishedDate}
                         </Typography>
                     </Box>
-                    <img  height={'100'} style={{marginLeft: 'auto'}} src={logo}/>
+                    <a href={study.websiteUrl}> <img height={'100'} style={{marginLeft: 'auto'}} src={logo}/></a>
                 </Paper>
             </Link>
         </Box>
