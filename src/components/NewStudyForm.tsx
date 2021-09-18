@@ -54,6 +54,7 @@ const NewStudyForm = ({...props}: any) => {
             schoolName: name,
             startedDate: startedDate,
             websiteUrl: websiteUrl,
+            content: '${description}'
             diploma: diploma
         };
         save(ContentType.studies, realStudy);
