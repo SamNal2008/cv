@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useAuthState } from "../components/AuthContext";
 import ContentType from "../utils/contentTypes";
-import { firestore, save } from "../utils/firebase";
+import { fetchImage, firestore, save } from "../utils/firebase";
 import Job from "../utils/job";
+import renovation from '../images/renovation.jpg';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -66,7 +67,8 @@ const JobView = () => {
 
     const [job, setJob] = useState<Job>();
     const [loaded, setLoaded] = useState(false);
-    
+    const [picture, setPicture] = useState('');
+
     const fetchJobInfo = async (jobId: string) => {
         if (jobId === 'id') {
             console.log('oui')
@@ -92,12 +94,23 @@ const JobView = () => {
         console.log('Job updated')
     }
       
-    
+    const loadImg = async () => {
+        let imgUrl = await fetchImage(`${ContentType.job}/${jobId}`);
+        if (imgUrl)
+          setPicture(imgUrl);
+        else {
+          setPicture(renovation);
+        }
+        setLoaded(true);
+    }
+
     useEffect(() => {
         if (!loaded) {
 
             if (jobId && !job) {
-                fetchJobInfo(jobId).then(() => setLoaded(true));
+                fetchJobInfo(jobId).then(() => {
+                    loadImg().then(() =>  setLoaded(true))
+                });
             }
             else
             {
@@ -110,11 +123,14 @@ const JobView = () => {
     return (
        <Box className={classes.root} onMouseEnter={() => console.log(jobId)}>
             {
-                !job ? <CircularProgress /> :
+                !job || !loaded ? <CircularProgress /> :
                 <>
-                    <Typography variant='h2'>
-                        {job?.jobName}
-                    </Typography>
+                    <div style={{display: 'flex', width: '100%', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
+                        <Typography variant='h2'>
+                            {job?.jobName}
+                        </Typography>
+                        <img alt={job?.jobName} src={picture}/>
+                    </div>
                     {user?.isAdmin ? <><MDEditor
                         className={classes.editor}
                         value={job.content}

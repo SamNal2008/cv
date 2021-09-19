@@ -11,7 +11,7 @@ import Divider from '@mui/material/Divider';
 const useStyles = makeStyles({
     root: {
         height: '100%',
-        width: '98%',
+        width: '90%',
         padding: '1%',
     },
     main: {

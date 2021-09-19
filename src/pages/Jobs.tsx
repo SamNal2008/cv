@@ -16,9 +16,10 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
         minHeight: '80vh',
+        maxWidth: '80vw',
         flexGrow: 1,
         paddingTop: '1%',
         paddingBottom: '1%',
@@ -32,9 +33,12 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
       },
       formationsBox: {
-        paddingLeft: '10%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
         width: '100%',
-        paddingBottom: '10%'
+        paddingLeft: '15%'
       }
   }));
 

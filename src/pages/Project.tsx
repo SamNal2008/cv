@@ -2,12 +2,13 @@ import { Box, Button, makeStyles, Typography } from "@material-ui/core";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { firestore, save } from "../utils/firebase";
+import { fetchImage, firestore, save } from "../utils/firebase";
 import { Project, ProjectType } from "../utils/project";
 import CircularProgress from '@material-ui/core/CircularProgress'; 
 import { useAuthState } from "../components/AuthContext";
 import MDEditor from '@uiw/react-md-editor';
 import ContentType from "../utils/contentTypes";
+import renovation from '../images/renovation.jpg';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -49,6 +50,7 @@ const ProjectView = () => {
     const projectId = query.get('projectId');
     const history = useHistory();
     const classes = useStyles();
+    const [picture, setPicture] = useState('');
 
     const { user } = useAuthState();
 
@@ -83,7 +85,6 @@ const ProjectView = () => {
         save(ContentType.projects, project);
         console.log('Project updated')
     }
-      
     
     useEffect(() => {
         if (!loaded) {
@@ -108,7 +109,7 @@ const ProjectView = () => {
     return (
        <Box className={classes.root}>
             {
-                !project ? <CircularProgress /> :
+                !loaded || !project ? <CircularProgress /> :
                 <>
                     <Typography variant='h2'>
                         {project?.title}
