@@ -3,14 +3,6 @@ import './App.css';
 import './App.scss';
 
 import {
-  Configuration,
-  Layout,
-  useLayoutNavigation,
-  Text,
-  Button,
-} from 'react-md';
-
-import {
   HashRouter,
   BrowserRouter
 } from "react-router-dom";

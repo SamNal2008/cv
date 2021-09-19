@@ -61,7 +61,7 @@ let defaultTheme = createTheme({
                 justifyContent: 'center',
                 alignItems: 'center'
             }
-        }
+        },
     }
 });
 

@@ -1,4 +1,5 @@
-import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, IconButton, makeStyles, Typography } from "@material-ui/core";
+import { Box, Card, CardActionArea, CardActions, CardContent, CardMedia, IconButton, makeStyles, Typography } from "@material-ui/core";
+import { Button } from "@mui/material";
 import { Project } from "../utils/project";
 import renovation from '../images/renovation.jpg';
 import { useHistory } from "react-router-dom";
@@ -85,7 +86,7 @@ export default function ProjectCard({...project}: Project) {
               image={picture}
               title={project.title}
               />
-            <CardContent style={{height: '180px'}}>
+            <CardContent style={{height: '140px'}}>
               <Typography gutterBottom variant="h5" component="h2">
                 {project.title}
               </Typography>

@@ -147,6 +147,7 @@ export const save = async (type: string, obj: any) => {
   }
   catch (e) {
     console.error(e);
+    throw e;
   }
 }
 
