@@ -32,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
       },
       formationsBox: {
-        width: '90%',
+        paddingLeft: '10%',
+        width: '100%',
         paddingBottom: '10%'
       }
   }));

@@ -15,6 +15,7 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         backgroundColor: 'yellow',
         width: '80%',
+        height: '100%',
         alignItems: 'flex-start',
         justifyContent: 'flex-start'
     }

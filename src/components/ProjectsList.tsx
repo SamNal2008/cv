@@ -47,7 +47,7 @@ const ProjectsList = () => {
         <Box className={classes.main}>
             {!loaded ? <CircularProgress/> : 
                 <Box className={classes.root}>
-                    {projects.map(prj => <ProjectCard {...prj}/>)}
+                    {projects.filter(prj => prj.isPinned).map(prj => <ProjectCard {...prj}/>)}
                 </Box>
             }
         </Box>

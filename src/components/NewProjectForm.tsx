@@ -83,7 +83,7 @@ const NewProjectForm = ({...props}: any) => {
             title: projectName,
             type: projectType,
             githubLink: githubLink,
-            content: '${projectDescription}',
+            content: projectDescription,
             photoUrl: `${ContentType.projects}/${projectName}`
         }
         save(ContentType.projects, newProject);

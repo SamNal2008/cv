@@ -1,21 +1,22 @@
-import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, makeStyles, Typography } from "@material-ui/core";
+import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, IconButton, makeStyles, Typography } from "@material-ui/core";
 import { Project } from "../utils/project";
 import renovation from '../images/renovation.jpg';
 import { useHistory } from "react-router-dom";
 import ButtonLink from "./custom-material/Links/ButtonLink";
 import { useAuthState } from "./AuthContext";
 import { deleteDoc, doc } from "@firebase/firestore";
-import { deleteImage, deleteObj, fetchImage, firestore } from "../utils/firebase";
+import { deleteImage, deleteObj, fetchImage, firestore, save } from "../utils/firebase";
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useEffect, useState } from "react";
 import ContentType from "../utils/contentTypes";
+import PushPinIcon from '@mui/icons-material/PushPin';
 
 const useStyles = makeStyles({
   main: {
     padding: '1%',
   },
   root: {
-    height: '400px',
+    height: '410px',
     width: '400px',
     display: 'flex',
     justifyContent: 'center',
@@ -23,8 +24,16 @@ const useStyles = makeStyles({
     flexDirection: 'column'
   },
   media: {
-    height: '10rem',
+    height: '180px',
   },
+  action: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    width: '100%',
+    marginTop: 'auto'
+  }
 });
 
 export default function ProjectCard({...project}: Project) {
@@ -38,7 +47,21 @@ export default function ProjectCard({...project}: Project) {
       window.location.reload();
     }
 
+    let projectIsPinned = false;
+    if (project.isPinned) {
+      projectIsPinned = true;
+    }
+    const [isPin, setIsPin] = useState<boolean>(projectIsPinned);
+
     const [picture, setPicture] = useState('');
+
+    const updateProject = (isPinned: boolean) => {
+      let newProject: Project = {
+        ...project,
+        isPinned
+      }
+      save(ContentType.projects, newProject);
+    }
 
     useEffect(() => {
       const loadImg = async () => {
@@ -62,22 +85,31 @@ export default function ProjectCard({...project}: Project) {
               image={picture}
               title={project.title}
               />
-            <CardContent>
+            <CardContent style={{height: '180px'}}>
               <Typography gutterBottom variant="h5" component="h2">
                 {project.title}
               </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {project.description}
+              <Typography variant="body2" color="textSecondary" style={{height: '100px', whiteSpace: 'pre-line', overflow: 'auto'}}>
+                  {project.description}
               </Typography>
             </CardContent>
           </CardActionArea>
-          <CardActions style={{marginTop: 'auto'}}>
-            <ButtonLink disabled={!project.githubLink} color='primary' content='Git' icon={<></>} path={project.githubLink}/>
-            <ButtonLink color='primary' content='En savoir plus' icon={<></>} path={`/project?projectId=${project.id}`} />
-            {user?.isAdmin ? <Button color='secondary' startIcon={<DeleteIcon/>} onClick={() => deleteFormation()}>Supprimer</Button> : <></>}
+          <CardActions className={classes.action}>
+            <ButtonLink disabled={!project.githubLink} inMenu={true} content='Git' icon={<></>} path={project.githubLink}/>
+            <ButtonLink color='primary' inMenu={true} content='En savoir plus' icon={<></>} path={`/project?projectId=${project.id}`} />
+            {user?.isAdmin ?
+              <>
+              <Button color='secondary' startIcon={<DeleteIcon/>} onClick={() => deleteFormation()}>Supprimer</Button>
+              {isPin ? <IconButton onClick={() => {setIsPin(false); updateProject(false);}} color="primary" aria-label="pin a project">
+                <PushPinIcon />
+              </IconButton> : <IconButton onClick={() => {setIsPin(true); updateProject(true);}} color="secondary" aria-label="pin a project">
+                <PushPinIcon />
+              </IconButton>}
+              </>
+              : 
+              <></>}
           </CardActions>
         </Card>
-        
       </Box>
     );
   }

@@ -11,5 +11,6 @@ export type Project = {
     type: ProjectType,
     githubLink?: string,
     photoUrl?: string,
-    content?: string
+    content?: string,
+    isPinned?: boolean
 }

@@ -7,6 +7,8 @@ import { deleteImage, deleteObj, fetchImage } from "../utils/firebase";
 import renovation from '../images/renovation.jpg';
 import ContentType from "../utils/contentTypes";
 import { useAuthState } from "./AuthContext";
+import CircularProgress from '@mui/material/CircularProgress';
+import { Divider } from "@mui/material";
  
 
 const useStyles = makeStyles({
@@ -58,29 +60,30 @@ const StudyCard = ( study: Study ) => {
     return (
         <Box className={classes.root}>
             {user?.isAdmin ? <Button onClick={deleteStudy}>Supprimer</Button> : <></>}
-            <Link style={{textDecoration: 'none'}} to={`/study?studyId=${study.id}`}>
+            
                 <Paper className={classes.main} elevation={5} >
+                    <Link style={{textDecoration: 'none'}} to={`/study?studyId=${study.id}`}>
                     <Box>
                         <Typography variant='h4'>
                             {study.schoolName}
                         </Typography>
-                        ----
+                        <Divider style={{marginTop: '10px', marginBottom: '10px', width: `${study.schoolName.length}rem`}}/>
                         <Typography variant='subtitle2'>
                             {study.place}
                         </Typography>
-                        ----
-                        <Typography>
-                            <pre style={{ fontFamily: 'inherit' }}>
-                                {study.description}
-                            </pre>
+                        <Divider style={{marginTop: '10px', marginBottom: '10px', width: `${study.place.length}%`}}/>
+                        <Typography style={{whiteSpace: 'pre-line', overflow: 'auto'}}>
+                            {study.description}
                         </Typography>
+                        <br/>
                         <Typography>
                             {study.startedDate} - {study.finishedDate}
                         </Typography>
                     </Box>
-                    <a href={study.websiteUrl}> <img height={'100'} style={{marginLeft: 'auto'}} src={logo}/></a>
+                    </Link>
+                    <a href={study.websiteUrl} style={{marginLeft: 'auto'}}> <img height={'100'} style={{marginLeft: 'auto'}} src={logo}/></a>
                 </Paper>
-            </Link>
+
         </Box>
     )
 }
