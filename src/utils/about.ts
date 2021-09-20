@@ -1,7 +1,8 @@
-import { AllInbox, Instagram, LinkedIn, Mail, PhoneAndroid, Speaker, SportsBaseball, SportsBasketball, SportsHandball, SportsKabaddi, SportsRugby, SportsRugbyOutlined, SportsTennis, SportsVolleyball } from '@material-ui/icons';
+import { AllInbox, AssignmentInd, AssignmentTurnedIn, CenterFocusStrong, CropFree, DragHandleSharp, GroupWorkOutlined, Hearing, HourglassEmptySharp, InsertEmoticon, Instagram, LinkedIn, LiveHelp, Mail, PhoneAndroid, RecordVoiceOver, Speaker, SportsBaseball, SportsBasketball, SportsHandball, SportsKabaddi, SportsRugby, SportsRugbyOutlined, SportsTennis, SportsVolleyball, TrackChanges } from '@material-ui/icons';
 import GitHub from '@material-ui/icons/GitHub';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { SvgIcon } from '@mui/material';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 export interface VisitedCountry {
     livedThere?: boolean,
@@ -161,43 +162,43 @@ export const defaultAbout: AboutContent = {
             category: 'Individuel',
             name: 'Tennis',
             icon: SportsTennis,
-            content: "Ce sport m'a appris à perceverer, avoir un esprit de compétition"
+            content: "Persevérance - Émulation"
         },
         {
             category: 'Collectif',
             name: 'Handball',
             icon: SportsHandball,
-            content: "Compter sur mon équipe, avoir un soutien total pendant les phases d'entrainement, de match et de post match"
+            content: "Esprit collectif - Compassion"
         },
         {
             category: 'Collectif',
             name: 'Basketball',
             icon: SportsBasketball,
-            content: "Compter sur mon équipe, avoir un soutien total pendant les phases d'entrainement, de match et de post match"
+            content: ""
         },
         {
             category: 'Collectif',
-            name: 'Baseball',
+            name: 'SoftBall',
             icon: SportsBaseball,
-            content: "Compter sur mon équipe, avoir un soutien total pendant les phases d'entrainement, de match et de post match"
+            content: "Découverte d'un sport américain au centre des états-unis de Rabat"
         },
         {
             category: 'Collectif',
             name: 'Rugby',
             icon: SportsRugbyOutlined,
-            content: "Compter sur mon équipe, avoir un soutien total pendant les phases d'entrainement, de match et de post match"
+            content: ""
         },
         {
             category: 'Collectif',
             name: 'Volley',
             icon: SportsVolleyball,
-            content: "Compter sur mon équipe, avoir un soutien total pendant les phases d'entrainement, de match et de post match"
+            content: "Pratiqué régulièrement le dimanche pour le loisirs"
         },
         {
             category: 'Individuel',
             name: 'Judo',
             icon: SportsKabaddi,
-            content: "Compter sur mon équipe, avoir un soutien total pendant les phases d'entrainement, de match et de post match"
+            content: "Respect - Prendre sur soi - Se relever"
         },
     ],
     hardSkills: [
@@ -294,7 +295,7 @@ export const defaultAbout: AboutContent = {
         {
             category: HardSkillCategory.Data,
             name: 'MySQL',
-            icon: 'http://assets.stickpng.com/images/5848104fcef1014c0b5e4950.png',
+            icon: 'https://1000logos.net/wp-content/uploads/2020/08/MySQL-Logo.jpg',
             content: 'RDBMS'
         },
         {
@@ -349,6 +350,18 @@ export const defaultAbout: AboutContent = {
             category: HardSkillCategory.Quality,
             name: 'Sonarqube',
             icon: 'https://image.pngaaa.com/350/1739350-middle.png',
+            content: ''
+        },
+        {
+            category: HardSkillCategory.Quality,
+            name: 'Trello',
+            icon: 'https://cdn.worldvectorlogo.com/logos/trello.svg',
+            content: ''
+        },
+        {
+            category: HardSkillCategory.Quality,
+            name: 'Notion',
+            icon: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png',
             content: ''
         },
         {
@@ -440,13 +453,13 @@ export const defaultAbout: AboutContent = {
         {
             category: SoftSkillCategory.Management,
             name: "Animation de réunions",
-            icon: 'https://i.pinimg.com/474x/0b/b3/a5/0bb3a5a26f7b3183450614e18642d1f4.jpg',
+            icon: 'https://cdn-icons-png.flaticon.com/512/2640/2640833.png',
             content: "",
         },
         {
             category: SoftSkillCategory.Management,
             name: "Gestion des ressources",
-            icon: 'http://www.valopolis.fr/wp-content/uploads/2013/04/picto_RACI.png',
+            icon: 'https://cdn-icons-png.flaticon.com/512/1605/1605350.png',
             content: "Matrice RACI",
         },
         {
@@ -456,16 +469,34 @@ export const defaultAbout: AboutContent = {
             content: "Diagramme de Gantt",
         },
         {
+            category: SoftSkillCategory.Organisation,
+            name: "Collective",
+            icon: 'https://cdn-icons-png.flaticon.com/512/4337/4337297.png',
+            content: "Anticipation & Matrice des risques & Planning",
+        },
+        {
+            category: SoftSkillCategory.Organisation,
+            name: "Individuel",
+            icon: 'https://cdn-icons-png.flaticon.com/512/3830/3830204.png',
+            content: "Semaine type, ToDo, Tableur",
+        },
+        {
+            category: SoftSkillCategory.Communication,
+            name: "Multi-canal",
+            icon: 'https://www.manutan.fr/blog/wp-content/uploads/2018/08/devinci-mba-digital-marketing-strategy-emlv.gif',
+            content: "Teams, Mail, Zoom",
+        },
+        {
             category: SoftSkillCategory.CriticalSpirit,
             name: "Benchmark",
-            icon: 'https://payload.cargocollective.com/1/9/298552/4870460/bhencweb_01_o.png',
-            content: "Bilan points forts points faibles",
+            icon: 'https://cdn-icons-png.flaticon.com/512/2857/2857512.png',
+            content: "Bilan points faibles/forts",
         },
         {
             category: SoftSkillCategory.AnalyseAndSynthesis,
             name: "Compte rendu",
-            icon: 'https://lh3.googleusercontent.com/proxy/bSpnrecO2f6allYs5Yinz49kkk9KLPpgGVKlRZ_Z92S6nnhnpeU88FPyWX9mOdb-0wlY8ek3fEQA_jxL5W2NEc4O71R9KDTHh8rpMLVXNVfqwsk4WVHdBBcLc6SeCLwGken231er1B5kYTk',
-            content: "Bilan points forts points faibles",
+            icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055644.png',
+            content: "Synthèse, décisions & plan d'actions",
         },
         
     ],
@@ -521,20 +552,145 @@ export const defaultAbout: AboutContent = {
     ],
     methods: [
         {
-            name: 'SCRUM',
-            icon: 'https://www.scrum.org/themes/custom/scrumorg/assets/images/logo-250.png',
+            name: 'Démarcher des investisseurs',
+            icon: 'https://cdn-icons-png.flaticon.com/512/639/639365.png',
+            category: MethodCategory.BusinessCase,
+            content: 'Etablir un Total Available Market satisfaisant'
+        },
+        {
+            name: 'Analyse financière',
+            icon: 'https://w1.pngwing.com/pngs/98/305/png-transparent-pdf-logo-financial-statement-bank-statement-financial-statement-analysis-financial-transaction-report-finance-credit.png',
+            category: MethodCategory.BusinessCase,
+            content: 'Projection - ROI - Calcul des coûts - Worst Case & Best Case'
+        },
+        {
+            name: 'Marketter l\'idée',
+            icon: 'https://thumbs.dreamstime.com/b/ic%C3%B4ne-lin%C3%A9aire-de-plan-marketing-logo-moderne-c-d-ensemble-133520068.jpg',
+            category: MethodCategory.BusinessCase,
+            content: 'Réalisation d\'une vidéo marketting, annonce de presse, affiche commerciale'
+        },
+        {
+            name: 'Workflow',
+            icon: 'https://cdn-icons-png.flaticon.com/512/3522/3522649.png',
+            category: MethodCategory.VCycle,
+            content: 'Définition du projet -> Implémentation -> Test & Intégration -> Mise en production'
+        },
+        {
+            name: 'Cahier des charges',
+            icon: 'https://cdn-icons-png.flaticon.com/512/814/814595.png',
+            category: MethodCategory.VCycle,
+            content: 'Spécifications techniques'
+        },
+        {
+            name: 'Analyse et conception',
+            icon: 'https://cdn-icons-png.flaticon.com/512/5108/5108789.png',
+            category: MethodCategory.VCycle,
+            content: 'UML : UseCase -> Analyse -> Intérations -> Conception -> Déploiement'
+        },
+        {
+            name: 'Tests & Intégration',
+            icon: 'https://cdn-icons-png.flaticon.com/512/3319/3319660.png',
+            category: MethodCategory.VCycle,
+            content: 'Tests unitaires -> Tests d\'intégrations -> Tests fonctionnels'
+        },
+        {
+            name: 'Workflow',
+            icon: 'https://cdn-icons-png.flaticon.com/512/2784/2784065.png',
             category: MethodCategory.Agile,
-            content: 'Chercher le besoin, réaliser des users journeys, en déduire des Epics, Feature, Task et les prioriser. Réaliser une roadmap et définir un backlog'
-        }
+            content: 'Besoin -> Users journeys -> Epics, Feature, Task -> Should/Must/Nice -> Développement -> Itérations'
+        },
+        {
+            name: 'Rituels',
+            icon: 'https://cdn-icons-png.flaticon.com/512/3050/3050525.png',
+            category: MethodCategory.Agile,
+            content: 'SprintPlanning - Daily - SprintReview/Retro - Demo'
+        },
+        {
+            name: 'Product Backlog',
+            icon: 'https://cdn-icons-png.flaticon.com/512/2620/2620178.png',
+            category: MethodCategory.Agile,
+            content: 'Priorisation des US - Grooming'
+        },
+        {
+            name: 'Workflow',
+            icon: 'https://cdn-icons-png.flaticon.com/512/2353/2353678.png',
+            category: MethodCategory.DesignThinking,
+            content: 'Approche centrée sur l\'utilisateur : Besoin -> Définition -> Idée -> Prototype -> Teste'
+        },
+        {
+            name: 'Besoins',
+            icon: 'https://cdn-icons-png.flaticon.com/512/3050/3050525.png',
+            category: MethodCategory.DesignThinking,
+            content: 'Interviews client & Définition Personae (Profil type)'
+        },
+        {
+            name: 'Définitions',
+            icon: 'https://cdn-icons-png.flaticon.com/512/1754/1754168.png',
+            category: MethodCategory.DesignThinking,
+            content: 'Customer Journey & Compréhension du parcours client'
+        },
+        {
+            name: 'Idée',
+            icon: 'https://cdn-icons-png.flaticon.com/512/427/427735.png',
+            category: MethodCategory.DesignThinking,
+            content: 'Créer des idées en trouvant de nouveaux parcours clients'
+        },
+        {
+            name: 'Prototype',
+            icon: 'https://cdn-icons-png.flaticon.com/512/3696/3696430.png',
+            category: MethodCategory.DesignThinking,
+            content: 'MVP : Version sans code de la solution'
+        },
+        {
+            name: 'Test',
+            icon: 'https://cdn-icons-png.flaticon.com/512/2916/2916328.png',
+            category: MethodCategory.DesignThinking,
+            content: 'Test Client MVP & Amélioration sur base des retours'
+        },
     ],
     valeurs: [{
         name: 'Solidarité',
-        icon: AllInbox
-    }],
+        icon: GroupWorkOutlined
+    },
+    {
+        name: 'Engagement',
+        icon: CenterFocusStrong
+    },
+    {
+        name: 'Ambition',
+        icon: TrackChanges
+    },
+    {
+        name: 'Liberté',
+        icon: CropFree
+    },
+    {
+        name: 'Responsabilité',
+        icon: ManageAccountsIcon
+    }
+    ],
     quality: [{
         name: 'Communiquant',
-        icon: Speaker
-    }]
+        icon: RecordVoiceOver
+    },
+    {
+        name: 'Enthousiaste',
+        icon: InsertEmoticon
+    },
+    {
+        name: 'Curieux',
+        icon: LiveHelp
+    },
+    {
+        name: "A l'écoute",
+        icon: Hearing
+    },
+    {
+        name: "Assidu",
+        icon: AssignmentTurnedIn
+    },
+
+    ]
 
 }
 

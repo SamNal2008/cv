@@ -116,7 +116,6 @@ const About = () => {
                         <AboutFun category={InterestCategory} interests={about?.interests} title={'Loisirs'}/>
                         <Divider flexItem={true} orientation='vertical'/>
                         <AboutTravel visitedCountries={about?.visitedCountries}/>
-                        <Divider flexItem={true} orientation='vertical'/>
                         <AboutSport sports={about.sports}/>
                     </Box>
                 </Box>

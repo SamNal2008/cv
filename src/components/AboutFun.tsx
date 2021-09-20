@@ -27,7 +27,7 @@ const useStyles = makeStyles({
         paddingTop: '1%',
         justifyContent: 'flex-start',
         gap: '10px',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         flex: '1 1'
     }
 });

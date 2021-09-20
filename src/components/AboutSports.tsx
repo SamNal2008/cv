@@ -9,12 +9,14 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
+        flex: '1 1'
     },
     subBox: {
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        flex: '1 1'
     }
 });
 

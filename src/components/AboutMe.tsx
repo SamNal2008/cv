@@ -18,16 +18,16 @@ const useStyles = makeStyles({
     qualitiesAndValues: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'flex-start',
-        paddingTop: '2%',
+        paddingTop: '7%',
         paddingRight: '3%',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
     },
     qualities: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap'
     }
