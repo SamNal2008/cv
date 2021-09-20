@@ -6,7 +6,7 @@ import { useAuthState } from "./AuthContext";
 import SubBox from "./custom-material/Box/SubBox";
 import SubTitleBox from "./custom-material/Box/SubTitleBox";
 
-const HomeBox = ({title, component} : {title: string, component: JSX.Element}) => {
+const HomeBox = ({title, component, subtitle} : {title: string, component: JSX.Element, subtitle?: string}) => {
     const [checked, setChecked] = useState(false);
     const {user} = useAuthState();
 
@@ -21,11 +21,15 @@ const HomeBox = ({title, component} : {title: string, component: JSX.Element}) =
                     expandIcon={<ExpandMore color={"secondary"}/>}
                     aria-controls='panel1bh-content'
                     id='panel1bh-header'
-                    style={{color: secondaryMainColor, backgroundColor: primaryMainColor}}
                     >
-                    <Typography variant='h4' style={{color: secondaryMainColor}}>
-                        {title}
-                    </Typography>
+                    <Box style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flex: '1 1'}}>
+                        <Typography variant='h4' style={{color: secondaryMainColor}}>
+                            {title}
+                        </Typography>
+                        <Typography variant='h6' style={{color: secondaryMainColor, marginLeft: '1%'}}>
+                            ({subtitle})
+                        </Typography>
+                    </Box>
                 </AccordionSummary>
                 <AccordionDetails>
                     {component}

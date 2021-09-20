@@ -6,7 +6,7 @@ import { useAuthState } from "../components/AuthContext";
 import NewProjectForm from "../components/NewProjectForm";
 import ProjectCard from "../components/ProjectCard";
 import ContentType from "../utils/contentTypes";
-import { firestore, get } from "../utils/firebase";
+import { deleteObj, firestore, get, getOne, save } from "../utils/firebase";
 import { Project, ProjectType } from "../utils/project";
 import theme from "../utils/theme";
 
@@ -72,7 +72,8 @@ export default function Projects() {
                 type: ProjectType.Personal,
             }
         ])});
-    }, [loaded])
+    }, [loaded]);
+
 
     const { user } = useAuthState();
     const classes = useStyles();

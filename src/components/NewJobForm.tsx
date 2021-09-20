@@ -2,6 +2,7 @@ import { Box, Button, createStyles, Dialog, DialogActions, DialogContent, Dialog
 import { useState } from "react";
 import ContentType from "../utils/contentTypes";
 import { save, uploadImageFor } from "../utils/firebase";
+import { monthDiff } from "../utils/functions";
 import Job from "../utils/job";
 import { primaryMainColor } from "../utils/theme";
 
@@ -37,14 +38,18 @@ const NewJobForm = ({...props}: any) => {
     const [finishedDate, setFinishedDate] = useState('');
     const [place, setPlace] = useState('');
     const [websiteUrl, setWebsiteUrl] = useState('');
-
     const [tmpPicture, setTmpPicture] = useState();
 
     const classes = useStyles();
 
+
+    
+    
+
     const validateForm = async (e: any) => {
         e.preventDefault();
         await uploadImageFor(ContentType.job, jobName, tmpPicture);
+        const time = monthDiff(new Date(startedDate), new Date(finishedDate));
         let realJob: Job = {
             description: description,
             finishedDate: finishedDate,
@@ -54,7 +59,8 @@ const NewJobForm = ({...props}: any) => {
             jobName: jobName,
             startedDate: startedDate,
             websiteUrl: websiteUrl,
-            company: company
+            company: company,
+            timeInMonth: time,
         };
         save(ContentType.job, realJob);
         props.handleValidate();

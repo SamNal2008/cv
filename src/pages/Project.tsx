@@ -64,7 +64,8 @@ const ProjectView = () => {
                 id: 'id',
                 title: 'title',
                 type: ProjectType.Personal,
-            })
+            });
+            return;
         }
         const docRef = doc(firestore, ContentType.projects, projectId);
         const docSnap = await getDoc(docRef);

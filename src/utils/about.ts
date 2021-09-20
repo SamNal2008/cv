@@ -1,4 +1,4 @@
-import { Instagram, LinkedIn, Mail, PhoneAndroid, SportsBaseball, SportsBasketball, SportsHandball, SportsKabaddi, SportsRugby, SportsRugbyOutlined, SportsTennis, SportsVolleyball } from '@material-ui/icons';
+import { AllInbox, Instagram, LinkedIn, Mail, PhoneAndroid, Speaker, SportsBaseball, SportsBasketball, SportsHandball, SportsKabaddi, SportsRugby, SportsRugbyOutlined, SportsTennis, SportsVolleyball } from '@material-ui/icons';
 import GitHub from '@material-ui/icons/GitHub';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { SvgIcon } from '@mui/material';
@@ -105,6 +105,11 @@ export interface Information {
 
 }
 
+export interface Quality {
+    name: string,
+    icon: any
+}
+
 interface AboutContent {
     id: string,
     informations: Information,
@@ -115,8 +120,8 @@ interface AboutContent {
     softSkills: SoftSkill[],
     interests: Interest[],
     methods: Method[],
-    valeurs: string[],
-    quality: string[]
+    valeurs: Quality[],
+    quality: Quality[]
 };
 
 export const defaultAbout: AboutContent = {
@@ -206,7 +211,7 @@ export const defaultAbout: AboutContent = {
             category: HardSkillCategory.Infrastructure,
             name: 'RabbitMQ',
             icon: 'https://seeklogo.com/images/R/rabbitmq-logo-25641A76DE-seeklogo.com.png',
-            content: 'Message Oriented Middleware'
+            content: 'MoM'
         },
         {
             category: HardSkillCategory.Backend,
@@ -218,19 +223,19 @@ export const defaultAbout: AboutContent = {
             category: HardSkillCategory.Backend,
             name: 'Java',
             icon: 'https://cdn.freelogovectors.net/svg05/java-logo.svg',
-            content: ''
+            content: 'Spark & Jooq'
         },
         {
             category: HardSkillCategory.Backend,
             name: 'NodeJS',
             icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1280px-Node.js_logo.svg.png',
-            content: 'Surtout avec le framework NestJS'
+            content: 'Framework NestJS'
         },
         {
             category: HardSkillCategory.Backend,
             name: 'Python',
             icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/2048px-Python-logo-notext.svg.png',
-            content: 'Avec les Flask, Django'
+            content: 'Flask & Django'
         },
         {
             category: HardSkillCategory.Backend,
@@ -272,7 +277,7 @@ export const defaultAbout: AboutContent = {
             category: HardSkillCategory.DevOps,
             name: 'GitLab C/I',
             icon: 'https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png',
-            content: 'Infrastructure as Code'
+            content: ''
         },
         {
             category: HardSkillCategory.DevOps,
@@ -290,13 +295,13 @@ export const defaultAbout: AboutContent = {
             category: HardSkillCategory.Data,
             name: 'MySQL',
             icon: 'http://assets.stickpng.com/images/5848104fcef1014c0b5e4950.png',
-            content: 'Relational database'
+            content: 'RDBMS'
         },
         {
             category: HardSkillCategory.Data,
             name: 'PostgreSQL',
             icon: 'https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg',
-            content: 'Relational database'
+            content: 'RDBMS'
         },
         {
             category: HardSkillCategory.Data,
@@ -320,7 +325,7 @@ export const defaultAbout: AboutContent = {
             category: HardSkillCategory.Frontend,
             name: 'Svelte',
             icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/1200px-Svelte_Logo.svg.png',
-            content: 'No SQL'
+            content: ''
         },
         {
             category: HardSkillCategory.Frontend,
@@ -367,10 +372,57 @@ export const defaultAbout: AboutContent = {
             content: "J'ai joué de la guitare pendant près de 4 ans"
         },
         {
+            category: InterestCategory.Music,
+            name: 'Concert',
+            content: "J'ai joué de la guitare pendant près de 4 ans"
+        },
+        {
             category: InterestCategory.Cinema,
-            name: 'Séries',
+            name: 'Séries à suspens',
             content: "J'adore regarder des séries sur les temps anciens notamment en Asie"
-        }
+        },
+        {
+            category: InterestCategory.Cinema,
+            name: 'Documentaires',
+            content: "J'adore regarder des séries sur les temps anciens notamment en Asie"
+        },
+        {
+            category: InterestCategory.Cinema,
+            name: 'Comédie',
+            content: "J'adore regarder des séries sur les temps anciens notamment en Asie"
+        },
+        {
+            category: InterestCategory.VideoGame,
+            name: 'Collaborations & Cordinations',
+            content: "J'adore regarder des séries sur les temps anciens notamment en Asie"
+        },
+        {
+            category: InterestCategory.VideoGame,
+            name: 'Reflexe et agilité',
+            content: "J'adore regarder des séries sur les temps anciens notamment en Asie"
+        },
+        {
+            category: InterestCategory.CardGame,
+            name: 'Belotte',
+            content: "J'adore regarder des séries sur les temps anciens notamment en Asie"
+        },
+        {
+            category: InterestCategory.CardGame,
+            name: 'Tarot',
+            content: "J'adore regarder des séries sur les temps anciens notamment en Asie"
+        },
+        {
+            category: InterestCategory.CardGame,
+            name: 'Poker',
+            content: "J'adore regarder des séries sur les temps anciens notamment en Asie"
+        },
+        {
+            category: InterestCategory.CardGame,
+            name: 'BlackJack',
+            content: "J'adore regarder des séries sur les temps anciens notamment en Asie"
+        },
+        
+
     ],
     languages: [
         {
@@ -380,7 +432,7 @@ export const defaultAbout: AboutContent = {
         },
         {
             icon: 'https://icons.iconarchive.com/icons/wikipedia/flags/1024/GB-United-Kingdom-Flag-icon.png',
-            name: 'Anglais',
+            name: 'Anglais - TOEIC : 880',
             level: LanguageLevel.B2
         },
     ],
@@ -389,13 +441,13 @@ export const defaultAbout: AboutContent = {
             category: SoftSkillCategory.Management,
             name: "Animation de réunions",
             icon: 'https://i.pinimg.com/474x/0b/b3/a5/0bb3a5a26f7b3183450614e18642d1f4.jpg',
-            content: "Organisation des ressources, planning avec un Diagramme de Gantt, matrice RACI",
+            content: "",
         },
         {
             category: SoftSkillCategory.Management,
             name: "Gestion des ressources",
             icon: 'http://www.valopolis.fr/wp-content/uploads/2013/04/picto_RACI.png',
-            content: "Organisation des ressources, planning avec un Diagramme de Gantt, matrice RACI",
+            content: "Matrice RACI",
         },
         {
             category: SoftSkillCategory.Management,
@@ -475,8 +527,14 @@ export const defaultAbout: AboutContent = {
             content: 'Chercher le besoin, réaliser des users journeys, en déduire des Epics, Feature, Task et les prioriser. Réaliser une roadmap et définir un backlog'
         }
     ],
-    valeurs: ['Solidarité'],
-    quality: ['Communiquant']
+    valeurs: [{
+        name: 'Solidarité',
+        icon: AllInbox
+    }],
+    quality: [{
+        name: 'Communiquant',
+        icon: Speaker
+    }]
 
 }
 

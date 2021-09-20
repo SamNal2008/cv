@@ -18,10 +18,18 @@ const useStyles = makeStyles({
     root: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        width: '10vw'
+        alignItems: 'stretch',
+        justifyContent: 'stretch',
+        flex: '1 1'
     },
+    subBox: {
+        display: 'flex',
+        paddingTop: '1%',
+        justifyContent: 'flex-start',
+        gap: '10px',
+        alignItems: 'center',
+        flex: '1 1'
+    }
 });
 
 const AboutFun = ({...props} : AboutFunProps) => {
@@ -31,17 +39,12 @@ const AboutFun = ({...props} : AboutFunProps) => {
     return (
         <Box className={classes.root}>
             <Typography sx={{fontWeight: 'bold'}} variant='h5'>{props.title}</Typography>
-            <Box>
                 {$enum(props.category).getValues().map(interestCategory => 
-                    <Box style={{paddingTop: '10%'}}>
-                        <Box style={{display: 'flex',  flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-                            <Typography variant='h6'>{interestCategory}</Typography>
-                            {props.interests?.filter(interest => interest.category === interestCategory).map(interest => <Typography>{interest.name}</Typography>)}
-                        </Box>
-                        {interestCategory !== props.last ? <Divider flexItem={true} orientation='vertical'/> : <></>}
+                    <Box className={classes.subBox}>
+                        <Typography variant='h6' style={{textDecoration: 'underline'}}>{interestCategory}</Typography>
+                        {props.interests?.filter(interest => interest.category === interestCategory).map(interest => <Typography>{interest.name}</Typography>)}
                     </Box>
                 )}
-            </Box>
         </Box>
     )
 }

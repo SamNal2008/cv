@@ -8,5 +8,6 @@ export default interface Job {
     id: string,
     logo: string,
     websiteUrl: string,
-    content?: string
+    content?: string,
+    timeInMonth?: number
 }

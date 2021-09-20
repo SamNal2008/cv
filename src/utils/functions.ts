@@ -29,5 +29,21 @@ export function str2ab(str: string): ArrayBuffer {
     }
     return buf;
 }
-  
 
+export function monthDiff(d1: Date, d2: Date) {
+    var months;
+    months = (d2.getFullYear() - d1.getFullYear()) * 12;
+    months -= d1.getMonth();
+    months += d2.getMonth();
+    return months <= 0 ? 0 : months;
+}
+
+export function getTime(months: number) {
+    if (months < 12) {
+        return `${months} mois`;
+    }
+    else {
+        let years = Math.floor(months / 12);
+        return `${years} ans`;
+    }
+}

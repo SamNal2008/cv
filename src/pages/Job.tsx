@@ -129,7 +129,7 @@ const JobView = () => {
                         <Typography variant='h2'>
                             {job?.jobName}
                         </Typography>
-                        <img alt={job?.jobName} src={picture}/>
+                        <img height={'50%'} width={'50%'} alt={job?.jobName} src={picture}/>
                     </div>
                     {user?.isAdmin ? <><MDEditor
                         className={classes.editor}

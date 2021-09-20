@@ -9,10 +9,10 @@ import AboutContent, { defaultAbout, HardSkillCategory, InterestCategory, Method
 import { firestore, save } from "../utils/firebase";
 import LittleChipset from "../components/custom-material/LittleChipset";
 import AboutSkills from "../components/AboutSkills";
-import AboutContact from "../components/AboutMe";
 import AboutTravel from "../components/AboutTravel";
 import AboutFun from "../components/AboutFun";
 import AboutSport from "../components/AboutSports";
+import AboutMe from "../components/AboutMe";
 
 const useStyles = makeStyles({
     root: {
@@ -50,6 +50,7 @@ const useStyles = makeStyles({
         alignItems: 'flex-start',
         justifyContent: 'space-between',
         paddingTop: '5%',
+        flex: '1 1'
     },
 })
 
@@ -92,7 +93,7 @@ const About = () => {
                loaded ?
                <Box className={classes.main}>
                 <Box className={classes.subBox}>
-                <AboutContact {...about?.informations} />
+                    <AboutMe contacts={about?.informations.contacts} introduction={about?.informations.introduction} valeurs={about?.valeurs} quality={about?.quality} />
                 </Box>
                 <Box className={classes.subBox}>
                     <Typography variant='h4'>Compétences</Typography>

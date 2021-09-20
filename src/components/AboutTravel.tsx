@@ -1,5 +1,6 @@
+import { useMediaQuery } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { VisitedCountry } from '../utils/about';
 import LittleChipset from './custom-material/LittleChipset';
 
@@ -8,7 +9,6 @@ const useStyles = makeStyles({
         paddingTop: '2%',
         paddingBottom: '5%',
         display: 'flex',
-        width: '30vw',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
     },
@@ -21,9 +21,10 @@ interface AboutTravelProps {
 const AboutTravel = ({...props}: AboutTravelProps) => {
 
     const classes = useStyles();
-
+    const theme = useTheme();
+    const fullScreen = !useMediaQuery(theme.breakpoints.down('md'))
     return (
-        <Box>
+        <Box style={{paddingLeft: '5%', paddingRight: '5%'}}>
             <Typography variant='h5' sx={{fontWeight: 'bold'}}>Ouverture culturelle</Typography>
             <Box className={classes.voyage}>
                 <Box>

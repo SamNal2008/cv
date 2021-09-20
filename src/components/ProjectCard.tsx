@@ -1,5 +1,5 @@
 import { Box, Card, CardActionArea, CardActions, CardContent, CardMedia, IconButton, makeStyles, Typography } from "@material-ui/core";
-import { Button } from "@mui/material";
+import { Button, useMediaQuery } from "@mui/material";
 import { Project } from "../utils/project";
 import renovation from '../images/renovation.jpg';
 import { useHistory } from "react-router-dom";
@@ -11,6 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { useEffect, useState } from "react";
 import ContentType from "../utils/contentTypes";
 import PushPinIcon from '@mui/icons-material/PushPin';
+import { useTheme } from "@mui/system";
 
 const useStyles = makeStyles({
   main: {
@@ -26,6 +27,14 @@ const useStyles = makeStyles({
   },
   media: {
     height: '180px',
+  },
+  rootResponsive: {
+    height: '300px',
+    width: '290px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
   },
   action: {
     display: 'flex',
@@ -53,7 +62,8 @@ export default function ProjectCard({...project}: Project) {
       projectIsPinned = true;
     }
     const [isPin, setIsPin] = useState<boolean>(projectIsPinned);
-
+    const theme = useTheme();
+    const fullscreen = !useMediaQuery(theme.breakpoints.down('md'));
     const [picture, setPicture] = useState('');
 
     const updateProject = (isPinned: boolean) => {
@@ -79,7 +89,7 @@ export default function ProjectCard({...project}: Project) {
 
     return (
       <Box className={classes.main}>
-        <Card className={classes.root}>
+        <Card className={fullscreen ? classes.root : classes.rootResponsive}>
           <CardActionArea onClick={() => history.push(`/project?projectId=${project.id}`)}>
             <CardMedia
               className={classes.media}

@@ -8,7 +8,7 @@ import renovation from '../images/renovation.jpg';
 import ContentType from "../utils/contentTypes";
 import { useAuthState } from "./AuthContext";
 import CircularProgress from '@mui/material/CircularProgress';
-import { Divider } from "@mui/material";
+import { Divider, useMediaQuery, useTheme } from "@mui/material";
  
 
 const useStyles = makeStyles({
@@ -24,6 +24,18 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-start',
+        alignItems: 'center',
+        flexGrow: 1,
+        flexShrink: 1,
+        overflow: 'hidden'
+    },
+    mainResponsive: {
+        height: '100%',
+        width: '100%',
+        padding: '1%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
         alignItems: 'center',
         flexGrow: 1,
         flexShrink: 1,
@@ -57,13 +69,16 @@ const StudyCard = ( study: Study ) => {
         loadImg();
       }, [loaded]);
 
+    const theme = useTheme();
+    const fullscreen = !useMediaQuery(theme.breakpoints.down('md'));
+
     return (
         <Box className={classes.root}>
             {user?.isAdmin ? <Button onClick={deleteStudy}>Supprimer</Button> : <></>}
             
-                <Paper className={classes.main} elevation={5} >
+                <Paper className={fullscreen ? classes.main : classes.mainResponsive} elevation={5} >
                     <Link style={{textDecoration: 'none'}} to={`/study?studyId=${study.id}`}>
-                    <Box>
+                    {fullscreen ? <Box>
                         <Typography variant='h4'>
                             {study.schoolName}
                         </Typography>
@@ -79,9 +94,9 @@ const StudyCard = ( study: Study ) => {
                         <Typography>
                             {study.startedDate} - {study.finishedDate}
                         </Typography>
-                    </Box>
+                    </Box>: <img height={'100'} style={{marginRight: '10%'}} src={logo} />}
                     </Link>
-                    <a href={study.websiteUrl} style={{marginLeft: 'auto'}}> <img height={'100'} style={{marginLeft: 'auto'}} src={logo}/></a>
+                    { fullscreen ? <a href={study.websiteUrl} style={{marginLeft: 'auto'}}> <img height={'100'} style={{marginLeft: 'auto'}} src={logo}/></a> : <></>}
                 </Paper>
 
         </Box>

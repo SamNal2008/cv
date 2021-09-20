@@ -12,6 +12,9 @@ import { firestore, get, save } from "../utils/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import JobsList from "../components/JobsList";
 import { Link } from "react-router-dom";
+import ContentType from "../utils/contentTypes";
+import Job from '../utils/job';
+import { getTime } from "../utils/functions";
 
 const useStyles = makeStyles({
     root: {
@@ -59,11 +62,20 @@ const Home = () => {
 
     const [home, setHome] = useState<HomeContent>(defaultHome);
     const [loaded, setLoaded] = useState(false);
+    const [projectLength, setProjectsLength] = useState(0);
+    const [xpTime, setXpTime] = useState('');
 
     useEffect(() => {
         const fetchInfo = async () => {
             const docRef = doc(firestore, 'app', 'home');
             const docSnap = await getDoc(docRef);
+            setProjectsLength((await get(ContentType.projects)).length);
+            let tmpXpTime = 0;
+            (await get(ContentType.job)).map((job: Job) => {
+                if (job.timeInMonth)
+                tmpXpTime += job.timeInMonth
+            });
+            setXpTime(getTime(tmpXpTime));
             if (docSnap.exists()) {
                 let data: any = docSnap.data();
                 setHome(data);
@@ -111,9 +123,9 @@ const Home = () => {
                     </Box>
                     {user?.isAdmin ? <Button onClick={updateChange}>Valider</Button> : <></>}
                 </Box>
-                <HomeBox component={<StudiesList/>} title={'Formations'}/>
-                <HomeBox component={<JobsList/>} title={'Expériences professionnelles'}/>
-                <HomeBox component={<ProjectsList/>} title={'Projets'}/>
+                <HomeBox component={<StudiesList/>} title={'Formations'} subtitle={'BAC + 5'}/>
+                <HomeBox component={<JobsList/>} title={'Expériences professionnelles'} subtitle={xpTime}/>
+                <HomeBox component={<ProjectsList/>} title={'Projets'} subtitle={`${projectLength}`}/>
             </Box> : <div style={{minHeight: '50vh', display: "flex", justifyContent: 'center', alignItems: 'center'}}><CircularProgress /></div>}
         </div>
     )

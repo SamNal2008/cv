@@ -62,6 +62,12 @@ let defaultTheme = createTheme({
                 alignItems: 'center'
             }
         },
+        MuiAccordionSummary: {
+            style: {
+                color: secondaryMainColor,
+                backgroundColor: primaryMainColor
+            }
+        }
     }
 });
 

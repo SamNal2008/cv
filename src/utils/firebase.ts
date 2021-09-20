@@ -152,7 +152,15 @@ export const save = async (type: string, obj: any) => {
 }
 
 export const getOne = async (type: string, id: string) => {
-  return 'ok'
+  const docRef = doc(firestore, type, id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      let data: any = docSnap.data();
+      return data;
+    }
+    else {
+      console.error('Object not found');
+    }
 }
 
 export const get = async (type: string) => {
