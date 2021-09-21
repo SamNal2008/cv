@@ -508,6 +508,42 @@ export const defaultAbout: AboutContent = {
             city: 'Barcelone'
         },
         {
+            livedThere: false,
+            country: 'USA',
+            flag: 'https://cdn.britannica.com/33/4833-004-828A9A84/Flag-United-States-of-America.jpg',
+            city: 'Los Angeles'
+        },
+        {
+            livedThere: false,
+            country: 'Angleterre',
+            flag: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png',
+            city: 'Londres'
+        },
+        {
+            livedThere: false,
+            country: 'Belgique',
+            flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Flag_of_Belgium_%28civil%29.svg/1024px-Flag_of_Belgium_%28civil%29.svg.png',
+            city: 'Bruxelles'
+        },
+        {
+            livedThere: false,
+            country: 'Portugal',
+            flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/255px-Flag_of_Portugal.svg.png',
+            city: 'Lisbonne'
+        },
+        {
+            livedThere: false,
+            country: 'Italie',
+            flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/2560px-Flag_of_Italy.svg.png',
+            city: 'Turin'
+        },
+        {
+            livedThere: false,
+            country: 'Luxembourg',
+            flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Flag_of_Luxembourg.svg/2560px-Flag_of_Luxembourg.svg.png',
+            city: ''
+        },
+        {
             livedThere: true,
             country: 'France',
             flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/langfr-225px-Flag_of_France.svg.png',
@@ -686,7 +722,7 @@ export const defaultAbout: AboutContent = {
         icon: Hearing
     },
     {
-        name: "Assidu",
+        name: "Déterminé",
         icon: AssignmentTurnedIn
     },
 

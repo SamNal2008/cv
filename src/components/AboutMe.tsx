@@ -55,9 +55,9 @@ const AboutMe = (props: AboutMeProps) => {
                     spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}
                 >
                     <Grid item xs={2} sm={4} md={6}>
-                        <Typography variant='h4'>Introduction</Typography>
-                        <Divider style={{width: '35vw', marginBottom: '4vh', marginTop: '1%'}} />
-                        <Typography>{props.introduction}</Typography>
+                        <Typography variant='h4'>Personnalité</Typography>
+                        <Divider style={{marginTop: '1%'}} />
+                        {/*<Typography>{props.introduction}</Typography>*/}
                         <Box className={classes.qualitiesAndValues}>
                             <Box className={classes.qualities}>
                                 <Typography variant='h6'>Qualités</Typography>

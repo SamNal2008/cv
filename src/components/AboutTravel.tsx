@@ -11,6 +11,7 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
+        flex: '1 1'
     },
 });
 
@@ -27,13 +28,15 @@ const AboutTravel = ({...props}: AboutTravelProps) => {
         <Box style={{paddingLeft: '5%', paddingRight: '5%'}}>
             <Typography variant='h5' sx={{fontWeight: 'bold'}}>Ouverture culturelle</Typography>
             <Box className={classes.voyage}>
-                <Box>
+                <Box flex={'1 1 300px'}>
                     <Typography variant='h6' color='textPrimary' sx={{textDecoration: 'underline'}}>Pays où j'ai pu vivre</Typography>
                     {props.visitedCountries?.filter((country: VisitedCountry ) => country.livedThere).map((country: VisitedCountry) => <LittleChipset primary={country.country} secondary={`${country.city} | ${country.timeStayed}`} icon={country.flag}/>)}
                 </Box>
-                <Box>
+                <Box flex={'1 1 300px'}>
                     <Typography variant='h6' color='textPrimary' sx={{textDecoration: 'underline'}}>Pays que j'ai pu visiter</Typography>
-                    {props.visitedCountries?.filter((country: VisitedCountry) => !country.livedThere).map((country: VisitedCountry) => <LittleChipset primary={country.country} secondary={country.city} icon={country.flag}/>)}
+                    <Box style={{overflow: 'auto', minWidth: '70px', maxHeight: '420px'}}>
+                        {props.visitedCountries?.filter((country: VisitedCountry) => !country.livedThere).map((country: VisitedCountry) => <LittleChipset primary={country.country} secondary={country.city} icon={country.flag}/>)}
+                    </Box>
                 </Box>
             </Box>
         </Box>
