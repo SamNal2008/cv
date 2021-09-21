@@ -88,7 +88,7 @@ const Home = () => {
     }, [loaded])
 
     const updateChange = () => {
-        save('app', home).then(() => console.log('Home updated')).catch(err => console.error(err));
+        save('app', home).then(() => console.log('Home updated')).catch(err => console.log(err));
     }
 
     return (
@@ -106,9 +106,6 @@ const Home = () => {
                     })}/> : <></>}
                     <Box className={classes.subBox}>
                         <img className={classes.photo} src={profilPicture} alt='profile-picture'/>
-                        {user?.isAdmin ? <IconButton>
-                            <CreateIcon/>
-                        </IconButton> : <></> }
                         <Typography className={classes.description} variant='h6'>
                             {home.textDescriptor}
                         </Typography>

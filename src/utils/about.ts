@@ -588,16 +588,22 @@ export const defaultAbout: AboutContent = {
     ],
     methods: [
         {
-            name: 'Démarcher des investisseurs',
+            name: 'Etablir un set d\'outils',
             icon: 'https://cdn-icons-png.flaticon.com/512/639/639365.png',
             category: MethodCategory.BusinessCase,
-            content: 'Etablir un Total Available Market satisfaisant'
+            content: 'Conception et analyse'
+        },
+        {
+            name: 'Idée',
+            icon: 'https://cdn-icons-png.flaticon.com/512/639/639365.png',
+            category: MethodCategory.BusinessCase,
+            content: ''
         },
         {
             name: 'Analyse financière',
             icon: 'https://w1.pngwing.com/pngs/98/305/png-transparent-pdf-logo-financial-statement-bank-statement-financial-statement-analysis-financial-transaction-report-finance-credit.png',
             category: MethodCategory.BusinessCase,
-            content: 'Projection - ROI - Calcul des coûts - Worst Case & Best Case'
+            content: 'Calcul du Total Available Market - Projection - ROI - Calcul des coûts - Worst Case & Best Case'
         },
         {
             name: 'Marketter l\'idée',
@@ -706,7 +712,7 @@ export const defaultAbout: AboutContent = {
     }
     ],
     quality: [{
-        name: 'Communiquant',
+        name: 'Esprit d\'équipe',
         icon: RecordVoiceOver
     },
     {
@@ -722,7 +728,7 @@ export const defaultAbout: AboutContent = {
         icon: Hearing
     },
     {
-        name: "Déterminé",
+        name: "Méthodique",
         icon: AssignmentTurnedIn
     },
 

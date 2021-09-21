@@ -26,14 +26,14 @@ const AboutTravel = ({...props}: AboutTravelProps) => {
     const fullScreen = !useMediaQuery(theme.breakpoints.down('md'))
     return (
         <Box style={{paddingLeft: '5%', paddingRight: '5%'}}>
-            <Typography variant='h5' sx={{fontWeight: 'bold'}}>Ouverture culturelle</Typography>
+            <Typography variant='h5' sx={{fontWeight: 'bold'}}>Découverte & Voyage</Typography>
             <Box className={classes.voyage}>
                 <Box flex={'1 1 300px'}>
-                    <Typography variant='h6' color='textPrimary' sx={{textDecoration: 'underline'}}>Pays où j'ai pu vivre</Typography>
+                    <Typography variant='h6' color='textPrimary' sx={{textDecoration: 'underline'}}>Découverte</Typography>
                     {props.visitedCountries?.filter((country: VisitedCountry ) => country.livedThere).map((country: VisitedCountry) => <LittleChipset primary={country.country} secondary={`${country.city} | ${country.timeStayed}`} icon={country.flag}/>)}
                 </Box>
                 <Box flex={'1 1 300px'}>
-                    <Typography variant='h6' color='textPrimary' sx={{textDecoration: 'underline'}}>Pays que j'ai pu visiter</Typography>
+                    <Typography variant='h6' color='textPrimary' sx={{textDecoration: 'underline'}}>Voyage</Typography>
                     <Box style={{overflow: 'auto', minWidth: '70px', maxHeight: '420px'}}>
                         {props.visitedCountries?.filter((country: VisitedCountry) => !country.livedThere).map((country: VisitedCountry) => <LittleChipset primary={country.country} secondary={country.city} icon={country.flag}/>)}
                     </Box>

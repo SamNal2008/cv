@@ -84,7 +84,8 @@ const ProjectView = () => {
 
     const updateContent = () => {
         save(ContentType.projects, project);
-        console.log('Project updated')
+        console.log('Project updated');
+        history.push('/projects');
     }
     
     useEffect(() => {

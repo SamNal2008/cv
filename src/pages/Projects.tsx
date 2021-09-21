@@ -84,30 +84,42 @@ export default function Projects() {
             </Typography>
             { loaded ? 
             <>
-            <Typography variant='h3'>
-                {projects.length > 1 ? 'Projets professionnels' : 'Projet professionnel'}
-            </Typography>
-            <Box className={classes.subBox}>
-                {
-                    projects.filter(project => project.type === ProjectType.Professional).map(project => <ProjectCard {...project} />)
-                }
-            </Box>
-            <Typography variant='h3' className={classes.subTitle}>
-                {projects.length > 1 ? 'Projets en école' : 'Projet en école'}
-            </Typography>
-                <Box className={classes.subBox}>
+                {projects.filter(project => project.type === ProjectType.Professional).length > 0 ?
+                <>
+                    <Typography variant='h3'>
+                        {projects.length > 1 ? 'Projets personnels' : 'Projet personnel'}
+                    </Typography>
+                    <Box className={classes.subBox}>
+                        {
+                            projects.filter(project => project.type === ProjectType.Personal).map(project => <ProjectCard {...project} />)
+                        }
+                    </Box>
+                </> : <></>}
+
+                {projects.filter(project => project.type === ProjectType.Professional).length > 0 ? 
+                <>
+                    <Typography variant='h3' className={classes.subTitle}>
+                        {projects.length > 1 ? 'Projets scolaires' : 'Projet scolaire'}
+                    </Typography>
+                    <Box className={classes.subBox}>
+                        {
+                            projects.filter(project => project.type === ProjectType.School).map(project => <ProjectCard {...project} />)
+                        }
+                    </Box>
+                </> : <></>}
+                
+                {projects.filter(project => project.type === ProjectType.Professional).length > 0 ?
+                <>
+                    <Typography variant='h3'>
+                        {projects.length > 1 ? 'Projets professionnels' : 'Projet professionnel'}
+                    </Typography>
+                    <Box className={classes.subBox}>
                     {
-                        projects.filter(project => project.type === ProjectType.School).map(project => <ProjectCard {...project} />)
+                        projects.filter(project => project.type === ProjectType.Professional).map(project => <ProjectCard {...project} />)
                     }
-                </Box>
-            <Typography variant='h3'>
-                {projects.length > 1 ? 'Projets personnels' : 'Projet personnel'}
-            </Typography>
-            <Box className={classes.subBox}>
-                {
-                    projects.filter(project => project.type === ProjectType.Personal).map(project => <ProjectCard {...project} />)
-                }
-            </Box></> : <CircularProgress/> }
+                    </Box>
+                </> : <></>}
+            </> : <CircularProgress/> }
             {user?.isAdmin ? <Button onClick={() => setOpen(!open)}>Ajouter un nouveau projet</Button> : <></>}
             <Collapse in={open} style={{height: '100%'}}>
                 <NewProjectForm open={open} handleValidate={() => {setOpen(!open); setLoaded(false);}} handleClose={() => setOpen(!open)}/>

@@ -37,7 +37,7 @@ export const AuthContextProvider = (props: any): JSX.Element => {
         }
       }
       catch (e) {
-        console.error(e);
+        console.log(e);
       }
       return setUser(u);
     }

@@ -58,7 +58,7 @@ const defineAdminRole = async (user: any) => {
     await setDoc(doc(firestore, 'users', user.uid), userObject);
   }
   catch (e) {
-    console.error(e);
+    console.log(e);
   }
 }
 
@@ -76,12 +76,12 @@ export const signInWithGoogle = async () => {
     await defineAdminRole(user);
     return user;
   } catch (error: any) {
-    console.error(error);
+    console.log(error);
     const errorCode = error.code;
     const errorMessage = error.message;
     const email = error.email;
     const credential_1 = GoogleAuthProvider.credentialFromError(error);
-    console.error(credential_1);
+    console.log(credential_1);
   }
 }
 
@@ -98,12 +98,12 @@ export const signInWithGitHub = async () => {
     defineAdminRole(user);
     return user;
   } catch (error: any) {
-    console.error(error);
+    console.log(error);
     const errorCode = error.code;
     const errorMessage = error.message;
     const email = error.email;
     const credential_1 = GithubAuthProvider.credentialFromError(error);
-    console.error(credential_1);
+    console.log(credential_1);
   }
 }
 
@@ -121,12 +121,12 @@ export const signInWithFaceboook =  async () => {
     defineAdminRole(user);
     return user;
   } catch (error: any) {
-    console.error(error);
+    console.log(error);
     const errorCode = error.code;
     const errorMessage = error.message;
     const email = error.email;
     const credential_1 = FacebookAuthProvider.credentialFromError(error);
-    console.error(credential_1);
+    console.log(credential_1);
   }
 }
 
@@ -135,7 +135,7 @@ export const signOutFromApp = async () => {
     await signOut(auth);
     console.log('Signed out');
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 }
 
@@ -146,7 +146,7 @@ export const save = async (type: string, obj: any) => {
     await setDoc(doc(firestore, type, obj.id), obj);
   }
   catch (e) {
-    console.error(e);
+    console.log(e);
     throw e;
   }
 }
@@ -159,7 +159,7 @@ export const getOne = async (type: string, id: string) => {
       return data;
     }
     else {
-      console.error('Object not found');
+      console.log('Object not found');
     }
 }
 
@@ -175,7 +175,7 @@ export const get = async (type: string) => {
     return tmp;
   }
   catch (e) {
-    console.error(e);
+    console.log(e);
     throw e;
   }
 }
@@ -200,7 +200,7 @@ export async function fetchImage(url: string) {
     xhr.open('GET', url_1);
     xhr.send();
     return url_1;
-  } catch (error) { console.error(error); return ''; } 
+  } catch (error) { console.log(error); return ''; } 
 }
 
 export const uploadImageFor = async (type: string, name: string, img: any) => {
@@ -212,7 +212,7 @@ export const uploadImageFor = async (type: string, name: string, img: any) => {
     });
   }
   catch (e) {
-    console.error(e);
+    console.log(e);
   }
 }
 
@@ -226,7 +226,7 @@ export const uploadProjectContent = async (type: string, name: string, content: 
     });
   }
   catch (e) {
-    console.error(e);
+    console.log(e);
   }
 }
 
@@ -241,7 +241,7 @@ export async function fetchProjectContent(url: string) {
     xhr.open('GET', url_1);
     xhr.send();
     return url_1;
-  } catch (error) { console.error(error); return ''; } 
+  } catch (error) { console.log(error); return ''; } 
 }
 
 export const deleteImage = (imgPath: string) => {
@@ -254,7 +254,7 @@ export const deleteImage = (imgPath: string) => {
     console.log('image deleted');
   }).catch((error) => {
     // Uh-oh, an error occurred!
-    console.error(error);
+    console.log(error);
   });
 }
 

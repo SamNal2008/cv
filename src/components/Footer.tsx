@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     padding: theme.spacing(3, 2),
     backgroundColor: secondaryMainColor,
+    position: 'relative',
+    bottom: '0',
   }
 }));
 

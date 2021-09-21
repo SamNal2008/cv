@@ -1,4 +1,4 @@
-import { Typography, Box, Divider, Grid, GridSize } from "@mui/material"
+import { Typography, Box, Divider, Grid, GridSize, useMediaQuery, useTheme } from "@mui/material"
 import { EnumType } from "typescript"
 import FlexCenterColBox from "./custom-material/Box/FlexCenterColBox"
 import LittleChipset from "./custom-material/LittleChipset"
@@ -33,6 +33,14 @@ const useStyles = makeStyles({
         paddingTop: '1%',
         flex: '1 1',
     },
+    categoriesBoxDefault: {
+        display: 'flex',
+        alignItems: 'flex-start',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        paddingTop: '1%',
+        flex: '1 1',
+    },
     category: {
         display: 'flex',
         alignItems: 'center',
@@ -47,11 +55,12 @@ const useStyles = makeStyles({
 const AboutSkills = ({...props} : AboutSkillsProps) => {
     
     const classes = useStyles();
-
+    const theme = useTheme();
+    const isFullScreen = useMediaQuery(theme.breakpoints.up('lg'));
     return (
         <Box className={classes.root}>
             <Typography sx={{fontWeight: 'bold'}} variant='h5'>{props.title}</Typography>
-            <Box className={classes.categoriesBox}>{$enum(props.category).getValues().map(skillCategory =>       
+            <Box className={isFullScreen ? classes.categoriesBoxDefault : classes.categoriesBox}>{$enum(props.category).getValues().map(skillCategory =>       
                     <>
                         <Box className={classes.category}>
                             <Typography variant='h6' sx={{textDecoration: 'underline'}}>{skillCategory} :</Typography>
