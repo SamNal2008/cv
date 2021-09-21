@@ -106,7 +106,7 @@ export default function ProjectCard({...project}: Project) {
             </CardContent>
           </CardActionArea>
           <CardActions className={classes.action}>
-            <ButtonLink disabled={!project.githubLink} inMenu={true} content='Git' icon={<></>} path={project.githubLink}/>
+            {project.githubLink ? <a style={{textDecoration: 'none'}} href={project.githubLink} target='_blank'><Button>Git</Button></a> : <Button disabled>Git</Button>}
             <ButtonLink color='primary' inMenu={true} content='En savoir plus' icon={<></>} path={`/project?projectId=${project.id}`} />
             {user?.isAdmin ?
               <>

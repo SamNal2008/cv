@@ -26,7 +26,7 @@ const useStyles = makeStyles({
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap: 'wrap',
-        alignItems: 'baseline',
+        alignItems: 'flex-start',
         width: '100%',
         height: '100%',
         paddingBottom: '3%'

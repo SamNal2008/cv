@@ -22,8 +22,6 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: '100%',
-        width: '98%',
         padding: '1%',
         flexShrink: 1,
         flexGrow: 1
@@ -94,7 +92,7 @@ const Home = () => {
     }
 
     return (
-        <div>
+        <div style={{height: '100%'}}>
             {loaded ? <Box className={classes.root}>
                 <Box className={classes.introductionBox}>
                     <Typography variant='h1'>
@@ -126,7 +124,7 @@ const Home = () => {
                 <HomeBox component={<StudiesList/>} title={'Formations'} subtitle={'BAC + 5'}/>
                 <HomeBox component={<JobsList/>} title={'Expériences professionnelles'} subtitle={xpTime}/>
                 <HomeBox component={<ProjectsList/>} title={'Projets'} subtitle={`${projectLength}`}/>
-            </Box> : <div style={{minHeight: '50vh', display: "flex", justifyContent: 'center', alignItems: 'center'}}><CircularProgress /></div>}
+            </Box> : <div style={{height: '80vh', backgroundColor: 'whitesmoke'}}><CircularProgress style={{marginTop: '40vh', marginLeft: '40vw'}} /></div>}
         </div>
     )
 }
