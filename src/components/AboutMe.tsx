@@ -1,8 +1,8 @@
 import { makeStyles } from "@material-ui/core";
-import { SmsFailed } from "@material-ui/icons";
-import { Grid, Typography, Divider, List, ListItemIcon, ListItem, ListItemText, SvgIcon, Box } from "@mui/material"
+import { Grid, Typography, Divider, List, ListItemIcon, ListItem, ListItemText, SvgIcon, Box, Button } from "@mui/material"
+import { Link } from "react-router-dom";
 import { Contact, Quality } from "../utils/about";
-import LittleChipset from "./custom-material/LittleChipset";
+import { Downloading } from "@mui/icons-material";
 
 interface AboutMeProps {
     contacts: Contact[],
@@ -39,7 +39,10 @@ const AboutMeChipset = ({primary, icon, secondary}: {primary: string, icon: any,
             <ListItemIcon>
                 <SvgIcon color='primary' component={icon}/>
             </ListItemIcon>
-            <ListItemText id="switch-list-label-wifi" primary={primary} secondary={secondary ? secondary?.startsWith('http') ? <a target='_blank' href={secondary}>{secondary}</a> : `${secondary}` : ''} />
+            {!secondary || !secondary.startsWith('Télécharger') ? 
+            <ListItemText id="switch-list-label-wifi" primary={primary} secondary={secondary ? secondary?.startsWith('http') ? <a target='_blank' href={secondary}>{secondary}</a> : `${secondary}` : ''} /> 
+            : 
+            <ListItemText id="switch-list-label-wifi" primary={primary} secondary={<a target='_blank' href={'https://firebasestorage.googleapis.com/v0/b/cv-backend-aff36.appspot.com/o/others%2Fnalbandian-cv.pdf?alt=media'} download>{secondary}</a>} />}
         </ListItem>
     )
 }

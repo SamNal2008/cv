@@ -3,6 +3,7 @@ import GitHub from '@material-ui/icons/GitHub';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { SvgIcon } from '@mui/material';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import { Download } from '@mui/icons-material';
 
 export interface VisitedCountry {
     livedThere?: boolean,
@@ -146,15 +147,20 @@ export const defaultAbout: AboutContent = {
                 content: 'https://www.linkedin.com/in/snal'
             },
             {
-                icon: Instagram,
-                name: 'Instagram',
-                content: 'https://www.instagram.com/samynalbandian/'
+                icon: Download,
+                name: 'Mon CV',
+                content: 'Télécharger mon CV'
             },
             {
                 icon: GitHub,
                 name: 'Github',
                 content: 'https://www.github.com/SamNal2008/'
-            }
+            },
+            {
+                icon: Instagram,
+                name: 'Instagram',
+                content: 'https://www.instagram.com/samynalbandian/'
+            },
         ],
     },
     sports: [

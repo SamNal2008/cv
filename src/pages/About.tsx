@@ -1,10 +1,8 @@
 import { doc, getDoc } from "@firebase/firestore";
-import { Avatar, ListItemAvatar, makeStyles } from "@material-ui/core";
-import { Button, Divider, CircularProgress, Box, Typography} from "@mui/material";
+import { makeStyles } from "@material-ui/core";
+import { Divider, CircularProgress, Box, Typography} from "@mui/material";
 import { useEffect, useState } from "react";
 import { useAuthState } from "../components/AuthContext";
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 import AboutContent, { defaultAbout, HardSkillCategory, InterestCategory, MethodCategory, SoftSkillCategory } from "../utils/about";
 import { firestore, save } from "../utils/firebase";
 import LittleChipset from "../components/custom-material/LittleChipset";
@@ -13,6 +11,7 @@ import AboutTravel from "../components/AboutTravel";
 import AboutFun from "../components/AboutFun";
 import AboutSport from "../components/AboutSports";
 import AboutMe from "../components/AboutMe";
+
 
 const useStyles = makeStyles({
     root: {
@@ -119,7 +118,6 @@ const About = () => {
                         <AboutSport sports={about.sports}/>
                     </Box>
                 </Box>
-                {user?.isAdmin ? <Button variant='contained' onClick={() => setIsClicked(!isClicked)}>Valider</Button> : <></>}
             </Box> : <CircularProgress/>
             }
         </Box>
