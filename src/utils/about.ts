@@ -417,12 +417,12 @@ export const defaultAbout: AboutContent = {
         },
         {
             category: InterestCategory.VideoGame,
-            name: 'Reflexe et agilité',
+            name: 'Reflexe & agilité',
             content: "J'adore regarder des séries sur les temps anciens notamment en Asie"
         },
         {
             category: InterestCategory.CardGame,
-            name: 'Belotte',
+            name: 'Belote',
             content: "J'adore regarder des séries sur les temps anciens notamment en Asie"
         },
         {

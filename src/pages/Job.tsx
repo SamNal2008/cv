@@ -139,8 +139,8 @@ const JobView = () => {
           >
             <Typography variant="h2">{job?.jobName}</Typography>
             <img
-              height={"50%"}
-              width={"50%"}
+              height={"10%"}
+              width={"10%"}
               alt={job?.jobName}
               src={picture}
             />
