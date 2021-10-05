@@ -19,11 +19,12 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         minHeight: '80vh',
-        width: '100%',
-        flexGrow: 1,
-        paddingTop: '2%'
+        width: '99vw',
+        flex: '1 1 0',
+        paddingTop: '2%',
+        paddingBottom: '2%'
     },
     main: {
         minHeight: '60vh',
@@ -34,14 +35,15 @@ const useStyles = makeStyles({
         minWidth: '80vw',
     },
     displayer: {
-        padding: '2%',
+        paddingTop: '2%',
         minHeight: '80vh',
-        minWidth: '80vw',
-        margin: '1%',
     },
     displayContent : {
-        minWidth: '70vw',
-        minHeight: '70vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        maxWidth: '50vw'
     }
 })
 

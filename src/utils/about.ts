@@ -601,7 +601,7 @@ export const defaultAbout: AboutContent = {
         },
         {
             name: 'Idée',
-            icon: 'https://cdn-icons-png.flaticon.com/512/639/639365.png',
+            icon: 'https://cdn-icons-png.flaticon.com/512/427/427735.png',
             category: MethodCategory.BusinessCase,
             content: ''
         },
